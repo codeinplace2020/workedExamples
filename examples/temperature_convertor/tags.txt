@@ -1,0 +1,6 @@
+week1
+variables
+casting
+input
+functions
+conditionals
