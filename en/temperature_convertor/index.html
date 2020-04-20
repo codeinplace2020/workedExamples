@@ -1,0 +1,114 @@
+
+<title>Temperature Convertor
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Temperature Convertor
+</h1>
+				<p class="subtleHeading">Problem and Solution written by Rohit Midha, discovered by Andres Celsius and Daniel Gabriel Fahrenheit.
+</p>
+				<hr/>
+				<p>
+	In 1724, physicist Daniel Gabriel Fahrenheit proposed a temperature scale, the Fahrenheit scale.
+  <br>The Celsius scale, is also a temperature scale but serves as an SI derived unit, and hence used worldwide.
+</p>
+<br>
+<p>
+  Some countries still continue to use the Fahrenheit scale over the Celsius scale.
+  <br>Write a program that takes in a choice from the user, fahrenheit to celsius or vice versa.
+  <br>Read in the appropriate temperature and output the converted temperature.
+</p>
+<br>
+
+<center>
+	<img style="height: 150px;width:400px" src="./demo1.png">
+  <img style="height: 150px;width:400px" src="./demo2.png">
+</center>
+
+<p>
+  Use the following formulae for the conversions:<br>
+  <b>celsius = (fahrenheit - 32) * 5/9</b><br>
+  <b>fahrenheit = (celsius * 9/5) + 32</b>
+</p>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:580.0px">
+def fahrenheit_to_celsius():
+    # get the fahrenheit temperature from the user
+    fahrenheit = float(input(&quot;Enter Temperature in Fahrenheit : &quot;))
+    # use the formula to calculate temperature in celsius
+    celsius = (fahrenheit - 32) * 5.0/9.0
+    # output with appropriate units
+    print(&quot;Temperature:&quot;, fahrenheit, &quot;F = &quot;, celsius, &quot;C&quot;)
+
+def celsius_to_fahrenheit():
+    # get the celsius temperature from the user
+    celsius = float(input(&quot;Enter Temperature in Celsius : &quot;))
+    # use the formula to calculate temperature in fahrenheit
+    fahrenheit = (celsius * 9.0/5.0) + 32
+    # output with appropriate units
+    print(&quot;Temperature:&quot;, celsius, &quot;C = &quot;, fahrenheit, &quot;F&quot;)
+
+
+# get the choice from the user
+option = int(input(&quot;Enter choice (1/2): \n1. Fahrenheit to Celsius \n2. Celsius to Fahrenheit \n&quot;))
+
+# based on the option call the appropriate function
+# if the user enters an invalid option print the appropriate response
+if option==1:
+    fahrenheit_to_celsius()
+elif option==2:
+    celsius_to_fahrenheit()
+else:
+    print(&quot;INVALID OPTION!&quot;)
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
