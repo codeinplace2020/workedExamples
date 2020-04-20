@@ -1,0 +1,6 @@
+week2
+variables
+casting
+input
+while
+sqrt
