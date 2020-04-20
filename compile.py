@@ -70,6 +70,7 @@ class Compiler(object):
     def is_img(self, file_type):
         if file_type == 'png': return True
         if file_type == 'jpg': return True
+        if file_type == 'svg': return True
         return False
 
     def load_part(self, dir_name, file_name):
