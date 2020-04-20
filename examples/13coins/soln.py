@@ -13,7 +13,7 @@ def main():
     print(f'coin is defective (coins labeled 1 to {NUM_COINS}).')
     
     # Initialize weights: 0 for normal coin, -1/+1 for defective coin
-    bad_coin = 1#random.randint(0, NUM_COINS-1)
+    bad_coin = random.randint(0, NUM_COINS-1)
     bad_weight = random.choice((-1,1))
     weights = [0 if i != bad_coin else bad_weight for i in range(NUM_COINS)]
 
