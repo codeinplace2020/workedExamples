@@ -1,0 +1,113 @@
+
+<title>E=MC2</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>E=MC2</h1>
+				<p class="subtleHeading">Problem written by Chris, discovered by Einstein</p>
+				<hr/>
+				<p>
+	One of the exciting human discoveries is that mass and energy are interchangable and are related by the equation E = <i>m</i> × C <sup>2</sup>. This relationship was uncovered by Albert Einstein almost 100 years ago and we now know that the sun produces its heat by transforming small amounts of mass into large amounts of energy.
+</p>
+
+<p> Write a program that continually reads in mass from the user and then outputs the equivalent energy. Here is an example execution of the program:</p>
+<p></p>
+<pre class="console" style="width:400px">
+Enter kilos of mass: <span class="blue">27</span>
+e = m * c ^ 2...
+m = 27.0 kg
+C = 299792458 m/s
+e = 2.4266389825894077e+18 joules
+
+Enter kilos of mass: <span class="blue">15</span>
+e = m * c ^ 2...
+m = 15.0 kg
+C = 299792458 m/s
+e = 1.3481327681052265e+18 joules
+
+Enter kilos of mass: <span class="blue">0.001</span>
+e = m * c ^ 2...
+m = 0.001 kg
+C = 299792458 m/s
+e = 89875517873681.766 joules
+</pre>
+<p></p>
+<p>If you ask the user to input kilograms, and you use speed of light equals 299792458 (which is in meters per second) the result of calculating E = <i>m</i> × C <sup>2</sup> will be in Jouls.</p>
+
+<p> Note that 3.0e+8 is scientific notation for 3.0 × 10 <sup>8</sup> which is 300,000,000. You don't need to do anything for python to print floats in scientific notation. It will automatically do so when numbers get big enough.</p>
+<p>
+	Since the speed of light will never change, it makes sense to declare it as a constant.
+</p>
+				
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:420.0px">C = 299792458
+	
+def main():
+	while True:
+		# Read the mass in from the user. type is float
+		mass_in_kg = float(input(&quot;Enter kilos of mass: &quot;))
+		
+		# Calculate energy
+		# equivalently energy = mass * (C ** 2)
+		# using the ** operator
+		energy_in_joules = mass_in_kg * C * C
+		
+		# Display work to the user
+		print(&quot;e = m * C^2...&quot;)
+		print(&quot;m = &quot; + str(mass_in_kg) + &quot; kg&quot;)
+		print(&quot;C = &quot; + str(C) + &quot; m/s&quot;)
+		print(str(energy_in_joules) + &quot; joules of energy!&quot;)
+		print(&quot;&quot;)
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

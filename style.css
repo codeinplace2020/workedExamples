@@ -1,0 +1,30 @@
+@media (min-width: 1070px) {
+  .container-course {
+    max-width: 1040px !important;
+  }
+}
+
+.subtleHeading {
+  font-size: 14px;
+  font-weight: 700;
+  color: #959595;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.blue {
+	color:blue;
+}
+
+.console {
+  color:black;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  padding:10px;
+}
+
+body {
+  text-align: justify;
+}
