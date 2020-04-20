@@ -1,0 +1,8 @@
+variables
+casting
+list
+input
+random
+console
+decomposition
+function
