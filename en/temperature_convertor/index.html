@@ -42,7 +42,7 @@
 				<hr/>
 				<p>
 	In 1724, physicist Daniel Gabriel Fahrenheit proposed a temperature scale, the Fahrenheit scale.
-  <br>The Celsius scale, is also a temperature scale but serves as an SI derived unit, and hence used worldwide.
+  <br>The Celsius scale is also a temperature scale which serves as an SI derived unit, and hence used worldwide.
 </p>
 <br>
 <p>
@@ -62,16 +62,20 @@
   <b>celsius = (fahrenheit - 32) * 5/9</b><br>
   <b>fahrenheit = (celsius * 9/5) + 32</b>
 </p>
+<br>
+<p>
+	<b>NOTE:</b> Take in a real number from the user and not an integer for the temperature.
+</p>
 
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:580.0px">
+				<pre class="console" id="editor" style="height:680.0px">
 def fahrenheit_to_celsius():
     # get the fahrenheit temperature from the user
     fahrenheit = float(input(&quot;Enter Temperature in Fahrenheit : &quot;))
     # use the formula to calculate temperature in celsius
     celsius = (fahrenheit - 32) * 5.0/9.0
     # output with appropriate units
-    print(&quot;Temperature:&quot;, fahrenheit, &quot;F = &quot;, celsius, &quot;C&quot;)
+    print(&quot;Temperature:&quot; + str(fahrenheit) + &quot;F = &quot; + str(celsius) + &quot;C&quot;)
 
 def celsius_to_fahrenheit():
     # get the celsius temperature from the user
@@ -79,20 +83,25 @@ def celsius_to_fahrenheit():
     # use the formula to calculate temperature in fahrenheit
     fahrenheit = (celsius * 9.0/5.0) + 32
     # output with appropriate units
-    print(&quot;Temperature:&quot;, celsius, &quot;C = &quot;, fahrenheit, &quot;F&quot;)
+    print(&quot;Temperature:&quot; + str(celsius) +  &quot;C = &quot; + str(fahrenheit) + &quot;F&quot;)
 
+def main():
+    # get the choice from the user
+    print(&quot;1. Fahrenheit to Celsius&quot;)
+    print(&quot;2. Celsius to Fahrenheit&quot;)
+    option = int(input(&quot;Your choice :&quot;))
 
-# get the choice from the user
-option = int(input(&quot;Enter choice (1/2): \n1. Fahrenheit to Celsius \n2. Celsius to Fahrenheit \n&quot;))
+    # based on the option call the appropriate function
+    # if the user enters an invalid option print the appropriate response
+    if option==1:
+        fahrenheit_to_celsius()
+    elif option==2:
+        celsius_to_fahrenheit()
+    else:
+        print(&quot;INVALID OPTION!&quot;)
 
-# based on the option call the appropriate function
-# if the user enters an invalid option print the appropriate response
-if option==1:
-    fahrenheit_to_celsius()
-elif option==2:
-    celsius_to_fahrenheit()
-else:
-    print(&quot;INVALID OPTION!&quot;)
+if __name__ == &#039;__main__&#039;:
+    main()
 </pre>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>

@@ -17,7 +17,9 @@ def celsius_to_fahrenheit():
 
 def main():
     # get the choice from the user
-    option = int(input("Enter choice (1/2): \n1. Fahrenheit to Celsius \n2. Celsius to Fahrenheit \n"))
+    print("1. Fahrenheit to Celsius")
+    print("2. Celsius to Fahrenheit")
+    option = int(input("Your choice :"))
 
     # based on the option call the appropriate function
     # if the user enters an invalid option print the appropriate response
