@@ -1,0 +1,114 @@
+
+<title>Leap year</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Leap year</h1>
+				<p class="subtleHeading">Problem written by Ulugbek, the term introduced by Roman general Julius Caesar.</p>
+				<hr/>
+				<p>
+	A leap year (also known as an intercalary year or bissextile year) is a calendar year that contains an additional day (or, in the case of a lunisolar calendar, a month) added to keep the calendar year synchronized with the astronomical year or seasonal year. In the Gregorian calendar, each leap year has 366 days instead of 365, by extending February to 29 days rather than the common 28. 
+</p>
+<p>
+	Leap Year Rules: How to Calculate Leap Years
+</p>
+<p>In the Gregorian calendar, three criterias must be checked to identify leap years:</p>
+<ul>
+	<li>
+		<strong>The given year must be evenly divisible by 4;</strong>
+	</li>
+	<li>
+		<strong>If the year can also be evenly divided by 100, it is NOT a leap year; unless: </strong>
+	</li>
+	<li>
+		<strong>The year is also evenly divisible by 400. Then it is a leap year.</strong>
+	</li>
+</ul>
+<p> Write a program that continually reads a year from the user and tells whether a given year is a leap year or not. Show your work in the following way:</p>
+<p></p>
+<center>
+	<img style="width:400px" src="./demo.png">	
+</center>
+<p></p>
+<p>
+	*Reference article to wiki: <a href="https://en.wikipedia.org/wiki/Leap_year">Leap year</a>
+</p>
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:560.0px">def main():
+    while True:
+        # input function return string
+        year_str = input(&#039;Please, input a year: &#039;)
+
+        # casting provided input into number
+        year = int(year_str)
+
+		# checking whether the provided year is evenly divisibly by 4
+        if year % 4 == 0:
+			# checking whether the provided year is evenly divisibly by 100
+            if year % 100 == 0:
+				# checking whether the provided year is evenly divisibly by 400
+                if year % 400 == 0:
+                    print(&#039;A given year {} is a leap year&#039;.format(year))
+                else:
+                    print(&#039;A given year {} is NOT a leap year&#039;.format(year))
+            else:
+                print(&#039;A given year {} is a leap year&#039;.format(year))
+        else:
+            print(&#039;A given year {} is NOT a leap year&#039;.format(year))
+		
+		# just printing dashes in order to seperate results in the console
+        print(&#039;--------------------&#039;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
