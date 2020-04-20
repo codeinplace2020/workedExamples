@@ -15,7 +15,7 @@ def main():
         target = random.randint(MIN_NUMBER, MAX_NUMBER)
 
         # initialize a variable for the user's guess
-        user_guess = 0
+        user_guess = None
 
         print(
             user_name + ", I'm thinking of an integer in the interval ["
