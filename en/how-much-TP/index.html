@@ -1,0 +1,122 @@
+
+<title>How much toilet paper?
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>How much toilet paper?
+</h1>
+				<p class="subtleHeading">Problem written by Trunojoyo (Atun) A, inspired by howmuchtoiletpaper.com 
+</p>
+				<hr/>
+				<p>
+One of the most interesting phenomenon in the beginning of this global health crisis is the hoarding of toilet paper. Discussions on the amount of toilet paper used per day between London based Software Developer Ben Sasson and Artist Sam Harris gave birth to howmuchtoiletpaper.com. In it, users can input the amount of rolls users have and the mount of toilet visit per day. The two inputs then get calculated into the equation: 160 sheets per roll × rolls users have / (6 sheets per visit × toilet visits per day) to produce the output on how long will the supply of their toilet paper last. </p>
+
+<p>
+	The website has garnered over 12 million visitors and many publicities. Just for fun, write a program that reads in the amount of rolls users have and the amount of toilet visit per day and outputs the number of days will their supply of toilet paper last for. Here is an example execution of the program:
+</p>
+
+<p></p>
+<pre class="console" style="width:800px">
+Enter the amount of rolls you have: <span class="blue">1</span>
+Enter the number of toilet visits per day: <span class="blue">2</span>
+How long = 160 sheets per roll * number of rolls / (6 sheets per toilet visit * toilet visit per day)...
+Number of rolls = 1.0 rolls
+Toilet visits = 2.0 per day
+You will last 13 days!
+
+Enter the amount of rolls you have: <span class="blue">1</span>
+Enter the number of toilet visits per day: <span class="blue">26</span>
+How long = 160 sheets per roll * number of rolls / (6 sheets per toilet visit * toilet visit per day)...
+Number of rolls = 1.0 rolls
+Toilet visits = 26.0 per day
+You will last 1 days!
+
+Enter the amount of rolls you have: <span class="blue">8</span>
+Enter the number of toilet visits per day: <span class="blue">2</span>
+How long = 160 sheets per roll * number of rolls / (6 sheets per toilet visit * toilet visit per day)...
+Number of rolls = 8.0 rolls
+Toilet visits = 2.0 per day
+You will last 106 days!
+</pre>
+<p></p>
+
+<p> Assume that the number of sheets in a roll is always 160 sheets per roll and the users always use 6 sheets per toilet visit. These two numbers can be declared as constants. </p>
+
+<p>
+For your own challenge, there is a more accurate and complicated way to compute the amount of rolls explained in the howmuchtoiletpaper.com that you can try to program.</p>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:480.0px">SHEETS = 160
+USAGE = 6
+
+
+def main():
+	while True:
+		# Read the amount of Toilet Paper rolls from the user. type is float
+		number_of_rolls = float(input(&quot;Enter the amount of rolls you have: &quot;))
+		toilet_visits = float(input(&quot;Enter the number of toilet visits per day: &quot;))
+
+		# Calculate how long will the user&#039;s supply last
+		# How long = SHEETS * number of rolls mass / (USAGE * toilet visit)
+		how_long = int(SHEETS * number_of_rolls / (USAGE * toilet_visits))
+		
+		# Display work to the user
+		print(&quot;How long = 160 sheets per roll * number of rolls / (6 sheets per toilet visit * toilet visit per day)...&quot;)
+		print(&quot;Number of rolls = &quot; + str(number_of_rolls) + &quot; rolls&quot;)
+		print(&quot;Toilet visit = &quot; + str(toilet_visits) + &quot; per day&quot;)
+		print(&quot;You will last &quot; + str(how_long) + &quot; days!&quot;)
+		print(&quot;&quot;)
+
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
