@@ -11,7 +11,7 @@ See `examples/emc2-console` for an example of what it looks like to author an ex
 
 ## In order to create a new worked example 
 1. Make a new dir in 'examples' for your new worked example
-2. Add the following files to your worked example
+1. Add the following files to your worked example
 + title.txt (the title of your worked example)
 + soln.py (the solution)
 + credit.txt (who wrote this!)
