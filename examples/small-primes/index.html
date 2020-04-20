@@ -1,0 +1,23 @@
+<p>Prime numbers have many applications in mathematics, cryptography, etc. You will write a program to test a user-provided integer for primality.</p>
+
+<p>The program requirements are as follows:</p>
+  <ul>
+    <li>The program should support testing numbers up to 10,000,000.</li>
+    <li>The program should ask the user for a number to test and output whether or not the number is prime.</li>
+    <li>The program should display the 10 primes &lt;= the number provided. If there are fewer than 10, then it should display all that fit the criteria.</li>
+    <li>The program should be fast.</li>
+    <li>Extra credit: support numbers up to 100,000,000 (or more!).</li>
+  </ul>
+
+  <p>There are many ways to calculate primes, but for small numbers the Sieve of Eratosthenes is one of the most effective algorithms. The <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Wikipedia article</a> has a good description. The provided solution uses that algorithm.</p>
+  <pre class="console" style="width:400px">
+This program will test whether a specified integer is prime.
+It will also print out the 10 primes &lt;= the provided value.
+For the sake of time, only numbers up to 10000000 are allowed.
+Calculating primes up to 10000000. Please wait...
+Calculated all primes up to 10000000 in 1.2002735137939453 seconds.
+Please enter an integer in [0, 10000000]: 9999991
+9999991 is prime!
+The 10 primes &lt;= 9999991 are:
+[9999991, 9999973, 9999971, 9999943, 9999937, 9999931, 9999929, 9999907, 9999901, 9999889]
+</pre>
