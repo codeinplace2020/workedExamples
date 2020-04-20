@@ -6,6 +6,9 @@ This is a collaborative project to add worked examples to Code in Place. Thanks 
 - fun (if possible)
 - short 
 
+See `en/emc2-console` for an example of a compiled example
+See `examples/emc2-console` for an example of what it looks like to author an example
+
 ## In order to create a new worked example 
 1. Make a new dir in 'examples' for your new worked example
 2. Add the following files to your worked example
