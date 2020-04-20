@@ -1,0 +1,137 @@
+
+<title>Number Guessing Game
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Number Guessing Game
+</h1>
+				<p class="subtleHeading">Number guessing game written by Andrew C. Carter.
+</p>
+				<hr/>
+				<p>Your task is to write a simple number guessing game. The program's specifications are as follows:</p>
+  <ul>
+    <li>The program should ask the user for their name and refer to the user by name for the duration of the session.</li>
+    <li>The user should be prompted for a guess in a predefined interval that is provided to the user.</li>
+    <li>The user should be continuously prompted for guesses until they guess the correct answer.</li>
+    <li>The user should be provided with feedback about the guess (whether it's too high or low).</li>
+    <li>The user should also be notified if the guess is outside the allowable range.</li>
+  </ul>
+<p>Once the correct number is guessed, a new game should be started.</p>
+
+<p>As an example, consider the following game: </p>
+<p></p>
+<pre class="console" style="width:400px">
+Hello! Let's play a number guessing game.
+Press ctrl-c to quit.
+Please enter your name: Andrew
+Andrew, I'm thinking of an integer in the interval [1, 100]
+Please enter your guess: 50
+Andrew, your guess was too low!
+
+Please enter your guess: 75
+Andrew, your guess was too low!
+
+Please enter your guess: 87
+Andrew, your guess was too high!
+
+Please enter your guess: 81
+Congratulations Andrew, you got it!
+
+Andrew, I'm thinking of an integer in the interval [1, 100]
+Please enter your guess:
+</pre>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:840.0px">import random
+
+MIN_NUMBER = 1
+MAX_NUMBER = 100
+
+def main():
+    print(&quot;Hello! Let&#039;s play a number guessing game.&quot;)
+    print(&quot;Press ctrl-c to quit.&quot;)
+
+    # Collect the user&#039;s name to make the game more personal
+    user_name = input(&quot;Please enter your name: &quot;)
+
+    while True:
+        # pick a random integer in the interval [MIN_NUMBER, MAX_NUMBER]
+        target = random.randint(MIN_NUMBER, MAX_NUMBER)
+
+        # initialize a variable for the user&#039;s guess
+        user_guess = 0
+
+        print(
+            user_name + &quot;, I&#039;m thinking of an integer in the interval [&quot;
+            + str(MIN_NUMBER) + &quot;, &quot; + str(MAX_NUMBER) + &quot;]&quot;)
+        
+        # Run the current game until the user guesses the correct value
+        while user_guess != target:
+            user_guess = int(input(&quot;Please enter your guess: &quot;))
+
+            # Handle guesses outside of allowable range and provide feedback
+            # to the user so they can refine their guess.
+            if user_guess &gt; MAX_NUMBER or user_guess &lt; MIN_NUMBER:
+                print(user_name + &quot;, your guess was out of range!&quot;)
+            elif user_guess &lt; target:
+                print(user_name + &quot;, your guess was too low!&quot;)
+            elif user_guess &gt; target:
+                print(user_name + &quot;, your guess was too high!&quot;)
+            else:
+                print(&quot;Congratulations &quot; + user_name + &quot;, you got it!&quot;)
+            
+            print(&quot;&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
