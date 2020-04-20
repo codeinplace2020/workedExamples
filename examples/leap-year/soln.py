@@ -12,13 +12,13 @@ def main():
             if year % 100 == 0:
 				# checking whether the provided year is evenly divisibly by 400
                 if year % 400 == 0:
-                    print('Given year {} is a leap year'.format(year))
+                    print('A given year {} is a leap year'.format(year))
                 else:
-                    print('Given year {} is NOT a leap year'.format(year))
+                    print('A given year {} is NOT a leap year'.format(year))
             else:
-                print('Given year {} is a leap year'.format(year))
+                print('A given year {} is a leap year'.format(year))
         else:
-            print('Given year {} is NOT a leap year'.format(year))
+            print('A given year {} is NOT a leap year'.format(year))
 		
 		# just printing dashes in order to seperate results in the console
         print('--------------------')
