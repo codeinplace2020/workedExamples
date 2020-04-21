@@ -1,0 +1,6 @@
+variables
+boolean
+input
+random
+console
+function
