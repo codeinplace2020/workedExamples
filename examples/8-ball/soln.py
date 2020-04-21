@@ -29,6 +29,7 @@ def main():
                 print('aahhhh, really nice work')
 
             #stopping criteria, to end the while loop
+            question = question.lower()
             if question == 'quit':
                 #the break keyword is used to end the while loop
                 break
