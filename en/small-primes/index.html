@@ -1,0 +1,168 @@
+
+<title>Small Primes
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Small Primes
+</h1>
+				<p class="subtleHeading">Program by Andrew C. Carter with thanks to Eratosthenes of Cyrene.
+</p>
+				<hr/>
+				<p>Prime numbers have many applications in mathematics, cryptography, etc. You will write a program to test a user-provided integer for primality.</p>
+
+<p>The program requirements are as follows:</p>
+  <ul>
+    <li>The program should support testing numbers up to 10,000,000.</li>
+    <li>The program should ask the user for a number to test and output whether or not the number is prime.</li>
+    <li>The program should display the 10 primes &lt;= the number provided. If there are fewer than 10, then it should display all that fit the criteria.</li>
+    <li>The program should be fast.</li>
+    <li>Extra credit: support numbers up to 100,000,000 (or more!).</li>
+  </ul>
+
+  <p>There are many ways to calculate primes, but for small numbers the Sieve of Eratosthenes is one of the most effective algorithms. The <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Wikipedia article</a> has a good description. The provided solution uses that algorithm.</p>
+  <pre class="console" style="width:400px">
+This program will test whether a specified integer is prime.
+It will also print out the 10 primes &lt;= the provided value.
+For the sake of time, only numbers up to 10000000 are allowed.
+Calculating primes up to 10000000. Please wait...
+Calculated all primes up to 10000000 in 1.2002735137939453 seconds.
+Please enter an integer in [0, 10000000]: 9999991
+9999991 is prime!
+The 10 primes &lt;= 9999991 are:
+[9999991, 9999973, 9999971, 9999943, 9999937, 9999931, 9999929, 9999907, 9999901, 9999889]
+</pre>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:1640.0px">import time
+
+UPPER_BOUND = 10000000  # Warning! Values &gt; 100,000,000 will take a LONG time.
+PRIMES_TO_SHOW = 10
+
+def main():
+    print(&quot;This program will test whether a specified integer is prime.&quot;)
+    print(&quot;It will also print out the &quot; + str(PRIMES_TO_SHOW)
+            + &quot; primes &lt;= the provided value.&quot;)
+    print(&quot;For the sake of time, only numbers up to &quot; + str(UPPER_BOUND)
+            + &quot; are allowed.&quot;)
+
+    print(&quot;Calculating primes up to &quot; + str(UPPER_BOUND) + &quot;. Please wait...&quot;)
+    primes = calculate_primes()
+
+    while True:
+        n = int(input(&quot;Please enter an integer in [0, &quot; + str(UPPER_BOUND) + &quot;]: &quot;))
+
+        # Check the primality of the provided value.
+        prime = primes[n]
+
+        if prime:
+            print(str(n) + &quot; is prime!&quot;)
+        else:
+            print(str(n) + &quot; is not prime!&quot;)
+
+        # Find the largest PRIMES_TO_SHOW &lt;= n.
+        to_show = last_n_primes(primes, n)
+        print(&quot;The &quot; + str(len(to_show)) + &quot; primes &lt;= &quot; + str(n) + &quot; are: &quot;)
+        print(to_show)
+        print(&quot;&quot;)
+
+def calculate_primes():
+    &quot;&quot;&quot;Calculates primes &lt;= UPPER_BOUND.
+    pre: UPPER_BOUND &gt;= 0
+    post: returns a list of booleans [0, UPPER_BOUND] indicating if the number
+          at index i is prime.
+    &quot;&quot;&quot;
+    # Initialize a list of size UPPER_BOUND + 1 to represent the integers in the
+    # range [0, UPPER_BOUND].
+    primes = [True] * (UPPER_BOUND + 1)
+
+    # We know 0 and 1 are not prime so treat them as special cases.
+    primes[0] = primes[1] = False
+
+    # Keep track of time to display to the user later.
+    start_time = time.time()
+
+    # We only need to iterate up to the square root of n because the inner
+    # loop starts at n^2.
+    upper_bound = int(UPPER_BOUND**0.5)
+    for i in range(2, upper_bound + 1):
+        if primes[i]:
+            # Cross out all numbers that are multiples of i starting at i^2
+            for j in range(i * i, UPPER_BOUND + 1, i):
+                primes[j] = False
+
+    end_time = time.time()
+    print(&quot;Calculated all primes up to &quot; + str(UPPER_BOUND) + &quot; in &quot; 
+            + str(end_time - start_time) + &quot; seconds.&quot;)
+    return primes
+
+def last_n_primes(primes, n):
+    &quot;&quot;&quot;Finds the PRIMES_TO_SHOW largest primes &lt;= n.
+    pre:
+        PRIMES_TO_SHOW &gt;= 0
+        primes: a list of primes
+        n: an integer specifying the maximum prime to display
+    post: returns a list of up to PRIMES_TO_SHOW largest primes &lt;= n
+    &quot;&quot;&quot;
+    show = []
+    i = n
+    # Start at n and work downward keeping track of primes.
+    # Loop should also ensure we don&#039;t drop below zero.
+    while len(show) &lt; PRIMES_TO_SHOW and i &gt;= 0:
+        if primes[i]:
+            show.append(i)
+        i -= 1
+    return show
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

@@ -1,0 +1,8 @@
+variables
+casting
+input
+primes
+functions
+for
+lists
+booleans
