@@ -29,6 +29,7 @@ def main():
                 print('aahhhh, really nice work')
 
             #stopping criteria, to end the while loop
+            #.lower() converts the input for the variable 'question' to lowercase letters (for uniformity)
             question = question.lower()
             if question == 'quit':
                 #the break keyword is used to end the while loop
