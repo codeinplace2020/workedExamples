@@ -1,0 +1,17 @@
+<p>
+    There are numerous ways to estimate the value of <i>&pi;</i>: while advanced algorithms have computed up to 50 trillion digits of <i>&pi;</i> (as of <a href="http://www.numberworld.org/y-cruncher/">January 2020</a>), there is also an extremely inefficient yet utmost astonishing method based on <a href="https://youtu.be/HEfHFsfGXjs">bouncing billiards</a>. 
+</p>
+<p>
+    A simple probabilistic approach is the so-called Monte Carlo method. As shown below, we have a circle with radius 1, enclosed by a 2 by 2 square. The area ratio of circle to square is <i>&pi;</i>/4. We can then throw a pebble many times, which lands uniformly inside the square. The probability of landing inside the circle is hence <i>&pi;</i>/4.
+</p>
+<p>
+    Your task is to write a program that asks a user for the number of throws (<i>n</i>), simulate pebble throwing, and lastly compute the number of times (<i>m</i>) the pebble lands inside the circle. You can then estimate <i>&pi;</i> as 4<i>m</i>/<i>n</i>. As you expect, the estimated value becomes closer to the true value as the number of throws increases.
+</p>
+<p></p>
+<center>
+    <img style="width:800px" src="./demo.png">  
+</center>
+<p></p>
+<p> 
+    A sample program is shown above (blue texts are user input). You can assume that all user input is valid. If the user wants to quit the program, just press "Enter" instead of inputting a number. 
+</p>
