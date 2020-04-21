@@ -100,17 +100,6 @@ def flip_da_ya(ans):
         return 'da'
 
 
-def boolean_to_daya(yesno, da):
-    """
-    Converts a boolean value to a string.
-    Returns 'da' or 'ya' depending their assigned meanings
-    """
-    if yesno == da:
-        return 'da'
-    else:
-        return 'ya'
-
-
 def check_name(god, name, A, B, C):
     """
     Evaluates whether a given god has a particular name.
