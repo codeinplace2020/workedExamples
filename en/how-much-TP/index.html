@@ -41,7 +41,7 @@
 </p>
 				<hr/>
 				<p>
-One of the most interesting phenomenon in the beginning of this global health crisis is the hoarding of toilet paper. Discussions on the amount of toilet paper used per day between London based Software Developer Ben Sasson and Artist Sam Harris gave birth to howmuchtoiletpaper.com. In it, users can input the amount of rolls users have and the mount of toilet visit per day. The two inputs then get calculated into the equation: 160 sheets per roll Ã— rolls users have / (6 sheets per visit Ã— toilet visits per day) to produce the output on how long will the supply of their toilet paper last. </p>
+One of the most interesting phenomenon in the beginning of this global health crisis is the hoarding of toilet paper. Discussions on the amount of toilet paper used per day between London based Software Developer Ben Sasson and Artist Sam Harris gave birth to howmuchtoiletpaper.com. In it, users can input the amount of rolls users have and the mount of toilet visit per day. The two inputs then get calculated into the equation: 160 sheets per roll × rolls users have / (6 sheets per visit × toilet visits per day) to produce the output on how long will the supply of their toilet paper last. </p>
 
 <p>
 	The website has garnered over 12 million visitors and many publicities. Just for fun, write a program that reads in the amount of rolls users have and the amount of toilet visit per day and outputs the number of days will their supply of toilet paper last for. Here is an example execution of the program:
@@ -78,7 +78,15 @@ You will last 106 days!
 For your own challenge, there is a more accurate and complicated way to compute the amount of rolls explained in the howmuchtoiletpaper.com that you can try to program.</p>
 
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:480.0px">SHEETS = 160
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:480.0px">SHEETS = 160
 USAGE = 6
 
 
@@ -102,6 +110,7 @@ def main():
 
 if __name__ == &#039;__main__&#039;:
 	main()</pre>
+				</div>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -113,6 +122,16 @@ if __name__ == &#039;__main__&#039;:
    editor.setFontSize("14px");
     /*editor.setTheme("ace/theme/eclipse");
     editor.getSession().setMode("ace/mode/java");*/
+</script>
+<script>
+	function toggleButtonText() {
+		var elem = document.getElementById("soln-btn");
+		if (elem.innerHTML.trim() === "Show Solution") {
+			elem.innerHTML = "Hide Solution";
+		} else {
+			elem.innerHTML = "Show Solution";
+		}
+	}
 </script>
 				<hr/>
 			</div>

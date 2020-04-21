@@ -38,7 +38,7 @@
 				<p class="subtleHeading">Problem written by Chris, discovered by Einstein</p>
 				<hr/>
 				<p>
-	One of the exciting human discoveries is that mass and energy are interchangable and are related by the equation E = <i>m</i> Ã— C <sup>2</sup>. This relationship was uncovered by Albert Einstein almost 100 years ago and we now know that the sun produces its heat by transforming small amounts of mass into large amounts of energy.
+	One of the exciting human discoveries is that mass and energy are interchangable and are related by the equation E = <i>m</i> × C <sup>2</sup>. This relationship was uncovered by Albert Einstein almost 100 years ago and we now know that the sun produces its heat by transforming small amounts of mass into large amounts of energy.
 </p>
 
 <p> Write a program that continually reads in mass from the user and then outputs the equivalent energy. Here is an example execution of the program:</p>
@@ -63,16 +63,24 @@ C = 299792458 m/s
 e = 89875517873681.766 joules
 </pre>
 <p></p>
-<p>If you ask the user to input kilograms, and you use speed of light equals 299792458 (which is in meters per second) the result of calculating E = <i>m</i> Ã— C <sup>2</sup> will be in Jouls.</p>
+<p>If you ask the user to input kilograms, and you use speed of light equals 299792458 (which is in meters per second) the result of calculating E = <i>m</i> × C <sup>2</sup> will be in Jouls.</p>
 
-<p> Note that 3.0e+8 is scientific notation for 3.0 Ã— 10 <sup>8</sup> which is 300,000,000. You don't need to do anything for python to print floats in scientific notation. It will automatically do so when numbers get big enough.</p>
+<p> Note that 3.0e+8 is scientific notation for 3.0 × 10 <sup>8</sup> which is 300,000,000. You don't need to do anything for python to print floats in scientific notation. It will automatically do so when numbers get big enough.</p>
 <p>
 	Since the speed of light will never change, it makes sense to declare it as a constant.
 </p>
 				
 
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:420.0px">C = 299792458
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:420.0px">C = 299792458
 	
 def main():
 	while True:
@@ -93,6 +101,7 @@ def main():
 
 if __name__ == &#039;__main__&#039;:
 	main()</pre>
+				</div>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -104,6 +113,16 @@ if __name__ == &#039;__main__&#039;:
    editor.setFontSize("14px");
     /*editor.setTheme("ace/theme/eclipse");
     editor.getSession().setMode("ace/mode/java");*/
+</script>
+<script>
+	function toggleButtonText() {
+		var elem = document.getElementById("soln-btn");
+		if (elem.innerHTML.trim() === "Show Solution") {
+			elem.innerHTML = "Hide Solution";
+		} else {
+			elem.innerHTML = "Show Solution";
+		}
+	}
 </script>
 				<hr/>
 			</div>
