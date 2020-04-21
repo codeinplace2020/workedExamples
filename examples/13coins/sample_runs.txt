@@ -1,0 +1,67 @@
+Welcome to the game of 13 coins!
+All but one coin has the same weight. The defective coin
+is either heavier or lighter. You have 3 chances to
+weigh them using a balance, and you will answer which
+coin is defective (coins labeled 1 to 13).
+
+=== Weighing Round #1 ===
+Select coins on the left (press Enter when done): 1
+Select coins on the left (press Enter when done): 2
+Select coins on the left (press Enter when done): 
+Select coins on the right (press Enter when done): 3
+Select coins on the right (press Enter when done): 4
+Select coins on the right (press Enter when done): 
+Two sides have the same weights.
+
+=== Weighing Round #2 ===
+Select coins on the left (press Enter when done): 5
+Select coins on the left (press Enter when done): 6
+Select coins on the left (press Enter when done): 
+Select coins on the right (press Enter when done): 7
+Select coins on the right (press Enter when done): 8
+Select coins on the right (press Enter when done): 
+The left side is lighter.
+
+=== Weighing Round #3 ===
+Select coins on the left (press Enter when done): 5
+Select coins on the left (press Enter when done):  
+Select coins on the right (press Enter when done): 1
+Select coins on the right (press Enter when done): 
+The left side is lighter.
+
+Which coin is defective (enter 1 to 13)? 1
+Sorry, the defective coin is #5.
+
+---------------------------------------------------------
+
+Welcome to the game of 13 coins!
+All but one coin has the same weight. The defective coin
+is either heavier or lighter. You have 3 chances to
+weigh them using a balance, and you will answer which
+coin is defective (coins labeled 1 to 13).
+
+=== Weighing Round #1 ===
+Select coins on the left (press Enter when done): 1
+Select coins on the left (press Enter when done): 2
+Select coins on the left (press Enter when done): 
+Select coins on the right (press Enter when done): 3
+Select coins on the right (press Enter when done): 4
+Select coins on the right (press Enter when done): 
+The left side is lighter.
+
+=== Weighing Round #2 ===
+Select coins on the left (press Enter when done): 1
+Select coins on the left (press Enter when done): 
+Select coins on the right (press Enter when done): 2
+Select coins on the right (press Enter when done): 
+The left side is heavier.
+
+=== Weighing Round #3 ===
+Select coins on the left (press Enter when done): 2
+Select coins on the left (press Enter when done): 
+Select coins on the right (press Enter when done): 3
+Select coins on the right (press Enter when done): 
+The left side is lighter.
+
+Which coin is defective (enter 1 to 13)? 2
+Congratulations!
