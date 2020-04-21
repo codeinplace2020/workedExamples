@@ -1,0 +1,66 @@
+<p>
+	Finding the roots of quadratic polynomial equations
+	is a problem going back thousands of years. The ancient Babylonians, Egyptians, and Greeks all found ways to solve quadratics, though the
+	modern formula is widely credited to 9th century Persian mathematician
+	<a href="https://en.wikipedia.org/wiki/Muhammad_ibn_Musa_al-Khwarizmi">Muhammad ibn Musa al-Khwarizmi</a>.
+</p>
+<p>
+	The roots of the equation <img src="quadratic_equation.svg" style="padding: 0 1em 0 1em"/>
+	are given by <img src="quadratic_formula.svg" style="padding: 0 1em 0 1em"/>.
+</p>
+
+<p>
+	Write a program that prompts the user for the 3 coefficients of a quadratic
+	equation and outputs the roots. Here is an example execution of the program:
+</p>
+
+<p></p>
+<pre class="console" style="width:800px">
+Welcome to Quadratic Equation Solver!
+This program solves equations of the form Ax^2 + Bx + C = 0.
+Enter the coefficient A: <span class="blue">3</span>
+Enter the coefficient B: <span class="blue">6</span>
+Enter the coefficient C: <span class="blue">9</span>
+The roots of 3.0 x^2 + 6.0 x + 9.0 = 0 are:
+x1 = -1.0 + i1.414213562373095
+x2 = -1.0 - i1.414213562373095
+
+Enter the coefficient A: <span class="blue">1</span>
+Enter the coefficient B: <span class="blue">-6</span>
+Enter the coefficient C: <span class="blue">9</span>
+The roots of 1.0 x^2 + -6.0 x + 9.0 = 0 are:
+x1 = 3.0
+x2 = 3.0
+
+Enter the coefficient A: <span class="blue">1</span>
+Enter the coefficient B: <span class="blue">-6</span>
+Enter the coefficient C: <span class="blue">5</span>
+The roots of 1.0 x^2 + -6.0 x + 5.0 = 0 are:
+x1 = 5.0
+x2 = 1.0
+
+</pre>
+
+<p></p>
+<p><b>Notes:</b></p>
+<ul>
+<li>
+	Python does not have a built-in function for square root, but you can get
+	one by putting an import line at the top of your file as shown below. We
+	haven't learned about import statements or function arguments in class yet,
+	but you don't need to know the details yet in order to use sqrt.
+<pre class="console" style="width:800px">
+# Put this line at the very top of your program.
+from math import sqrt
+
+# Then you can use sqrt anywhere in your program.
+# For example, this line will store 2.0 as a float in the variable my_root.
+my_value = 4.0
+my_root = sqrt(my_value)
+</pre>
+</li>
+
+<li>
+	Note that you need to manually handle the case where the quantity under the square root is negative (the quantity under the square root is called the "descriminant"). Recall that the square root of a negative number is just the imaginary number <b><i>i</i></b> times the square root of the equivalent positive number. For example, sqrt(-4) = i * sqrt(4) = i * 2.
+</li>
+</ul>
