@@ -1,0 +1,1 @@
+The title of this solved example is 8-Ball (Python solution)
