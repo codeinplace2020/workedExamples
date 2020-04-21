@@ -1,0 +1,107 @@
+
+<title>Pi Estimator</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Pi Estimator</h1>
+				<p class="subtleHeading">Problem written by Alfred</p>
+				<hr/>
+				<p>
+    There are numerous ways to estimate the value of <i>&pi;</i>: while advanced algorithms have computed up to 50 trillion digits of <i>&pi;</i> (as of <a href="http://www.numberworld.org/y-cruncher/">January 2020</a>), there is also an extremely inefficient yet utmost astonishing method based on <a href="https://youtu.be/HEfHFsfGXjs">bouncing billiards</a>. 
+</p>
+<p>
+    A simple probabilistic approach is the so-called Monte Carlo method. As shown below, we have a circle with radius 1, enclosed by a 2 by 2 square. The area ratio of circle to square is <i>&pi;</i>/4. We can then throw a pebble many times, which lands uniformly inside the square. The probability of landing inside the circle is hence <i>&pi;</i>/4.
+</p>
+<p>
+    Your task is to write a program that asks a user for the number of throws (<i>n</i>), simulate pebble throwing, and lastly compute the number of times (<i>m</i>) the pebble lands inside the circle. You can then estimate <i>&pi;</i> as 4<i>m</i>/<i>n</i>. As you expect, the estimated value becomes closer to the true value as the number of throws increases.
+</p>
+<p></p>
+<center>
+    <img style="width:800px" src="./demo.png">  
+</center>
+<p></p>
+<p> 
+    A sample program is shown above (blue texts are user input). You can assume that all user input is valid. If the user wants to quit the program, just press "Enter" instead of inputting a number. 
+</p>
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:640.0px">import random
+
+PI = 3.14159265358979
+# Number of digits after decimal point to be displayed
+# Should be less than or equal to 14 for double precision float
+DIGITS = 5
+RADIUS = 1.0
+
+def main():
+    while True:
+        num_trials = input(&#039;Number of trials (press Enter to quit): &#039;)
+        if num_trials == &#039;&#039;:
+            print(&#039;Program has ended.&#039;)
+            break
+        num_trials = int(num_trials)
+        pi = estimate_pi(num_trials)
+        print(f&#039;Actual value of pi:  {PI:.{DIGITS}f}...&#039;)
+        print(f&#039;The estimated value: {pi:.{DIGITS}f}&#039;)
+
+
+def estimate_pi(num_trials):
+    count_in_circle = 0
+    for i in range(num_trials):
+        x = random.uniform(-RADIUS, RADIUS)
+        y = random.uniform(-RADIUS, RADIUS)
+        if x*x + y*y &lt; RADIUS*RADIUS:
+            count_in_circle += 1
+    return 4.0 * count_in_circle / num_trials
+
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
