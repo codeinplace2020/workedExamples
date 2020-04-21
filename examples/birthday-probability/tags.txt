@@ -1,0 +1,8 @@
+week2
+variables
+casting
+input
+for
+probability
+birthday
+validation

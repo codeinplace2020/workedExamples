@@ -1,0 +1,52 @@
+<p>
+  When people get together, it's amazing what we have in common!
+</p>
+<p>
+  Did you know that if 70 people are chosen at random, there's a 99.9% probability that at least two of them share a birthday? And in a random group of 23 people, there's a greater than 50% chance that two of them have the same birthday.
+</p>
+<p>
+  Some people call it a paradox, but it's really just a surprising <a href="https://en.wikipedia.org/wiki/Birthday_problem">result of probability</a>.
+</p>
+<p>
+  If you have <i>n</i> people in a group, this is the equation to compute the probability that two or more of them share the same birthday:
+</p>
+<center>
+  <img style="width:200px" src="./equation.png">
+</center>
+<p>
+  Let's break down that mathematical notation.
+</p>
+<p>
+  It might be easier to decompose this into smaller sub-problems. For example, you might compute the numerator first, then compute the denominator, then divide the numerator by the denominator. You can store each of these intermediate results in variables.
+</p>
+<p>
+  The top part of the fraction, the numerator, means that if there are four people in the group and 365 days in the year, you would multiply <code>365 * 364 * 363</code>. If there are six people in the group, the numerator would be <code>365 * 364 * 363 * 362 * 361</code>. Note that the number of terms starting with 365 is <i>one less than the number of people</i>. The <code>*</code> operator is used to multiply numbers in Python.
+</p>
+<p>
+  Since we don't know in advance how many people are in the group, your code will need to take the user's input as a string, convert it to an integer, and then perform the multiplications in the numerator <code>n - 1</code> times. This sequence is known as a <a href="https://en.wikipedia.org/wiki/Factorial">factorial</a>. While there are Python functions to compute factorials, for this exercise you might consider a <code>for</code> loop instead.
+</p>
+<p>
+  The denominator is the number of days in the year raised to the power of the number of people in the group. In Python, the <code>**</code> operator will do this. For example, if there are six people in the group, the denominator would be <code>365 ** 6</code>.
+</p>
+<p>
+  The fraction by itself is the probability that there are <i>no people with the same birthday</i>. Since we want the probability that there are <i>some people with the same birthday</i> we subtract this amount from 1.
+</p>
+<p>
+  Our goal is to write a program that asks the user for the number of people in a group and then displays the probability that at least two of them share the same birthday. To make the probability easier to read, show it as a percentage (multiply by 100), and only show at most two digits after the decimal (use the <code>round(number, 2)</code> function).
+</p>
+<p>
+  We will assume that the user enters a number. However, if the user enters a number less than 2, that's not enough to be a group of people, so we should respond with an appropriate message. You might want to store the number of days in a year as a constant, so that if you want to run this in a leap year, it's easy to change in one place.
+</p>
+<pre class="console" style="width:640px">
+  How many people are in the group? <span class="blue">0</span>
+  You need at least 2 people to make a group!
+
+  How many people are in the group? <span class="blue">1</span>
+  You need at least 2 people to make a group!
+
+  How many people are in the group? <span class="blue">11</span>
+  There is a 14.1% chance at least two people share the same birthday!
+
+  How many people are in the group? <span class="blue">23</span>
+  There is a 50.73% chance at least two people share the same birthday!
+</pre>
