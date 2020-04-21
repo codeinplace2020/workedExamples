@@ -1,0 +1,5 @@
+while
+random
+flush
+slot machine
+sleep
