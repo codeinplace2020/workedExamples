@@ -1,0 +1,177 @@
+
+<title>Happy number</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Happy number</h1>
+				<p class="subtleHeading">Written by Jean-Benoit D., original problem formulated by Reg Allenby.</p>
+				<hr/>
+				<p>Write an algorithm to determine if a number n is "happy".</p>
+<p>
+	A happy number is a number defined by the following process:
+	Starting with any positive integer, replace the number by the sum of the squares of its digits,
+	and repeat the process until the number equals 1 (where it will stay),
+	or it loops endlessly in a cycle which does not include 1.
+	Those numbers for which this process ends in 1 are happy numbers.
+</p>
+<p>For example, 19 is a happy number:</p>
+<pre class="console" style="width:400px">
+1&sup2; + 9&sup2; = 82
+8&sup2; + 2&sup2; = 68
+6&sup2; + 8&sup2; = 100
+1&sup2; + 0&sup2; + 0&sup2; = 1
+</pre>
+<p></p>
+<p>Write a program that continually reads a number from the user and then outputs if the given number is a happy number.
+	Show your work in the following way:</p>
+<pre class="console" style="width:400px">
+Enter the number to test: 7
+7&sup2;=49
+4&sup2;+9&sup2;=97
+9&sup2;+7&sup2;=130
+1&sup2;+3&sup2;+0&sup2;=10
+1&sup2;+0&sup2;=1
+Number 7 is a happy number
+</pre>
+<p></p>
+<p>We define the following rules:</p>
+<ul>
+	<li>You can only use loops and variables of type int, float or str ;</li>
+	<li>In python, the power of 2 is written: **2</li>
+	<li>In python, you can loop over the characters of a string the same way you loop over a range of integers: when using "for c in sentence(str)", variable c
+	will iterate over the variable string each iteration ;</li>
+	<li>If after 100 iterations, the number "1" is not reached, we consider the input as non happy.</li>
+</ul>
+<p></p>
+<p>For example, integer 2 is not a happy number:</p>
+<pre class="console" style="width:400px">
+Enter the number to test: 2
+[...]
+4&sup2;=16
+1&sup2;+6&sup2;=37
+3&sup2;+7&sup2;=58
+Number 2 is not a happy number
+</pre>
+<p>To correctly print each computation, you might want to use the following function (optional): </p>
+
+<pre class="console" style='color:#000000;background:#ffffff;width:400px'>
+<span style='color:#800000; font-weight:bold; '>def</span> remove_last_character<span style='color:#808030; '>(</span>sentence<span style='color:#808030; '>)</span><span style='color:#808030; '>:</span>
+<span style='color:#696969; '>"""</span>
+<span style='color:#696969; '>	Remove the last character of a string</span>
+<span style='color:#696969; '>	Parameters:</span>
+<span style='color:#696969; '>	sentence (str): a string sentence</span>
+<span style='color:#696969; '>	Returns:</span>
+<span style='color:#696969; '>	str: the truncated sentence</span>
+<span style='color:#696969; '>	"""</span>
+<span style='color:#800000; font-weight:bold; '>return</span> sentence<span style='color:#808030; '>[</span><span style='color:#808030; '>:</span><span style='color:#44aadd; '>-</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>]</span>
+</pre>
+<p></p>
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:780.0px">def main():
+	while True:
+		# Read the number in from the user. type is int
+		number = int(input(&quot;Enter the number to test: &quot;))
+		current_number = number
+		i = 0
+		# We loop if we havent reached 1 and made less than 100 computations
+		while int(current_number) != 1 and i &lt; 100:
+			new_number = 0
+			output = &quot;&quot;
+			# We loop over every digits of the current number
+			for coef in str(current_number):
+				new_number = new_number + int(coef) ** 2
+				output = output + str(coef) + &quot;²+&quot;
+			# We remove the last &quot;+&quot; character
+			output = remove_last_character(output)
+			print(output + &quot;=&quot; + str(new_number))
+			current_number = str(new_number)
+			i = i + 1
+
+		if int(current_number) == 1:
+			print(&quot;Number &quot; + str(number) + &quot; is a happy number&quot;)
+		else:
+			print(&quot;Number &quot; + str(number) + &quot; is not a happy number&quot;)
+
+
+def remove_last_character(sentence):
+	&quot;&quot;&quot;
+	Remove the last character of a string
+	Parameters:
+	sentence (str): a string sentence
+	Returns:
+	str:Returning truncated sentence
+	&quot;&quot;&quot;
+	return sentence[:-1]
+
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
