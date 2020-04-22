@@ -24,9 +24,9 @@ class Compiler(object):
         example_paths = []
         for dir_name in os.listdir('examples'):
             
-            self.complile_example(dir_name)
+            name = self.complile_example(dir_name)
             print(dir_name)
-            example_paths.append(dir_name)
+            example_paths.append((dir_name, name))
         self.make_home_page(example_paths)
 
     #####################
@@ -35,8 +35,9 @@ class Compiler(object):
 
     def make_home_page(self, paths):
         example_list = ''
-        for path in paths:
-            example_list += '<li><a href="{}">{}</a></li>\n'.format(path+'/index.html', path)
+        for example in paths:
+            (exampleId, name) = example
+            example_list += '<li><a href="{}">{}</a></li>\n'.format(exampleId+'/index.html', name)
         template_text = open('home_template.html').read()
         compiled_html = SimpleTemplate(template_text).render(exampleList = example_list)
         compiled_html = compiled_html.encode('utf8')
@@ -53,6 +54,7 @@ class Compiler(object):
         out_path = os.path.join('en', dir_name, 'index.html')
         self.compile_template(out_path, data)
         self.copy_all_images(dir_name)
+        return data['title']
 
     def copy_all_images(self, dir_name):
         out_path = os.path.join('en', dir_name)

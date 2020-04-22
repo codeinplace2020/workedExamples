@@ -165,27 +165,27 @@ if __name__ == &#039;__main__&#039;:
 	main()</pre>
 				</div>
     
-<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("editor");
-   editor.setTheme('ace/theme/eclipse');
-   editor.getSession().setMode("ace/mode/python");
-   editor.setReadOnly(true);
-   editor.renderer.setShowGutter(false); 
-   editor.setFontSize("14px");
-    /*editor.setTheme("ace/theme/eclipse");
-    editor.getSession().setMode("ace/mode/java");*/
-</script>
-<script>
-	function toggleButtonText() {
-		var elem = document.getElementById("soln-btn");
-		if (elem.innerHTML.trim() === "Show Solution") {
-			elem.innerHTML = "Hide Solution";
-		} else {
-			elem.innerHTML = "Show Solution";
-		}
-	}
-</script>
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
 				<hr/>
 			</div>
 		</div>
