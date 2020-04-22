@@ -65,7 +65,15 @@
 	*Reference article to wiki: <a href="https://en.wikipedia.org/wiki/Leap_year">Leap year</a>
 </p>
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:560.0px">def main():
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:560.0px">def main():
     while True:
         # input function return string
         year_str = input(&#039;Please, input a year: &#039;)
@@ -94,6 +102,7 @@
 if __name__ == &quot;__main__&quot;:
     main()
 </pre>
+				</div>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -105,6 +114,16 @@ if __name__ == &quot;__main__&quot;:
    editor.setFontSize("14px");
     /*editor.setTheme("ace/theme/eclipse");
     editor.getSession().setMode("ace/mode/java");*/
+</script>
+<script>
+	function toggleButtonText() {
+		var elem = document.getElementById("soln-btn");
+		if (elem.innerHTML.trim() === "Show Solution") {
+			elem.innerHTML = "Hide Solution";
+		} else {
+			elem.innerHTML = "Show Solution";
+		}
+	}
 </script>
 				<hr/>
 			</div>
