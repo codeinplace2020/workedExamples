@@ -1,0 +1,104 @@
+
+<title>Lucky Draw
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Lucky Draw
+</h1>
+				<p class="subtleHeading">Problem written by Alfred, inspired by J. Leskovec and A. Waterman
+</p>
+				<hr/>
+				<p>
+    Karel decides to throw a birthday party and selects a lucky draw winner among the guests. However, Karel realizes a problem: there is no pen or paper to record all the names for the lucky draw. What is worse, being a simple robot, Karel has very limited memory and can only remember one name at a time.
+</p>
+<p>
+    Your task is to write a simple console program that takes in guest names one at a time. When all guests finished typing their names, you will announce the lucky draw winner. You do not know how many guests will come, and you can only store one name throughout the process. As an impartial host, every guest who entered their name should have an equal probability of winning. A few sample programs are shown below (user input is in blue). 
+</p>
+<p></p>
+<center>
+    <img style="width:800px" src="./demo.png">  
+</center>
+<p></p>
+<p>
+    <i>Hint</i>: When the <i>n</i>-th guest arrives, this guest has 1/<i>n</i> probability of becoming the winner (<a href="https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm">see proof</a>).
+</p>
+<p>
+    <i>Extension</i>: What if Karel decides to have <i>k</i> lucky draw winners? How do you modify your program so that no more than <i>k</i> names are stored and each guest would have equal probability of being selected?
+</p>
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:500.0px">import random
+
+
+def main():
+    winner = &#039;&#039;
+    num_guests = 0
+
+    while True:
+        name = input(&#039;Guest name (press Enter when done): &#039;)
+        if name == &#039;&#039;:
+            break
+        num_guests += 1
+        if random.random() &lt; (1.0/num_guests):
+            winner = name
+
+    if num_guests == 0:
+        print(&#039;Oops, no guest shows up.&#039;)
+    elif num_guests == 1:
+        print(f&#039;Only {winner} comes so {winner} is automatically the winner.&#039;)
+    else:
+        print(f&#039;The lucky winner is {winner} among {num_guests} guests.&#039;)
+
+
+if __name__ == &#039;__main__&#039;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

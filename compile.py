@@ -21,14 +21,26 @@ class Compiler(object):
     # from the templates dir into the current folder. Folder
     # hierarchy is preserved
     def run(self):
+        example_paths = []
         for dir_name in os.listdir('examples'):
             
             self.complile_example(dir_name)
             print(dir_name)
+            example_paths.append(dir_name)
+        self.make_home_page(example_paths)
 
     #####################
     # Private Helpers
     #####################
+
+    def make_home_page(self, paths):
+        example_list = ''
+        for path in paths:
+            example_list += '<li><a href="{}">{}</a></li>\n'.format(path+'/index.html', path)
+        template_text = open('home_template.html').read()
+        compiled_html = SimpleTemplate(template_text).render(exampleList = example_list)
+        compiled_html = compiled_html.encode('utf8')
+        open(os.path.join('en', 'index.html'), 'wb').write(compiled_html)
 
     def complile_example(self, dir_name):
         data = {

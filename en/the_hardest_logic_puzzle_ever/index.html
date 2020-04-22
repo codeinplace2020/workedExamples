@@ -1,0 +1,206 @@
+
+<title>The Hardest Logic Puzzle Ever
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>The Hardest Logic Puzzle Ever
+</h1>
+				<p class="subtleHeading">Problem written by Alfred. Puzzle invented by R. Smullyan and J. McCarthy, popularized by G. Boolos.
+</p>
+				<hr/>
+				<p>
+    There are three gods A, B, and C. Their names are, in no particular order, <i>True</i>, <i>False</i>, and <i>Random</i>. As the names suggest, <i>True</i> always tells the truth; <i>False</i> always lies; <i>Random</i> lies sometimes and behaves randomly. You can ask three yes/no questions and in the end, you need to tell the names of A, B, and C. One challenging part is that these gods speak another language, so they can only answer <i>da</i> or <i>ya</i>. Unfortunately, you have no idea whether <i>da</i> means yes or no.
+</p>
+<p>
+    This is dubbed the <a href="https://en.wikipedia.org/wiki/The_Hardest_Logic_Puzzle_Ever"><b>The Hardest Logic Puzzle Ever</b></a> by American philosopher and logician George Boolos. Your job is to write a simple console program that allows your friend to play this puzzle, as shown in the sample programs below (blue words are user input).
+</p>
+<p></p>
+<center>
+    <img style="width:1000px" src="./demo.png">  
+</center>
+<p></p>
+<p>
+    In each run of the program, the names of A, B, C should be randomly assigned to one of "True", "False", and "Random" and the meaning of <i>da</i>/<i>ya</i> takes a random choice of yes/no.
+</p>
+<p>
+    You can assume that all user inputs are valid. Be careful when you are dealing with boolean variables!
+</p>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:2520.0px">import random
+
+NUM_QUESTIONS = 3
+
+
+def main():
+    welcome_message()
+    # Initialize the names of three gods
+    A, B, C = assign_names() 
+    # User poses questions to the three gods
+    for i in range(NUM_QUESTIONS):
+        print(f&#039;\n================== Question #{i+1} ==================&#039;)
+        ask_one_question(A, B, C)
+    # Getting asnwer from the user
+    get_solution(A, B, C)
+
+
+def welcome_message():
+    print(&#039;Welcome! You are about to solve &quot;The Hardest Logic Puzzle Ever&quot;!&#039;)
+    print(&#039;  There are 3 gods A, B, and C. Their names are, in no particular&#039;)
+    print(&#039;  order, Truth, False, and Random. You can ask 3 yes/no questions&#039;)
+    print(&#039;  and in the end, you need to tell the names of A, B, and C. One&#039;)
+    print(&#039;  challenging part is that these gods speak another language, so&#039;)
+    print(&#039;  they can only answer &quot;da&quot; or &quot;ya&quot;. Unfortunately, you have no&#039;)
+    print(&#039;  idea whether &quot;da&quot; means &quot;yes&quot; or &quot;no&quot;.&#039;)
+    print(&#039;-----------------------------------------------------------------&#039;)
+    print(&#039;Hint: your question can be strategically structured in the&#039;)
+    print(&#039;      following way:&#039;)
+    print(&#039;   *************************************************************&#039;)
+    print(&#039;   If I asked you &quot;Is [God] named [Name]?&quot;, would you say [Ans]?&#039;)
+    print(&#039;   *************************************************************&#039;)
+    print(&#039;      where [God] can be A, B, or C&#039;)
+    print(&#039;           [Name] can be True, False, or Random&#039;)
+    print(&#039;            [Ans] can be da or ya&#039;)
+    print(&#039;-----------------------------------------------------------------&#039;)    
+
+
+def ask_one_question(A, B, C):
+    &quot;&quot;&quot;
+    User asks a selected god a carefully crafted question and 
+    gets the asnwer from that god
+    &quot;&quot;&quot;
+    # Select whom to ask and set up the question
+    who = input(&#039;Who do you want to ask (enter A, B, or C)? &#039; )
+    print(&#039;Your question is in the following format:&#039;)
+    print(&#039;   If I asked you &quot;Is [God] named [Name]?&quot;, would you say [Ans]?&#039;)
+    god = input(&#039;Enter [God] (A, B, or C): &#039;)
+    name = input(&#039;Enter [Name] (True, False, or Random): &#039;)
+    ans = input(&#039;Enter [Ans] (da or ya): &#039;)
+    print(f&#039;You asked {who}:&#039;)
+    print(f&#039;   If I asked you &quot;Is {god} named {name}?&quot;, would you say {ans}?&#039;)
+    
+    # Obtain the answer from the selected god
+    true_ans = check_name(god, name, A, B, C)
+    ans_from_who = evaluate(who, true_ans, ans, A, B, C)
+    print(f&quot;&gt;&gt;&gt; {who}&#039;s answer is {ans_from_who}.&quot;)
+
+
+def get_solution(A, B, C):
+    &quot;&quot;&quot;
+    Asks user for the solution to the puzzle. Reveals the correct answer
+    if the user gets it wrong.
+    &quot;&quot;&quot;
+    print(&#039;\n-------------------------------------------------------------\n&#039;)
+    A_input = input(&quot;What is A&#039;s name? (enter True, False, or Random) &quot;)
+    B_input = input(&quot;What is B&#039;s name? (enter True, False, or Random) &quot;)
+    C_input = input(&quot;What is C&#039;s name? (enter True, False, or Random) &quot;)
+    if A_input == A and B_input == B and C_input == C:
+        print(&#039;Congratulations! You nailed it!&#039;)
+    else:
+        print(&#039;Sorry, your answer is wrong. The correct answer is:&#039;)
+        print(f&#039;  A is &quot;{A}&quot;, B is &quot;{B}&quot;, and C is &quot;{C}&quot;.&#039;)
+
+
+def evaluate(who, true_ans, ans, A, B, C):
+    &quot;&quot;&quot;
+    Evaluates the answer from the selected god
+    Returns &#039;da&#039; or &#039;ya&#039;.
+    It uses a key insight that asking either True or False the question:
+    &gt;&gt;&gt; If I asked you Q, would you say da?
+    results in da if Q is indeed true and in ya if Q is false. It does not
+    matter whether da means yes or no.
+    &quot;&quot;&quot;
+    if check_name(who, &#039;Random&#039;, A, B, C):
+        if random.random() &lt; 0.5:
+            return &#039;da&#039;
+        else:
+            return &#039;ya&#039;
+    else:
+        if true_ans:
+            return ans
+        else:
+            return flip_da_ya(ans)
+
+
+def flip_da_ya(ans):
+    if ans == &#039;da&#039;:
+        return &#039;ya&#039;
+    else:
+        return &#039;da&#039;
+
+
+def check_name(god, name, A, B, C):
+    &quot;&quot;&quot;
+    Evaluates whether a given god has a particular name.
+    Returns True if the god has the given name, False otherwise
+    &quot;&quot;&quot;
+    if god == &#039;A&#039;:
+        return name == A
+    elif god == &#039;B&#039;:
+        return name == B
+    else:
+        return name == C
+
+
+def assign_names():
+    &quot;&quot;&quot;
+    Returns a randomly shuffled list of names for the three gods
+    &quot;&quot;&quot;
+    names = [&quot;True&quot;, &quot;False&quot;, &quot;Random&quot;]   
+    random.shuffle(names)
+    return names
+
+
+if __name__ == &#039;__main__&#039;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

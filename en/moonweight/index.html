@@ -1,0 +1,83 @@
+
+<title>The title of this solved example is Moonweight (Python solution)
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>The title of this solved example is Moonweight (Python solution)
+</h1>
+				<p class="subtleHeading">The example was solved by Mbaoma Chioma Mary (Section Leader for Section 223)</p>
+				<hr/>
+				
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:420.0px">#a python script that converts your weight on earth, to the
+#equivalent value of your weight on the moon
+#your weight on the moon is 16.5% your weight on earth
+#- accept weight as input
+#- perform maths operation weight on earth * 16.5 / 100
+#- print the answer as, &#039;your equivalent weight on the moon is ..&#039;
+#float accepts decimal numbers
+#int accepts integers
+#str accepts basically anything numbers to letter to symbols
+#eval accepts both integers and floats
+
+def main():
+    #- accept weight as input
+    weight = eval(input(&#039;How much do you weigh?: &#039;))
+    #formula: equivalent_moon_weight = weight on earth * 16.5 / 100
+    equivalent_moon_weight = (weight * 16.5) / 100
+    #- print the answer as, &#039;your equivalent weight on the moon is ..&#039;
+    print(f&#039;Your equivalent weight on the moon is {equivalent_moon_weight}&#039;)
+
+if __name__ == &#039;__main__&#039;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

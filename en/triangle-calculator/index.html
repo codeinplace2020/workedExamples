@@ -1,0 +1,183 @@
+
+<title>Triangle Calculator
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Triangle Calculator
+</h1>
+				<p class="subtleHeading">Written by Anna Mistele
+</p>
+				<hr/>
+				<p>
+  There are many ways to find the area of a triangle. Using Heron's Formula, one can find the area using A = sqrt(s*(s-a)*(s-b)*(s-b)), where <i>s</i> represents the semiperimeter of the triangle, or half the perimeter. If two
+  sides (<i>a</i>, <i>b</i>) and the angle between them (<i>C</i>) are given, the area can be found using the formula 1/2 * <i>a</i> * <i>b</i> * sin(<i>C</i>). There are many ways to calculate information about a triangle, but
+  sometimes it requires quite a bit of busywork. Why don't we write our own program to do all the work for us?
+ </p>
+
+<p> Write a program that allows the reader to choose between two options: </p>
+<ul>
+  <li>Starting with the length of all three sides</li>
+  <li>Starting with the length of two sides and the angle between them</li>
+</ul>
+<p>Prompt the user for the information they have (either all three sides or two sides and an angle) and then calculate and output the following information:</p>
+<ul>
+  <li>Length of all sides</li>
+  <li>Perimeter</li>
+  <li>Area</li>
+</ul>
+<p>Your output for option (1) should look like this:</p>
+  <p></p>
+  <pre class="console" style="width:800px">
+  Welcome to the Triangle Calculator!
+  What information do you have about your triangle so far?
+  (1) Length of all three sides
+  (2) Length of two sides and the angle between them
+  Please choose 1 or 2: <span class="blue">1</span>
+  Length of side 1: <span class="blue">3</span>
+  Length of side 2: <span class="blue">4</span>
+  Length of side 3: <span class="blue">5</span>
+  ---
+  Information about your triangle...
+  Side 1: <span class="blue">3.0</span>
+  Side 2: <span class="blue">4.0</span>
+  Side 3: <span class="blue">5.0</span>
+  Perimeter: <span class="blue">12.0</span>
+  Area: <span class="blue">6.0</span>
+  ---
+  </pre>
+  <p></p>
+
+<p>Your output for option (2) should look like this:</p>
+  <p></p>
+  <pre class="console" style="width:800px">
+  Welcome to the Triangle Calculator!
+  What information do you have about your triangle so far?
+  (1) Length of all three sides
+  (2) Length of two sides and the angle between them
+  Please choose 1 or 2: <span class="blue">2</span>
+  Length of side 1: <span class="blue">5</span>
+  Length of side 2: <span class="blue">8</span>
+  Angle between them in degrees: <span class="blue">45</span>
+  ---
+  Information about your triangle...
+  Side 1: <span class="blue">5.0</span>
+  Side 2: <span class="blue">8.0</span>
+  Side 3: <span class="blue">5.694862378062897</span>
+  Perimeter: <span class="blue">18.694862378062897</span>
+  Area: <span class="blue">14.14213562373095</span>
+  ---
+  </pre>
+  <p></p>
+
+<p>You'll need to add this line to the top of your file to access the <code>math.sin()</code>, <code>math.cos()</code>, and <code>math.sqrt()</code> functions, and the <code>math.pi</code> constant: <b><code> import math </code></b> </p>
+
+<p> Note that <code>math.sin()</code> and <code>math.cos()</code> accept angles in terms of radians, so you'll need to convert from radians to degrees.</p>
+<p> You can assume that the user will always type correct input. They will correctly type a 1 or a 2 to answer the first question, and they will not input the side lengths of an impossible triangle.</p>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:1100.0px">import math
+
+def main():
+
+    # Introductory explanation
+    print(&quot;Welcome to the Triangle Calculator!&quot;)
+    print(&quot;What information do you have about your triangle so far?&quot;)
+    print(&quot;(1) Length of all three sides&quot;)
+    print(&quot;(2) Length of two sides and the angle between them&quot;)
+    choice = int(input(&quot;Please choose 1 or 2: &quot;))
+
+    # Both options 1 and 2 ask for two side lengths
+    side_a = float(input(&quot;Length of side 1: &quot;))
+    side_b = float(input(&quot;Length of side 2: &quot;))
+
+    # If we know all three sides
+    if choice == 1:
+        side_c = float(input(&quot;Length of side 3: &quot;))
+
+        # Add up all the sides to get the perimeter, divide by 2 for semiperimeter!
+        perimeter = side_a + side_b + side_c
+        semiperimeter = perimeter / 2
+
+        # This is Heron&#039;s Formula for finding the area of a triangle using three sides
+        area = math.sqrt(semiperimeter * (semiperimeter - side_a) * (semiperimeter - side_b) *
+        (semiperimeter - side_c))
+
+    # If we know the angle between the two sides
+    else:
+        angle_opposite_c = float(input(&quot;Angle between them in degrees: &quot;))
+
+        # Convert into radians
+        angle_opposite_c = angle_opposite_c * math.pi / 180
+
+        # The area of a triangle is 1/2 * a * b * sin(C)
+        area = 1/2 * side_a * side_b * math.sin(angle_opposite_c)
+
+        # Law of Cosines
+        side_c = math.sqrt((side_a * side_a) + (side_b * side_b) -
+        (2 * side_a * side_b * math.cos(angle_opposite_c)))
+
+        # Now that we have all the sides, we can find the perimeter
+        perimeter = side_a + side_b + side_c
+
+    print(&quot;---&quot;)
+    print(&quot;Information about your triangle...&quot;)
+    print(&quot;Side 1: &quot;, side_a)
+    print(&quot;Side 2: &quot;, side_b)
+    print(&quot;Side 3: &quot;, side_c)
+    print(&quot;Perimeter: &quot;, perimeter)
+    print(&quot;Area: &quot;, area)
+    print(&quot;---&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

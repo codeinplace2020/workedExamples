@@ -1,0 +1,65 @@
+<p>
+  There are many ways to find the area of a triangle. Using Heron's Formula, one can find the area using A = sqrt(s*(s-a)*(s-b)*(s-b)), where <i>s</i> represents the semiperimeter of the triangle, or half the perimeter. If two
+  sides (<i>a</i>, <i>b</i>) and the angle between them (<i>C</i>) are given, the area can be found using the formula 1/2 * <i>a</i> * <i>b</i> * sin(<i>C</i>). There are many ways to calculate information about a triangle, but
+  sometimes it requires quite a bit of busywork. Why don't we write our own program to do all the work for us?
+ </p>
+
+<p> Write a program that allows the reader to choose between two options: </p>
+<ul>
+  <li>Starting with the length of all three sides</li>
+  <li>Starting with the length of two sides and the angle between them</li>
+</ul>
+<p>Prompt the user for the information they have (either all three sides or two sides and an angle) and then calculate and output the following information:</p>
+<ul>
+  <li>Length of all sides</li>
+  <li>Perimeter</li>
+  <li>Area</li>
+</ul>
+<p>Your output for option (1) should look like this:</p>
+  <p></p>
+  <pre class="console" style="width:800px">
+  Welcome to the Triangle Calculator!
+  What information do you have about your triangle so far?
+  (1) Length of all three sides
+  (2) Length of two sides and the angle between them
+  Please choose 1 or 2: <span class="blue">1</span>
+  Length of side 1: <span class="blue">3</span>
+  Length of side 2: <span class="blue">4</span>
+  Length of side 3: <span class="blue">5</span>
+  ---
+  Information about your triangle...
+  Side 1: <span class="blue">3.0</span>
+  Side 2: <span class="blue">4.0</span>
+  Side 3: <span class="blue">5.0</span>
+  Perimeter: <span class="blue">12.0</span>
+  Area: <span class="blue">6.0</span>
+  ---
+  </pre>
+  <p></p>
+
+<p>Your output for option (2) should look like this:</p>
+  <p></p>
+  <pre class="console" style="width:800px">
+  Welcome to the Triangle Calculator!
+  What information do you have about your triangle so far?
+  (1) Length of all three sides
+  (2) Length of two sides and the angle between them
+  Please choose 1 or 2: <span class="blue">2</span>
+  Length of side 1: <span class="blue">5</span>
+  Length of side 2: <span class="blue">8</span>
+  Angle between them in degrees: <span class="blue">45</span>
+  ---
+  Information about your triangle...
+  Side 1: <span class="blue">5.0</span>
+  Side 2: <span class="blue">8.0</span>
+  Side 3: <span class="blue">5.694862378062897</span>
+  Perimeter: <span class="blue">18.694862378062897</span>
+  Area: <span class="blue">14.14213562373095</span>
+  ---
+  </pre>
+  <p></p>
+
+<p>You'll need to add this line to the top of your file to access the <code>math.sin()</code>, <code>math.cos()</code>, and <code>math.sqrt()</code> functions, and the <code>math.pi</code> constant: <b><code> import math </code></b> </p>
+
+<p> Note that <code>math.sin()</code> and <code>math.cos()</code> accept angles in terms of radians, so you'll need to convert from radians to degrees.</p>
+<p> You can assume that the user will always type correct input. They will correctly type a 1 or a 2 to answer the first question, and they will not input the side lengths of an impossible triangle.</p>
