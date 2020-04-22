@@ -1,5 +1,5 @@
 
-<title>E=MC2</title>
+<title>Fibonacci Series Calculation</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,49 +34,79 @@
 	<div class="container container-course">
 		<div class="row">
 			<div class="col">
-				<h1>E=MC2</h1>
-				<p class="subtleHeading">Problem written by Chris, discovered by Einstein</p>
+				<h1>Fibonacci Series Calculation</h1>
+				<p class="subtleHeading">Written by Saikat</p>
 				<hr/>
 				<p>
-	One of the exciting human discoveries is that mass and energy are interchangable and are related by the equation E = <i>m</i> × C <sup>2</sup>. This relationship was uncovered by Albert Einstein almost 100 years ago and we now know that the sun produces its heat by transforming small amounts of mass into large amounts of energy.
+    In mathematics, the Fibonacci numbers, commonly denoted F<sub>n</sub>, form a sequence, called the Fibonacci
+    sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is, <br/>
+    F<sub>0</sub>=0, F<sub>1</sub>=1,
+    and F<sub>n</sub>= F<sub>n-1</sub> + F<sub>n-2</sub> (for n > 1) <br/>
 </p>
 
-<p> Write a program that continually reads in mass from the user and then outputs the equivalent amount of energy. Show your work in the following way:</p>
-<p></p>
-<center>
-	<img style="width:400px" src="./demo.png">	
-</center>
-<p></p>
-<p>If you ask the user to input kilograms, and you use speed of light equals 299792458 (which is in meters per second) the result of calculating E = <i>m</i> × C <sup>2</sup> will be in Jouls.</p>
-
-<p> Note that 3.0e+8 is scientific notation for 3.0 × 10 <sup>8</sup>... which is 300,000,000. You don't need to do anything for python to print floats in scientific notation. It will automatically do so when numbers get big enough.</p>
 <p>
-	Since the speed of light will never change, it makes sense to declare it as a constant.
+    The beginning of the sequence is thus: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
 </p>
-				
 
+<p>
+    Write a Python program which will get the length of the Fibonacci Series from the user and print the sequence of same length.
+    Basic validations should be done, e.g. if valid integer value (>0) was entered or not. See sample executions below:
+
+<pre>
+Enter the length of the Fibonacci Series: 0
+Invalid input! Please enter a valid integer
+
+Enter the length of the Fibonacci Series: 5
+0
+1
+1
+2
+3
+
+</pre>
+</pre>
+
+<p>
+    Reference: <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci Number (Wikipedia)</a>
+</p>
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:420.0px">C = 299792458
-	
-def main():
-	while True:
-		# Read the mass in from the user. type is float
-		mass_in_kg = float(input(&quot;Enter kilos of mass: &quot;))
-		
-		# Calculate energy
-		# equivalently energy = mass * (C ** 2)
-		# using the ** operator
-		energy_in_joules = mass_in_kg * C * C
-		
-		# Display work to the user
-		print(&quot;e = m * C^2...&quot;)
-		print(&quot;m = &quot; + str(mass_in_kg) + &quot; kg&quot;)
-		print(&quot;C = &quot; + str(C) + &quot; m/s&quot;)
-		print(str(energyInJoules) + &quot; joules of energy!&quot;)
-		print(&quot;&quot;)
+				<pre class="console" id="editor" style="height:720.0px">def main():
+    # Read the Fibonacci series length from user, type is integer
+    series_length = int(input(&quot;Enter the length of the Fibonacci Series: &quot;))
+
+    # check if user entered a proper integer, if yes then compute the series, else print error
+    if series_length &gt; 0:
+        compute_fibonacci(series_length)
+    else:
+        print(&quot;Invalid input! Please enter a valid integer&quot;)
+
+
+def compute_fibonacci(series_length):
+    &quot;&quot;&quot;
+    calculates Fibonacci series for the given length
+    pre-condition: series length is a valid integer &gt; 0
+    post-condition: none
+    &quot;&quot;&quot;
+
+    # first Fibonacci number
+    f0 = 0
+    print(f0)
+
+    if series_length &gt; 1:
+        # second Fibonacci number
+        f1 = 1
+        print(f1)
+        # calculate the value from third number onwards
+        for i in range(series_length - 2):
+            result = f0 + f1
+            f0 = f1
+            f1 = result
+            print(result)
+
 
 if __name__ == &#039;__main__&#039;:
-	main()</pre>
+    main()
+</pre>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>

@@ -1,5 +1,6 @@
 
-<title>E=MC2</title>
+<title>The title of this solved example is Moonweight (Python solution)
+</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,49 +35,34 @@
 	<div class="container container-course">
 		<div class="row">
 			<div class="col">
-				<h1>E=MC2</h1>
-				<p class="subtleHeading">Problem written by Chris, discovered by Einstein</p>
+				<h1>The title of this solved example is Moonweight (Python solution)
+</h1>
+				<p class="subtleHeading">The example was solved by Mbaoma Chioma Mary (Section Leader for Section 223)</p>
 				<hr/>
-				<p>
-	One of the exciting human discoveries is that mass and energy are interchangable and are related by the equation E = <i>m</i> × C <sup>2</sup>. This relationship was uncovered by Albert Einstein almost 100 years ago and we now know that the sun produces its heat by transforming small amounts of mass into large amounts of energy.
-</p>
-
-<p> Write a program that continually reads in mass from the user and then outputs the equivalent amount of energy. Show your work in the following way:</p>
-<p></p>
-<center>
-	<img style="width:400px" src="./demo.png">	
-</center>
-<p></p>
-<p>If you ask the user to input kilograms, and you use speed of light equals 299792458 (which is in meters per second) the result of calculating E = <i>m</i> × C <sup>2</sup> will be in Jouls.</p>
-
-<p> Note that 3.0e+8 is scientific notation for 3.0 × 10 <sup>8</sup>... which is 300,000,000. You don't need to do anything for python to print floats in scientific notation. It will automatically do so when numbers get big enough.</p>
-<p>
-	Since the speed of light will never change, it makes sense to declare it as a constant.
-</p>
 				
-
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:420.0px">C = 299792458
-	
+				<pre class="console" id="editor" style="height:420.0px">#a python script that converts your weight on earth, to the
+#equivalent value of your weight on the moon
+#your weight on the moon is 16.5% your weight on earth
+#- accept weight as input
+#- perform maths operation weight on earth * 16.5 / 100
+#- print the answer as, &#039;your equivalent weight on the moon is ..&#039;
+#float accepts decimal numbers
+#int accepts integers
+#str accepts basically anything numbers to letter to symbols
+#eval accepts both integers and floats
+
 def main():
-	while True:
-		# Read the mass in from the user. type is float
-		mass_in_kg = float(input(&quot;Enter kilos of mass: &quot;))
-		
-		# Calculate energy
-		# equivalently energy = mass * (C ** 2)
-		# using the ** operator
-		energy_in_joules = mass_in_kg * C * C
-		
-		# Display work to the user
-		print(&quot;e = m * C^2...&quot;)
-		print(&quot;m = &quot; + str(mass_in_kg) + &quot; kg&quot;)
-		print(&quot;C = &quot; + str(C) + &quot; m/s&quot;)
-		print(str(energyInJoules) + &quot; joules of energy!&quot;)
-		print(&quot;&quot;)
+    #- accept weight as input
+    weight = eval(input(&#039;How much do you weigh?: &#039;))
+    #formula: equivalent_moon_weight = weight on earth * 16.5 / 100
+    equivalent_moon_weight = (weight * 16.5) / 100
+    #- print the answer as, &#039;your equivalent weight on the moon is ..&#039;
+    print(f&#039;Your equivalent weight on the moon is {equivalent_moon_weight}&#039;)
 
 if __name__ == &#039;__main__&#039;:
-	main()</pre>
+    main()
+</pre>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
