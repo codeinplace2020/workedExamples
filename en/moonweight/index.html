@@ -41,7 +41,15 @@
 				<hr/>
 				
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:420.0px">#a python script that converts your weight on earth, to the
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:420.0px">#a python script that converts your weight on earth, to the
 #equivalent value of your weight on the moon
 #your weight on the moon is 16.5% your weight on earth
 #- accept weight as input
@@ -63,6 +71,7 @@ def main():
 if __name__ == &#039;__main__&#039;:
     main()
 </pre>
+				</div>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -74,6 +83,16 @@ if __name__ == &#039;__main__&#039;:
    editor.setFontSize("14px");
     /*editor.setTheme("ace/theme/eclipse");
     editor.getSession().setMode("ace/mode/java");*/
+</script>
+<script>
+	function toggleButtonText() {
+		var elem = document.getElementById("soln-btn");
+		if (elem.innerHTML.trim() === "Show Solution") {
+			elem.innerHTML = "Hide Solution";
+		} else {
+			elem.innerHTML = "Show Solution";
+		}
+	}
 </script>
 				<hr/>
 			</div>

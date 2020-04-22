@@ -1,0 +1,146 @@
+
+<title>Fibonacci Series Calculation</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Fibonacci Series Calculation</h1>
+				<p class="subtleHeading">Written by Saikat</p>
+				<hr/>
+				<p>
+    In mathematics, the Fibonacci numbers, commonly denoted F<sub>n</sub>, form a sequence, called the Fibonacci
+    sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is, <br/>
+    F<sub>0</sub>=0, F<sub>1</sub>=1,
+    and F<sub>n</sub>= F<sub>n-1</sub> + F<sub>n-2</sub> (for n > 1) <br/>
+</p>
+
+<p>
+    The beginning of the sequence is thus: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
+</p>
+
+<p>
+    Write a Python program which will get the length of the Fibonacci Series from the user and print the sequence of same length.
+    Basic validations should be done, e.g. if valid integer value (>0) was entered or not. See sample executions below:
+
+<pre>
+Enter the length of the Fibonacci Series: 0
+Invalid input! Please enter a valid integer
+
+Enter the length of the Fibonacci Series: 5
+0
+1
+1
+2
+3
+
+</pre>
+</pre>
+
+<p>
+    Reference: <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci Number (Wikipedia)</a>
+</p>
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:720.0px">def main():
+    # Read the Fibonacci series length from user, type is integer
+    series_length = int(input(&quot;Enter the length of the Fibonacci Series: &quot;))
+
+    # check if user entered a proper integer, if yes then compute the series, else print error
+    if series_length &gt; 0:
+        compute_fibonacci(series_length)
+    else:
+        print(&quot;Invalid input! Please enter a valid integer&quot;)
+
+
+def compute_fibonacci(series_length):
+    &quot;&quot;&quot;
+    calculates Fibonacci series for the given length
+    pre-condition: series length is a valid integer &gt; 0
+    post-condition: none
+    &quot;&quot;&quot;
+
+    # first Fibonacci number
+    f0 = 0
+    print(f0)
+
+    if series_length &gt; 1:
+        # second Fibonacci number
+        f1 = 1
+        print(f1)
+        # calculate the value from third number onwards
+        for i in range(series_length - 2):
+            result = f0 + f1
+            f0 = f1
+            f1 = result
+            print(result)
+
+
+if __name__ == &#039;__main__&#039;:
+    main()
+</pre>
+				</div>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+<script>
+	function toggleButtonText() {
+		var elem = document.getElementById("soln-btn");
+		if (elem.innerHTML.trim() === "Show Solution") {
+			elem.innerHTML = "Hide Solution";
+		} else {
+			elem.innerHTML = "Show Solution";
+		}
+	}
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

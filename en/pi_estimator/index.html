@@ -55,7 +55,15 @@
     A sample program is shown above (blue texts are user input). You can assume that all user input is valid. If the user wants to quit the program, just press "Enter" instead of inputting a number. 
 </p>
 				<h2>Solution</h2>
-				<pre class="console" id="editor" style="height:640.0px">import random
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:640.0px">import random
 
 PI = 3.14159265358979
 # Number of digits after decimal point to be displayed
@@ -87,6 +95,7 @@ def estimate_pi(num_trials):
 
 if __name__ == &#039;__main__&#039;:
     main()</pre>
+				</div>
     
 <script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -98,6 +107,16 @@ if __name__ == &#039;__main__&#039;:
    editor.setFontSize("14px");
     /*editor.setTheme("ace/theme/eclipse");
     editor.getSession().setMode("ace/mode/java");*/
+</script>
+<script>
+	function toggleButtonText() {
+		var elem = document.getElementById("soln-btn");
+		if (elem.innerHTML.trim() === "Show Solution") {
+			elem.innerHTML = "Hide Solution";
+		} else {
+			elem.innerHTML = "Show Solution";
+		}
+	}
 </script>
 				<hr/>
 			</div>
