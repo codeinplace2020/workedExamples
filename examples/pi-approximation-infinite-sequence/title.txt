@@ -1,0 +1,1 @@
+Approximating Pi with some famous infinite sequence methods

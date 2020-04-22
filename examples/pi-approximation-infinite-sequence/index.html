@@ -1,0 +1,63 @@
+<p>
+	One of the best known fundamental constants of Geometry is called Pi (π). You probably know that it describes a relation between the radius and circumference of a circle. But how do we get a value of Pi if the circumference is so hard to measure? This is an ancient problem - luckily many ancient mathematicians devised algorithms that can give good - although approximate answers. In this example, we will implement three of them, all of which are using infinite series to approximate the value of Pi.
+</p>
+<p></p>
+
+<p>
+	An infinite series for PI published by Nilakantha in the 15th century goes as follows:
+</p>
+<img height="42px" src="nilakantha.png" width="550px" alt="Nilakantha method formula">
+<p></p>
+
+<p>
+	This method was found by John Wallis in 1655:
+</p>
+<img height="42px" src="leibniz.png" width="350px" alt="Leibniz method formula">
+<p></p>
+
+<p>
+	Leibniz used this approximation in 1674:
+</p>
+<img height="42px" src="wallis.png" width="300px" alt="Wallis method formula">
+<p></p>
+
+<p> Of course, if we were to evaluate the infinite series, the program would run infinitely long! Luckily, we usually do not need an infinitely accurate estimation, so we will allow the user to input a specified number of steps - called iterations - through which the program should run.</p>
+
+
+<p> Write a program that continually reads in the number of iterations from the user then outputs the approximation of Pi based on the methods above. Here is an example execution of the program:</p>
+
+<p></p>
+
+<pre class="console" style="width:400px">
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">1</span>
+The Pi estimation is...
+According to Nilakantha:  3.0
+According to Wallis:  4.0
+According to Leibniz:  4.0
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">3</span>
+The Pi estimation is...
+According to Nilakantha:  3.1333333333333333
+According to Wallis:  3.4133333333333336
+According to Leibniz:  3.466666666666667
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">99</span>
+The Pi estimation is...
+According to Nilakantha:  3.141592395970107
+According to Wallis:  3.1495359598092802
+According to Leibniz:  3.1516934060711166
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">999</span>
+The Pi estimation is...
+According to Nilakantha:  3.141592653339044
+According to Wallis:  3.1423789362843118
+According to Leibniz:  3.142593654340044
+
+</pre>
+
+<p></p>
+
+<p>The more iterations you enter, the more accurate estimation of pi you get - but also the longer the calculation will take! </p>
+<p><i>How many digits did the algorithms approximate correctly before being wrong? Can you say which algorithm is best? Why would you say so?</i></p>
+		
