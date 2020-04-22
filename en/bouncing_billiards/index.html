@@ -1,0 +1,149 @@
+
+<title>Bouncing Billiards
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Bouncing Billiards
+</h1>
+				<p class="subtleHeading">Problem written by Alfred, inspired by G. Sanderson (3Blue1Brown) and G. Galperin
+</p>
+				<hr/>
+				<p>
+    Karel is recently obsessed with playing billiard balls after being told that they encode an <a href="https://youtu.be/HEfHFsfGXjs">amazing secret</a>. For simplicity, let's consider a frictionless track on which two blocks can travel (see Figure&nbsp;1). There is also a rigid wall on the left. At the beginning, block&nbsp;1 is stationary and block&nbsp;2 may have a nonzero velocity.
+</p>
+<p>
+    Your task is to count <i>how many collisions would take place in total</i>. A collision can be either between the blocks or between block&nbsp;1 and the wall. An example is shown is Figure&nbsp;2, and there are <b>3</b> collisions. You can assume an idealized world where energy dissipation is negligible. Under this assumption, if the masses of block&nbsp;1 and block&nbsp;2 are <i>m</i><sub>1</sub> and <i>m</i><sub>2</sub>, and their velocities before the collision are <i>u</i><sub>1</sub> and <i>u</i><sub>2</sub>, then their velocities after the collision are (<a href="https://en.wikipedia.org/wiki/Elastic_collision#One-dimensional_Newtonian">see derivation</a>):
+</p>
+<p></p>
+<center>
+    <img style="width:270px" src="./eqn.png">  
+</center>
+<p></p>
+<p>
+    In your program, you should allow a user to enter the masses of block&nbsp;1 and 2, as well as the starting velocity of block&nbsp;2. A <b>negative</b> velocity means movement to the <b>left</b>. A sample program is shown below (blue texts are user input), where you will count how many collisions take place. <i>Do you see the secret sought by Karel?</i>
+</p>
+<p></p>
+<center>
+    <img style="width:800px" src="./demo.png">  
+</center>
+<p></p>
+<p> 
+    You can assume that all user inputs are valid, but note that the starting velocity of block&nbsp;2 does not have to be negative.
+</p>
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:1300.0px">SCHEMATIC = r&#039;&#039;&#039;
+              wall
+               ||                 &lt;-- v2
+               ||      v1       __________
+               ||   ________    |        |
+               ||   |      |    |   m2   |
+               ||   |  m1  |    |        |
+               ||   |______|    |________|
+               ||================================
+                      frictionless floor&#039;&#039;&#039;
+
+def main():
+    welcome_message()
+    while True:
+        m1, v1, m2, v2 = init()
+        num_collisions = play(m1, v1, m2, v2)
+        if num_collisions &gt;= 2:
+            print(f&quot;There were {num_collisions} collisions in total.&quot;)
+        else:
+            print(f&quot;There was {num_collisions} collision.&quot;)
+        if input(&quot;Continue? (y or n) &quot;) == &#039;n&#039;:
+            print(&quot;Program has ended.&quot;)
+            break
+
+
+def play(m1, v1, m2, v2):
+    print(&quot;Bouncing started...&quot;, end = &#039;&#039;)
+    num_collisions = 0
+    while has_more_collision(v1, v2):
+        if num_collisions%2 == 0: # Collision between blocks
+            v1, v2 = solve_velocities(m1, v1, m2, v2)
+        else: # Collision between wall and block 1
+            v1 *= -1
+        num_collisions += 1
+    return num_collisions
+
+
+def solve_velocities(m1, v1, m2, v2):
+    v1_new = (m1-m2)/(m1+m2)*v1 + 2*m2/(m1+m2)*v2
+    v2_new = 2*m1/(m1+m2)*v1 + (m2-m1)/(m1+m2)*v2
+    return (v1_new, v2_new)
+
+
+def has_more_collision(v1, v2):
+    return not (v1 &gt;= 0 and v2 &gt;= 0 and v1 &lt;= v2)
+
+
+def welcome_message():
+    print(&quot;Let&#039;s play billiard balls! As shown in the schematic below,&quot;)
+    print(&quot;block 1 starts at rest, while block 2 starts with an initial&quot;)
+    print(&quot;velocity. Negative velocity indicates movement to the left.&quot;)
+    print(SCHEMATIC)
+
+
+def init():
+    print(&#039;&#039;)
+    m1 = float(input(&#039;Mass of block 1 [kg]: &#039;))
+    m2 = float(input(&#039;Mass of block 2 [kg]: &#039;))
+    v1 = 0.0
+    v2 = float(input(&#039;Starting velocity of block 2 [m/s]: &#039;))
+    return (m1, v1, m2, v2)
+
+
+if __name__ == &#039;__main__&#039;:
+    main()
+</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
