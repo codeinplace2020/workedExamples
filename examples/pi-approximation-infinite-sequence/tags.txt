@@ -1,0 +1,9 @@
+week2
+variables
+casting
+input
+while
+pi
+math
+infinity
+iterations
