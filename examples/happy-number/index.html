@@ -1,0 +1,60 @@
+<p>Write an algorithm to determine if a number n is "happy".</p>
+<p>
+	A happy number is a number defined by the following process:
+	Starting with any positive integer, replace the number by the sum of the squares of its digits,
+	and repeat the process until the number equals 1 (where it will stay),
+	or it loops endlessly in a cycle which does not include 1.
+	Those numbers for which this process ends in 1 are happy numbers.
+</p>
+<p>For example, 19 is a happy number:</p>
+<pre class="console" style="width:400px">
+1&sup2; + 9&sup2; = 82
+8&sup2; + 2&sup2; = 68
+6&sup2; + 8&sup2; = 100
+1&sup2; + 0&sup2; + 0&sup2; = 1
+</pre>
+<p></p>
+<p>Write a program that continually reads a number from the user and then outputs if the given number is a happy number.
+	Show your work in the following way:</p>
+<pre class="console" style="width:400px">
+Enter the number to test: 7
+7&sup2;=49
+4&sup2;+9&sup2;=97
+9&sup2;+7&sup2;=130
+1&sup2;+3&sup2;+0&sup2;=10
+1&sup2;+0&sup2;=1
+Number 7 is a happy number
+</pre>
+<p></p>
+<p>We define the following rules:</p>
+<ul>
+	<li>You can only use loops and variables of type int, float or str ;</li>
+	<li>In python, the power of 2 is written: **2</li>
+	<li>In python, you can loop over the characters of a string the same way you loop over a range of integers: when using "for c in sentence(str)", variable c
+	will iterate over the variable string each iteration ;</li>
+	<li>If after 100 iterations, the number "1" is not reached, we consider the input as non happy.</li>
+</ul>
+<p></p>
+<p>For example, integer 2 is not a happy number:</p>
+<pre class="console" style="width:400px">
+Enter the number to test: 2
+[...]
+4&sup2;=16
+1&sup2;+6&sup2;=37
+3&sup2;+7&sup2;=58
+Number 2 is not a happy number
+</pre>
+<p>To correctly print each computation, you might want to use the following function (optional): </p>
+
+<pre class="console" style='color:#000000;background:#ffffff;width:400px'>
+<span style='color:#800000; font-weight:bold; '>def</span> remove_last_character<span style='color:#808030; '>(</span>sentence<span style='color:#808030; '>)</span><span style='color:#808030; '>:</span>
+<span style='color:#696969; '>"""</span>
+<span style='color:#696969; '>	Remove the last character of a string</span>
+<span style='color:#696969; '>	Parameters:</span>
+<span style='color:#696969; '>	sentence (str): a string sentence</span>
+<span style='color:#696969; '>	Returns:</span>
+<span style='color:#696969; '>	str: the truncated sentence</span>
+<span style='color:#696969; '>	"""</span>
+<span style='color:#800000; font-weight:bold; '>return</span> sentence<span style='color:#808030; '>[</span><span style='color:#808030; '>:</span><span style='color:#44aadd; '>-</span><span style='color:#008c00; '>1</span><span style='color:#808030; '>]</span>
+</pre>
+<p></p>
