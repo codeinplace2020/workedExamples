@@ -1,0 +1,17 @@
+<p>
+    Karel decides to throw a birthday party and selects a lucky draw winner among the guests. However, Karel realizes a problem: there is no pen or paper to record all the names for the lucky draw. What is worse, being a simple robot, Karel has very limited memory and can only remember one name at a time.
+</p>
+<p>
+    Your task is to write a simple console program that takes in guest names one at a time. When all guests finished typing their names, you will announce the lucky draw winner. You do not know how many guests will come, and you can only store one name throughout the process. As an impartial host, every guest who entered their name should have an equal probability of winning. A few sample programs are shown below (user input is in blue). 
+</p>
+<p></p>
+<center>
+    <img style="width:800px" src="./demo.png">  
+</center>
+<p></p>
+<p>
+    <i>Hint</i>: When the <i>n</i>-th guest arrives, this guest has 1/<i>n</i> probability of becoming the winner (<a href="https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm">see proof</a>).
+</p>
+<p>
+    <i>Extension</i>: What if Karel decides to have <i>k</i> lucky draw winners? How do you modify your program so that no more than <i>k</i> names are stored and each guest would have equal probability of being selected?
+</p>
