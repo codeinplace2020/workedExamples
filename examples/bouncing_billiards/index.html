@@ -1,0 +1,22 @@
+<p>
+    Karel is recently obsessed with playing billiard balls after being told that they encode an <a href="https://youtu.be/HEfHFsfGXjs">amazing secret</a>. For simplicity, let's consider a frictionless track on which two blocks can travel (see Figure&nbsp;1). There is also a rigid wall on the left. At the beginning, block&nbsp;1 is stationary and block&nbsp;2 may have a nonzero velocity.
+</p>
+<p>
+    Your task is to count <i>how many collisions would take place in total</i>. A collision can be either between the blocks or between block&nbsp;1 and the wall. An example is shown is Figure&nbsp;2, and there are <b>3</b> collisions. You can assume an idealized world where energy dissipation is negligible. Under this assumption, if the masses of block&nbsp;1 and block&nbsp;2 are <i>m</i><sub>1</sub> and <i>m</i><sub>2</sub>, and their velocities before the collision are <i>u</i><sub>1</sub> and <i>u</i><sub>2</sub>, then their velocities after the collision are (<a href="https://en.wikipedia.org/wiki/Elastic_collision#One-dimensional_Newtonian">see derivation</a>):
+</p>
+<p></p>
+<center>
+    <img style="width:270px" src="./eqn.png">  
+</center>
+<p></p>
+<p>
+    In your program, you should allow a user to enter the masses of block&nbsp;1 and 2, as well as the starting velocity of block&nbsp;2. A <b>negative</b> velocity means movement to the <b>left</b>. A sample program is shown below (blue texts are user input), where you will count how many collisions take place. <i>Do you see the secret sought by Karel?</i>
+</p>
+<p></p>
+<center>
+    <img style="width:800px" src="./demo.png">  
+</center>
+<p></p>
+<p> 
+    You can assume that all user inputs are valid, but note that the starting velocity of block&nbsp;2 does not have to be negative.
+</p>
