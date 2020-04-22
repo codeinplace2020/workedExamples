@@ -3,6 +3,7 @@ USAGE = 6
 
 
 def main():
+	# This is a while loop (like in python) which never ends!
 	while True:
 		# Read the amount of Toilet Paper rolls from the user. type is float
 		number_of_rolls = float(input("Enter the amount of rolls you have: "))
