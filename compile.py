@@ -54,6 +54,7 @@ class Compiler(object):
         out_path = os.path.join('en', dir_name, 'index.html')
         self.compile_template(out_path, data)
         self.copy_all_images(dir_name)
+        self.copy_all_extra(dir_name)
         return data['title']
 
     def copy_all_images(self, dir_name):
@@ -62,6 +63,21 @@ class Compiler(object):
         for file_name in os.listdir(in_path):
             file_type = file_name.split('.')[-1].lower()
             if self.is_img(file_type):
+                self.copy_file(in_path, out_path, file_name)
+
+    def copy_all_extra(self, dir_name):
+        out_path = os.path.join('en', dir_name, 'extra')
+        in_path = os.path.join('examples', dir_name, 'extra')
+        try:
+            extras = os.listdir(in_path)
+        except:
+            extras = []
+
+        if len(extras) > 0:
+            self.make_path(os.path.join(out_path, extras[0]))
+        for file_name in extras:
+            file_type = file_name.split('.')[-1].lower()
+            if self.is_img(file_type) or self.is_py(file_type):
                 self.copy_file(in_path, out_path, file_name)
 
     def copy_file(self, in_path, out_path, file_name):
@@ -85,6 +101,10 @@ class Compiler(object):
         if file_type == 'png': return True
         if file_type == 'jpg': return True
         if file_type == 'svg': return True
+        return False
+
+    def is_py(self, file_type):
+        if file_type == 'py': return True
         return False
 
     def load_part(self, dir_name, file_name):
