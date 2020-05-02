@@ -69,7 +69,7 @@ def is_prime(n):
 		bool: True if n has no divisor in range [2, n[. False otherwise.
 	"""
 	for d in range(2, n):
-		if n%d==0:
+		if n%d == 0:
 			return False
 	return True
 
