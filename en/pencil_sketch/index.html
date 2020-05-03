@@ -1,0 +1,381 @@
+
+<title>Pencil Sketch
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Pencil Sketch
+</h1>
+				<p class="subtleHeading">Problem written by Alfred, inspired by R. Agarwal</p>
+				<hr/>
+				<p>
+    After falling in love with Code in Place, Karel decided to sketch a portrait of our lovely professors, Chris and Mehran. Being a robot, Karel does not use an actual pencil; yet, images can be transformed into a pencil sketch programmatically, as shown below:
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Chris: Original image</center></th>
+            <th><center>After pencilization</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>Mehran: Original image</center></th>
+            <th><center>After pencilization</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="width:200px" src="./chris.jpg"></center></td>
+            <td><center><img style="width:200px" src="./chris_pencil.jpg"></center></td>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <td><center><img style="width:200px" src="./mehran.jpg"></center></td>
+            <td><center><img style="width:200px" src="./mehran_pencil.jpg"></center></td>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<p>
+    Your task is to write a program that reads an image and then displays the pencilized version. You will need to use the <code>simpleimage</code> module covered in Lecture&nbsp;9. The <code>simpleimage.py</code> file should be present in the same directory as your code, and the first line of your code should be 
+</p>
+<p>
+    <center><code>from simpleimage import SimpleImage</code></center>
+</p>
+<p>
+    Although the transformation looks fancy, the task can be achieved via several simple steps. Here are the corresponding milestones. 
+</p>
+<h5>
+    <strong>Milestone&nbsp;0</strong>: Copy an image
+</h5>
+<p>
+    In the next few milestones, we are going to perform a series of image transformations. However, we do not want to alter the original image, so it would be a good idea to make a copy of the <code>SimpleImage</code> object before each operation. To do this, you can leverage the <code>SimpleImage.blank(width,&nbsp;height)</code> function to first create a blank image, and then copy the pixel rgb values from the original image.
+</p>
+<h5>
+    <strong>Milestone&nbsp;1</strong>: Convert to grayscale and color inversion
+</h5>
+<p>
+    The first step is to convert a color image to a grayscale image. An image appears gray when the red, green, and blue channels of each pixel equal to an identical value. This value can be computed from the original color image by using the following formula (<a href="https://en.wikipedia.org/wiki/Luma_(video)">see details</a>):
+</p>
+<p>
+    <center><code>value = 0.299 * red + 0.587 * green + 0.114 * blue</code></center>
+</p>
+<p>
+    Let's call this grayscale image <code>img_gray</code>. Next, we want to invert the color of <code>img_gray</code>. A color inversion is achieved by subtracting the rgb value from <code>255</code>, which is the maximum possible rgb value in a typical 24-bit image. For example, if the original red channel has value <code>4</code>, the value after inversion would be <code>251</code>. Let's call the inverted image <code>img_inverted</code>.
+</p>
+<p>
+    Completing Milestone&nbsp;1 should give the following result: 
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Original Image</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>Grayscale</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>Inverted</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="width:200px" src="./mehran.jpg"></center></td>
+            <td><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
+            <th><center><img style="width:200px" src="./mehran_gray.jpg"></center></th>
+            <td><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
+            <td><center><img style="width:200px" src="./mehran_inverted.jpg"></center></td>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<h5>
+    <strong>Milestone&nbsp;2</strong>: Blur an image
+</h5>
+<p>
+    The next step is to make a sharp image blurry. A simple algorithm is to replace a pixel value by the average of its neighbors, which is also known as <a href="https://en.wikipedia.org/wiki/Box_blur">box filtering</a>. For example, if the box has a size <code>3</code> and we want to compute the blurred pixel value at coordinates <code>(x,&nbsp;y)</code>, this blurred value would be the average of <code>9</code> pixels of the <i><b>original</b></i> sharper image: <code>(x-1,&nbsp;y-1)</code>, <code>(x-1,&nbsp;y)</code>, <code>(x-1,&nbsp;y+1)</code>, <code>(x,&nbsp;y-1)</code>, <code>(x,&nbsp;y)</code>, <code>(x,&nbsp;y+1)</code>, <code>(x+1,&nbsp;y-1)</code>, <code>(x+1,&nbsp;y)</code>, and <code>(x+1,&nbsp;y+1)</code>. To be symmetric around <code>(x,&nbsp;y)</code>, the box size should be an <i>odd</i> integer.
+</p>
+<p>
+    If we increase the box size, the image becomes more blurry. We can also increase the level of blurriness by repeating the above procedure several times. You should apply the blurring operation on <code>img_inverted</code>. Below is an example with box size <code>11</code> and operation repeated <code>15</code> times. Let's call this blurred image <code>img_blurred</code>. If you're interested in the mathematics of blurring, repeated box filtering is equivalent to a Gaussian filter by the central limit theorem (<a href="https://doi.org/10.5201/ipol.2013.87">more details</a>).
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Inverted</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>After blurring</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="width:200px" src="./mehran_inverted.jpg"></center></td>
+            <td><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
+            <th><center><img style="width:200px" src="./mehran_blurred.jpg"></center></th>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<p>
+    <i>Helpful Tip</i>: Be careful when computing blurred pixel near the image boundary. Assuming we use a box size of <code>3</code>, in those special locations, there may not be <code>9</code> pixels to compute the average. In those cases, just compute the average of pixels that are within the image boundary.
+</p>
+<h5>
+    <strong>Milestone&nbsp;3</strong>: Pencilization
+</h5>
+<p>
+    The last step is to put everything together using an image blending technique called <a href="https://en.wikipedia.org/wiki/Blend_modes">color dodge</a>. Let's say there are two image layers, <i>top</i> and <i>bottom</i>. This blending mode divides the pixel value of the bottom layer by the <a>inverted</a> pixel value in the top layer. The result of this division would be the pixel value of the blended image. Accounting for some normalization factor, this operation is summarized in the following formula:
+</p>
+<p>
+    <center><code>blended_value = min(255, bottom_value * 255 / max(1, 255 - top_value))</code></center>
+</p>
+<p>
+    Again, here we assumed a 24-bit image (so <code>255</code> is the maximum possible value) and the <code>max()</code> function is needed to prevent a potential division by <code>0</code>. This blending should be performed for each of the three rgb channels.
+</p>
+<p>
+    To get the pencilized image, the top and bottom layers are <code>img_gray</code> and <code>img_blurred</code> respectively. Here is an example of our final product:
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Top: Grayscale</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>Bottom: Blurred</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>Blended: Pencilized</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="width:200px" src="./mehran_gray.jpg"></center></td>
+            <td><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
+            <th><center><img style="width:200px" src="./mehran_blurred.jpg"></center></th>
+            <td><center>&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
+            <td><center><img style="width:200px" src="./mehran_pencil.jpg"></center></td>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<p>
+    <i>Helpful Tip</i>: To achieve the best result, you may need to play around with the blurring parameters: box size and number of blurring iterations. Depending on your CPU, the blurring operation could take significant time, so try images with small dimensions during code development.
+</p>
+
+
+
+
+
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:3140.0px">from simpleimage import SimpleImage
+
+RGB_MAX = 255    # Max RGB value. 255 for 24-bit RGB image
+BLUR_SIZE = 11   # Size of the box filter. Should be positive odd integer
+BLUR_ITER = 15   # Number of iterations of box filtering.
+
+
+def main():
+    img = SimpleImage(&#039;images/mehran.jpg&#039;)
+    img.show()
+
+    gray = convert_to_gray(img)
+    gray.show()
+    
+    inverted = invert_color(gray)
+    inverted.show()
+
+    blurred = blur(inverted, BLUR_ITER, BLUR_SIZE)
+    blurred.show()
+
+    pencil = dodge(gray, blurred)
+    pencil.show()
+
+
+def dodge(top, bottom):
+    &quot;&quot;&quot;
+    Returns a new SimpleImage object, which is a doge blending of two
+    SimpleImage objects: top and bottom. In the dodge mode, we divide
+    the bottom layer RGB by the inverted top layer RGB.
+    See https://en.wikipedia.org/wiki/Blend_modes for more information.
+    &quot;&quot;&quot;
+    img = copy_image(top)
+    for px in img:
+        x = px.x
+        y = px.y
+        px_top = top.get_pixel(x,y)
+        px_bottom = bottom.get_pixel(x,y)
+        px.red = compute_dodge(px_top.red, px_bottom.red)
+        px.green = compute_dodge(px_top.green, px_bottom.green)
+        px.blue = compute_dodge(px_top.blue, px_bottom.blue)
+    return img
+
+
+def compute_dodge(top_val, bottom_val):
+    &quot;&quot;&quot;
+    Helper function for the actual computation.
+    Uses max(1,..) to prevent division by zero
+    &quot;&quot;&quot;
+    val = bottom_val * RGB_MAX / max(1, RGB_MAX - top_val)
+    return min(val, RGB_MAX)
+
+
+def blur(img, num_iter, blur_size):
+    &quot;&quot;&quot;
+    Returns a new SimplgeImage object, which is a blurred version
+    of SimpleImage img. Uses box filters: box size is blur_size
+    and the filtering is performed num_iter times. The implementation
+    is not the most efficient, so long computing time may be expected
+    for large image dimension, larger num_iter, or large blur_size.
+    blur_size is a positive odd integer.
+    num_iter is a positive integer.
+    &quot;&quot;&quot;
+    ref = img
+    for i in range(num_iter):
+        blurred = copy_image(ref)
+        for x in range(ref.width):
+            for y in range(ref.height):
+                blur_pixel(x, y, blurred, ref, blur_size)
+        ref = blurred
+    return blurred
+
+
+def blur_pixel(x, y, blurred, ref, blur_size):
+    &quot;&quot;&quot;
+    Update the RGB values of a pixel in SimpleImage &#039;blurred&#039; at
+    coordinates (x, y). The RGB value is the box average of pixels
+    in SimpleImage &#039;ref&#039;. The box is a square centered at (x, y)
+    with side length blur_size.
+    Note that &#039;blurred&#039; is modified while &#039;ref&#039; remains unchanged.
+    These two images must have the same dimension.
+    Parameters x, y are nonnegative integers within the boundary of
+    the image. blur_size is a positive odd integer.
+    &quot;&quot;&quot;
+    red = 0
+    blue = 0
+    green = 0
+    count = 0
+    r = (blur_size - 1) // 2
+    for i in range(x - r, x + r + 1):
+        for j in range(y - r, y + r + 1):
+            if in_bound(i, j, ref.width, ref.height):
+                count += 1
+                px = ref.get_pixel(i, j)
+                red += px.red
+                blue += px.blue
+                green += px.green
+    pixel = blurred.get_pixel(x, y)
+    pixel.red = red / count
+    pixel.green = green / count
+    pixel.blue = blue / count
+
+
+def in_bound(x, y, width, height):
+    &quot;&quot;&quot;
+    Returns True if the given pixel coordinates (x, y)
+    is located inside the image with dimension (width, height).
+    Returns False otherwise.
+    All parameters are integers
+    &quot;&quot;&quot;
+    if 0 &lt;= x &lt; width and 0 &lt;= y &lt; height:
+        return True
+    return False
+
+
+def invert_color(img):
+    &quot;&quot;&quot;
+    Returns a new SimpleImage object, which has an inverted 
+    color compared to img. 
+    &quot;&quot;&quot;
+    inverted = copy_image(img)
+    for pixel in inverted:
+        pixel.red = RGB_MAX - pixel.red
+        pixel.blue = RGB_MAX - pixel.blue
+        pixel.green = RGB_MAX - pixel.green
+    return inverted
+
+
+def convert_to_gray(img):
+    &quot;&quot;&quot;
+    Returns a new SimpleImage object, which is the grayscale version
+    of img. Conversion formula follows CCIR 601, see:
+    https://en.wikipedia.org/wiki/Luma_(video)
+    &quot;&quot;&quot;
+    copy = copy_image(img)
+    for pixel in copy:
+        val = 0.299*pixel.red + 0.587*pixel.green + 0.114*pixel.blue
+        pixel.red = val
+        pixel.green = val
+        pixel.blue = val
+    return copy
+
+
+def copy_image(img):
+    &quot;&quot;&quot;
+    Returns a new SimpleImage object, which has the same
+    pixel values as img, which is also a SimpleImage object
+    &quot;&quot;&quot;
+    copy = SimpleImage.blank(img.width, img.height)
+    for pixel in copy:
+        x = pixel.x
+        y = pixel.y
+        copy.set_pixel(x, y, img.get_pixel(x, y))
+    return copy
+
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
