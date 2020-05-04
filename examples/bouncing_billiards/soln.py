@@ -42,7 +42,7 @@ def solve_velocities(m1, v1, m2, v2):
 
 
 def has_more_collision(v1, v2):
-    return not (v1 >= 0 and v2 >= 0 and v1 <= v2)
+    return v1 < 0 or v1 > v2
 
 
 def welcome_message():

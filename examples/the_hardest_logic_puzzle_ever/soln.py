@@ -18,7 +18,7 @@ def main():
 def welcome_message():
     print('Welcome! You are about to solve "The Hardest Logic Puzzle Ever"!')
     print('  There are 3 gods A, B, and C. Their names are, in no particular')
-    print('  order, Truth, False, and Random. You can ask 3 yes/no questions')
+    print('  order, True, False, and Random. You can ask 3 yes/no questions')
     print('  and in the end, you need to tell the names of A, B, and C. One')
     print('  challenging part is that these gods speak another language, so')
     print('  they can only answer "da" or "ya". Unfortunately, you have no')
