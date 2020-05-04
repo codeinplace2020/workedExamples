@@ -1,0 +1,199 @@
+
+<title>Prime Factorization</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Prime Factorization</h1>
+				<p class="subtleHeading">Problem written by Moussa Doumbouya, discovered by Euclid</p>
+				<hr/>
+				
+
+
+<p>
+	<a href="https://en.wikipedia.org/wiki/Integer_factorization#Prime_decomposition">Prime factorization</a> is the process of 
+	decomposing an integer into factors that are prime numbers.
+	<a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_arithmetic">The fundamental theorem of arithmetic</a> states 
+	that every positive integer has a unique prime factorization. Here are examples of prime factorizations:
+
+	<ul>
+		<li>14 = 2 x 7</li>
+		<li>25 = 5 x 5</li>
+		<li>99 = 3 x 3 x 11</li>
+		<li>255 = 3 x 5 x 17</li>
+		<li>1234 = 2 x 617</li>
+	</ul>
+</p>
+
+
+<p>
+	Write a program that continually reads in an integer and outputs its prime factors. Here is a possible 
+	top-down decomposition of the problem.
+	<ul>
+		<li>
+		A function that shows the prime factors of a number by repeatedly finding its smallest prime factor 
+		and repeating the same process on the remaining quotient until the remaining quotient is 1.
+		</li>
+		<li>
+		A function that returns the smallest prime factor of its argument.
+		That is, the smallest number in the interval [2, n] that is a prime number and that evenly divides the argument. 
+		</li>
+		<li>
+		A function that checks if its argument is prime. 
+		Note that a prime numer is a number that is not evenly divisible by any number other than 1 and itself.
+		</li>
+	</ul>
+</p>
+
+<p>
+Examples of sample inputs and outputs of your program:
+<pre>
+
+Enter an integer: <span class="blue">34</span>
+The prime factors of 34 are: 
+2
+17
+
+Enter an integer: <span class="blue">28</span>
+The prime factors of 28 are: 
+2
+2
+7
+
+Enter an integer: <span class="blue">147</span>
+The prime factors of 147 are: 
+3
+7
+7
+
+</pre>
+</p>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:1580.0px">&quot;&quot;&quot;
+This program performs prime factorization onto user-specified positive integers.
+&quot;&quot;&quot;
+
+def main():
+	while True:
+		n = read_positive_int(&quot;Enter an integer: &quot;)
+		show_prime_factors(n)
+		print(&quot;&quot;)
+
+
+def read_positive_int(prompt_msg):
+	&quot;&quot;&quot;
+	Reads a positive integer entered by the user.
+
+	Args:
+		prompt_msg (str): The prompt message to show the user when requesting the input.
+
+	Returns:
+		int: The positive integer entered by the user.
+	&quot;&quot;&quot;
+	n = int(input(prompt_msg))
+	while n&lt;=0:
+		print(&quot;Please enter a positive integer&quot;)
+		n = int(input(prompt_msg))
+	
+	return n
+
+
+def show_prime_factors(n):
+	&quot;&quot;&quot;
+	Show the prime factors of n
+
+	Args:
+		n (int): The number to be factorized
+	&quot;&quot;&quot;
+
+	print(&quot;The prime factors of &quot; + str(n) + &quot; are: &quot;)
+	while n&gt;1:
+		p = smallest_prime_factor(n)
+		print(p)
+		n  = n // p
+
+
+def smallest_prime_factor(n):
+	&quot;&quot;&quot;
+	Compute the smallest prime factor of n.
+
+	Args:
+		n (int): The number to be factorized
+
+	Returns:
+		int: The smallest number in the range [2, n] that is 
+			a divisor of n, and is a prime number
+	&quot;&quot;&quot;
+	for i in range(2, n+1):
+		if n%i == 0 and is_prime(i):
+			return i
+
+
+def is_prime(n):
+	&quot;&quot;&quot;
+	Test if the specified number is prime.
+
+	Args:
+		n (int): The number to be tested
+
+	Returns:
+		bool: True if n has no divisor in range [2, n[. False otherwise.
+	&quot;&quot;&quot;
+	for d in range(2, n):
+		if n%d == 0:
+			return False
+	return True
+
+
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

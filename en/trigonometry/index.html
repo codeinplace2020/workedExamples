@@ -1,0 +1,137 @@
+
+<title>Trigonometry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Trigonometry</h1>
+				<p class="subtleHeading">Problem written by Moussa Doumbouya</p>
+				<hr/>
+				<p>
+	There are relationships between the lengths of the sides and the measures of the angles of a triangle. Trigonometry
+	is the branch of mathematics that studies such relationships. <br />
+
+	The following trigonometric ratios are defined for the acute angles (an angle smaller than 90 degrees) of a right triangle:
+	<ul>
+		<li>The cosine of the angle is equal to the length of the side adjacent to that angle divided by the length of the hypotenuse.</li>
+		<li>The sine of the angle is equal to the length of the side opposite to that angle divided by the length hypotenuse.</li>
+	</ul>
+	Note: the length of the hypotenuse can be calculated using the Pytagorean theorem (in a right triangle, the square
+	of the hypotenuse is equal to the sum of the square of the other two sides.)
+</p>
+
+<img src="trigonometry.png" style="width: 400px;">
+
+<p>
+	Write a program that continually reads in the lengths of the sides AB and AC, and that outputs the followings:
+	<ul>
+		<li>The sine of the angle ABC</li>
+		<li>The cosine of the angle ABC</li>
+		<li>The sum of the squares of the above two results</li>
+	</ul>
+	What do you notice? Can you explain? <br />
+	Below are examples of the program's inputs and outputs:
+</p>
+
+<p>
+<pre>
+Enter the length of AB: <span class="blue">3</span>
+Enter the length of AC: <span class="blue">4</span>
+cos(ABC) = 0.6
+sin(ABC) = 0.8
+cos(ABC)^2 + sin(ABC)^2= 1.0
+
+Enter the length of AB: <span class="blue">1</span>
+Enter the length of AC: <span class="blue">1</span>
+cos(ABC) = 0.7071067811865475
+sin(ABC) = 0.7071067811865475
+cos(ABC)^2 + sin(ABC)^2= 0.9999999999999998
+
+Enter the length of AB: <span class="blue">4</span>
+Enter the length of AC: <span class="blue">3</span>
+cos(ABC) = 0.8
+sin(ABC) = 0.6
+cos(ABC)^2 + sin(ABC)^2= 1.0
+</pre>
+</p>
+
+				<h2>Solution</h2>
+				<pre class="console" id="editor" style="height:620.0px">import math
+
+&quot;&quot;&quot;
+This program reads the lengths of the sides AB and AC of a right triangle ABC with
+ its right angle located at A, and outputs the the followings:
+ - cos(ABC)
+ - sin(ABC)
+ - cos(ABC)^2 + sin(ABC)^2
+ 
+ The last quantity, known as the Pythagorean identity is always equal to 1. Due to
+ numerical precision errors, the program may display values slightly greater than 
+ or less than 1.
+&quot;&quot;&quot;
+
+def main():
+	while True:
+		# Read the mass in from the user. type is float
+		ab = float(input(&quot;Enter the length of AB: &quot;))
+		ac = float(input(&quot;Enter the length of AC: &quot;))
+		bc = math.sqrt(ab**2 + ac**2)
+		cos_abc = ab/bc
+		sin_abc = ac/bc
+		sum_squared = cos_abc**2 + sin_abc**2
+		print(&quot;cos(ABC) = &quot; + str(cos_abc))
+		print(&quot;sin(ABC) = &quot; + str(sin_abc))
+		print(&quot;cos(ABC)^2 + sin(ABC)^2= &quot; + str(sum_squared))
+		print(&quot;&quot;)
+
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+    
+<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/python");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+   editor.setFontSize("14px");
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
