@@ -1,5 +1,5 @@
 
-<title>Moonweight</title>
+<title>Mirror Left-Right</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,10 +34,17 @@
 	<div class="container container-course">
 		<div class="row">
 			<div class="col">
-				<h1>Moonweight</h1>
-				<p class="subtleHeading">The example was solved by Mbaoma Chioma Mary (Section Leader for Section 223)</p>
+				<h1>Mirror Left-Right</h1>
+				<p class="subtleHeading">Problem written by many folks. Solution from a lecture by Mehran Sahami.
+</p>
 				<hr/>
-				
+				<p>
+    Take an image, and produce one which is twice as wide. The right side of the new image is the left side of the old image, but mirror reflected.
+<p>
+<center>
+    <img style="width:400px" src="./demo.png">
+</center>
+</p>
 				<h2>Solution</h2>
 				<p>
 					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
@@ -47,24 +54,52 @@
 					</a>
 				</p>
 				<div class="collapse" id="soln-collapse">
-					<pre class="console" id="editor" style="height:420.0px">#a python script that converts your weight on earth, to the
-#equivalent value of your weight on the moon
-#your weight on the moon is 16.5% your weight on earth
-#- accept weight as input
-#- perform maths operation weight on earth * 16.5 / 100
-#- print the answer as, &#039;your equivalent weight on the moon is ..&#039;
-#float accepts decimal numbers
-#int accepts integers
-#str accepts basically anything numbers to letter to symbols
-#eval accepts both integers and floats
+					<pre class="console" id="editor" style="height:980.0px">&quot;&quot;&quot;
+File: mirror.py
+---------------
+This program shows an example of creating an image
+that shows an original image and its mirror reflection
+in a new image.
+&quot;&quot;&quot;
+
+
+from simpleimage import SimpleImage
+
+
+def mirror_image(filename):
+    &quot;&quot;&quot;
+    Read an image from the file specified by filename.
+    Returns a new images that includes the original image
+    and its mirror reflection.
+    Returns the resulting &quot;redscreened&quot; image.
+    &quot;&quot;&quot;
+    image = SimpleImage(filename)
+    width = image.width
+    height = image.height
+
+    # Create new image to contain mirror reflection
+    mirror = SimpleImage.blank(width * 2, height)
+
+    for y in range(height):
+        for x in range(width):
+            pixel = image.get_pixel(x, y)
+            mirror.set_pixel(x, y, pixel)
+            mirror.set_pixel((width * 2) - (x + 1), y, pixel)
+    return mirror
+
 
 def main():
-    #- accept weight as input
-    weight = eval(input(&#039;How much do you weigh?: &#039;))
-    #formula: equivalent_moon_weight = weight on earth * 16.5 / 100
-    equivalent_moon_weight = (weight * 16.5) / 100
-    #- print the answer as, &#039;your equivalent weight on the moon is ..&#039;
-    print(f&#039;Your equivalent weight on the moon is {equivalent_moon_weight}&#039;)
+    &quot;&quot;&quot;
+    Run your desired image manipulation functions here.
+    You should store the return value (image) and then
+    call .show() to visualize the output of your program.
+    &quot;&quot;&quot;
+    original = SimpleImage(&#039;images/burrito.jpg&#039;)
+    original.show()
+
+    mirrored = mirror_image(&#039;images/burrito.jpg&#039;)
+    mirrored.show()
+
 
 if __name__ == &#039;__main__&#039;:
     main()

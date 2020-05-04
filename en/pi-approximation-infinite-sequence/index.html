@@ -1,0 +1,192 @@
+
+<title>Approximating Pi</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Approximating Pi</h1>
+				<p class="subtleHeading">Problem written by Marek Szeles, methods inspired by Wallis, Leibniz and Nilakantha</p>
+				<hr/>
+				<p>
+	One of the best known fundamental constants of Geometry is called Pi (π). You probably know that it describes a relation between the radius and circumference of a circle. But how do we get a value of Pi if the circumference is so hard to measure? This is an ancient problem - luckily many ancient mathematicians devised algorithms that can give good - although approximate answers. In this example, we will implement three of them, all of which are using infinite series to approximate the value of Pi.
+</p>
+<p></p>
+
+<p>
+	An infinite series for PI published by Nilakantha in the 15th century goes as follows:
+</p>
+<img height="42px" src="nilakantha.png" width="550px" alt="Nilakantha method formula">
+<p></p>
+
+<p>
+	This method was found by John Wallis in 1655:
+</p>
+<img height="42px" src="leibniz.png" width="350px" alt="Leibniz method formula">
+<p></p>
+
+<p>
+	Leibniz used this approximation in 1674:
+</p>
+<img height="42px" src="wallis.png" width="300px" alt="Wallis method formula">
+<p></p>
+
+<p> Of course, if we were to evaluate the infinite series, the program would run infinitely long! Luckily, we usually do not need an infinitely accurate estimation, so we will allow the user to input a specified number of steps - called iterations - through which the program should run.</p>
+
+
+<p> Write a program that continually reads in the number of iterations from the user then outputs the approximation of Pi based on the methods above. Here is an example execution of the program:</p>
+
+<p></p>
+
+<pre class="console" style="width:400px">
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">1</span>
+The Pi estimation is...
+According to Nilakantha:  3.0
+According to Wallis:  4.0
+According to Leibniz:  4.0
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">3</span>
+The Pi estimation is...
+According to Nilakantha:  3.1333333333333333
+According to Wallis:  3.4133333333333336
+According to Leibniz:  3.466666666666667
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">99</span>
+The Pi estimation is...
+According to Nilakantha:  3.141592395970107
+According to Wallis:  3.1495359598092802
+According to Leibniz:  3.1516934060711166
+
+Enter number of iterations for estimation algorithms: <span class="green">>?</span> <span class="blue">999</span>
+The Pi estimation is...
+According to Nilakantha:  3.141592653339044
+According to Wallis:  3.1423789362843118
+According to Leibniz:  3.142593654340044
+
+</pre>
+
+<p></p>
+
+<p>The more iterations you enter, the more accurate estimation of pi you get - but also the longer the calculation will take! </p>
+<p><i>How many digits did the algorithms approximate correctly before being wrong? Can you say which algorithm is best? Why would you say so?</i></p>
+		
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:1000.0px">import math
+
+
+def main():
+    # This program allows users to repeatedly approximate the value of pi through three infinite series approaches
+    # The only inputed argument is the number of iterations - the more iterations, the more accurate the result!
+    while True:
+        # Read the iterations in from the user. Type is integer
+        iterations = int(input(&quot;Enter number of iterations for estimation algorithms: &quot;))
+
+        # Display different calculations to the user
+        print(&quot;The Pi estimation is...&quot;)
+        print(&quot;According to Nilakantha: &quot;, nilakantha_pi(iterations))
+        print(&quot;According to Wallis: &quot;, wallis_pi(iterations))
+        print(&quot;According to Leibniz: &quot;, leibniz_pi(iterations))
+        print(&quot;&quot;)
+
+
+def nilakantha_pi(x):
+    # An infinite series for PI published by Nilakantha in the 15th century goes as follows:
+    # 3 + (4 / 2 * 3 * 4) - (4 / 4 * 5 * 6) + (4 / 6 * 7 * 8) - ...
+    p = 3.0
+    for i in range(2, x + 1):
+        if i == 1:
+            p = 3.0
+        else:
+            p = p + ((math.pow(-1, i)) * 4 / (((i - 1) * 2) * (((i - 1) * 2) + 1) * (((i - 1) * 2) + 2)))
+    return p
+
+
+def wallis_pi(x):
+    # This method was found by John Wallis in 1655:
+    # (2 / 1) * (2 / 3) * (4 / 3) * (4 / 5) * (6 / 5) * ...
+    p = 2.0
+    for i in range(1, x):
+        p = p * ((2 * i) / (1 + 2 * i)) * ((2 * (i + 1)) / (1 + 2 * i))
+    return p * 2
+
+
+def leibniz_pi(x):
+    # Leibniz used this approximation in 1674:
+    # 4 / 1 - 4 / 3 + 4 / 5 - 4 / 7 + 4 / 9 - ...
+    p = 4.0
+    for i in range(2, x + 1):
+        p = p + ((-1 * math.pow(-1, i)) * 4 / (2 * i - 1))
+    return p
+
+
+if __name__ == &#039;__main__&#039;:
+    main()
+</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

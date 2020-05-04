@@ -1,0 +1,179 @@
+
+<title>Pig Latin Translator</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Pig Latin Translator</h1>
+				<p class="subtleHeading">Problem written by Lucia</p>
+				<hr/>
+				<p>
+	Pig Latin is a fun language that alters English words based on a set of rules. One you know the rules, you can use translate words to Pig Latin and speak in this secret language.
+</p>
+
+<p>
+    Here are the rules for translating English to Pig Latin.
+</p>
+
+<p>
+	1) If word begins with consonant sound, all letters before the initial vowel are placed at the end of the word sequence, then, 'ay' is added. 
+</p>
+
+<p>
+    2) If word begins with vowel sounds or a silent letter, one just adds 'yay' to the end.
+</p>
+
+<p>
+	3) The cases of individual words are to be preserved. For example, for the sentence: 'Who are you?', the title case of the word 'who' is preserved after translation, so the translation is 'Owhay areyay ouyay?'.
+</p>
+
+<p>
+	4) Punctuation is preserved. If a phrase in English ends with a '.', '?', or '!', the translated phrase in Pig Latin should also end with a '.', '?', or '!'.
+</p>
+
+<p> Write a program that translates words/phrases in English to Pig Latin:</p>
+
+<p></p>
+<center>
+	<img style="width:800px" src="./demo.png">	
+</center>
+<p></p>
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:1420.0px">def is_punctuation(char):
+	return char in (&#039;.&#039;, &#039;?&#039;, &#039;!&#039;)
+
+def is_vowel(char):
+	return char.lower() in (&#039;a&#039;, &#039;e&#039;, &#039;i&#039;, &#039;o&#039;, &#039;u&#039;)
+
+def is_consonant(char):
+	return not is_vowel(char)
+
+def main():
+	print(&#039;This program translates words/phrases from English to Pig Latin. To end the program, type EXIT.&#039;)
+	
+	# initially asks for a word/phrase to translate before entering while loop
+	in_str = input(&#039;Word/phrase to translate: &#039;)
+	out_str_list = []
+	out_str = &#039;&#039;
+
+	# while the input string from the user is not &#039;EXIT&#039;, translate the input string in English to Pig Latin
+	while in_str != &#039;EXIT&#039;:
+		# splits the input into a list of strings, each element is one word
+		in_str_list = in_str.split()
+
+		# translates each word in the list of English words to Pig Latin
+		for word in in_str_list:
+			# initializes the pl_word to just hold the original word
+			# the rest of the code works on altering pl_word according to the translation rules
+			pl_word = word
+			punctuation = &#039;&#039;
+
+			# checks that word is at least 1 letter long
+			if len(word) &gt;= 1:
+				# if the last character of the word is punctuation, strips it off before translating the rest of the word
+				# and adds it back at the end of the word later
+				if is_punctuation(word[-1]):
+					pl_word = word[0:-1]
+					punctuation = word[-1]
+
+				# translates the word based on Pig Latin translation rules
+				if is_vowel(word[0]):
+					pl_word = pl_word.lower() + &#039;yay&#039;
+				if is_consonant(word[0]):
+					first_vowel_index = 0
+					while first_vowel_index &lt; len(word) and not is_vowel(word[first_vowel_index]):
+						first_vowel_index += 1
+					pl_word = pl_word.lower()[first_vowel_index:] + pl_word.lower()[0: first_vowel_index] + &#039;ay&#039;
+				
+				# preserves case by capitalizing the first letter of the translated word if
+				# the first letter of the original word was capitalized
+				if word[0].isupper():
+					pl_word = pl_word.capitalize()
+
+			# adds punctuation back onto the translated word
+			pl_word = pl_word + punctuation
+
+			# adds the translated word to a list of translated words
+			out_str_list.append(pl_word)
+
+		# joins all the words in the list of translated words, with a &#039; &#039; (space character) between each word 
+		# to form the whole translated word/phrase
+		out_str = &#039; &#039;.join(out_str_list)
+
+		# prints out the whole translated word/phrase
+		print(out_str)
+
+		# asks for another word/phrase to translate in the while loop
+		in_str = input(&#039;Word/phrase to translate: &#039;)
+		out_str_list = []
+		out_str = &#039;&#039;
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
