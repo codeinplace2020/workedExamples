@@ -1,0 +1,103 @@
+<p>
+    Karel recently learned that the <a href="https://coloradosun.com/2019/12/18/colorado-orange-apple-found/">Colorado Orange</a> is not an orange, but an <i>apple</i> instead. While the name is confusing, Karel thought it would be an excellent idea to combine an apple and an orange, at least digitally. After finding a photo of each fruit, Karel decided to create an "apporange" whose left half is an apple and right half an orange. However, a direct combination looks ugly, so Karel applied some magic touch to make the photo seamlessly stitched together.
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Apple</center></th>
+            <th><center>&nbsp;&nbsp;</center></th>
+            <th><center>Orange</center></th>
+            <th><center>&nbsp;&nbsp;</center></th>
+            <th><center>Direct combine</center></th>
+            <th><center>&nbsp;&nbsp;</center></th>
+            <th><center>Magic stitch</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="width:200px" src="./apple.jpg"></center></td>
+            <th><center>&nbsp;&nbsp;</center></th>
+            <td><center><img style="width:200px" src="./orange.jpg"></center></td>
+            <th><center>&nbsp;&nbsp;</center></th>
+            <td><center><img style="width:200px" src="./apporange1.jpg"></center></td>
+            <th><center>&nbsp;&nbsp;</center></th>
+            <td><center><img style="width:200px" src="./apporange2.jpg"></center></td>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<p>
+    Your task is to <i>stitch two images in the middle</i>, similar to the apple-orange example. The images are assumed to have the same dimensions. You will need to use the <code>simpleimage</code> module covered in Lecture&nbsp;9. The <code>simpleimage.py</code> file should be present in the same directory as your code, and the first line of your code should be 
+</p>
+<p>
+    <center><code>from simpleimage import SimpleImage</code></center>
+</p>
+<p>
+    Although the stitching operation looks fancy, the task can be achieved via several simple steps. Here are the corresponding milestones. 
+</p>
+<h5>
+    <strong>Milestone&nbsp;1</strong>: Direct image combination
+</h5>
+<p>
+    Before we apply any fancy algorithm, the first step is to try combining the two images directly. In this milestone, write a function <code>combine(img1,&nbsp;img2)</code> that takes two <code>SimpleImage</code> objects and returns a new <code>SimpleImage</code> object whose left half is taken from <code>img1</code> and right half taken from <code>img2</code>. You should be able to produce the "ugly" version of the stitched photo shown above.
+</p>
+<h5>
+    <strong>Milestone&nbsp;2</strong>: Build a Laplacian image pyramid
+</h5>
+<p>
+    The magic stitching can be achieved by a technique called <i>pyramid blending</i>. Roughly speaking, an image pyramid has a series of the same image, but with successively smaller size and hence poorer resolution (<a href="https://en.wikipedia.org/wiki/Pyramid_(image_processing)">more info here</a>). An example pyramid is shown below (taken from <a href="https://en.wikipedia.org/wiki/Pyramid_(image_processing)">Wikipedia</a>). By convention, level&nbsp;<code>0</code> is just the original image, and each successive layer has the dimension halved. The highest level in this case is level&nbsp;<code>4</code>, so we call this a level-4 pyramid (though it really has <i>5</i> layers). 
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>A Level-4 Image Pyramid</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="width:300px" src="./pyramid.png"></center></td>
+        </tr>
+    </table>
+</center>
+<p></p>
+<p>
+    In this milestone, you will generate a special type of pyramid called a <i>Laplacian pyramid</i>. This is similar to the pyramid shown above, but instead of storing the shrunken images, it stores the <i>difference</i> between successive layers. More specifically, using the picture shown above, let <i>G</i><sub><i>n</i></sub> denote the <i>n</i>-th layer of the above pyramid, where <i>n</i> = 0,&nbsp;...,&nbsp;4. Again, <i>G</i><sub>0</sub> is just the original image, while the top layer <i>G</i><sub>4</sub> has the smallest size. Let <i>L</i><sub><i>n</i></sub> denote the <i>n</i>-th layer of the corresponding <i>Laplacian</i> pyramid, then
+</p>
+<p>
+    <center>
+        <i>L<sub>n</sub></i> = resize(<i>G</i><sub><i>n</i>+1</sub>) - <i>G</i><sub><i>n</i></sub> for <i>n</i> = 0 to 3, and
+        <i>L</i><sub>4</sub> = <i>G</i><sub>4</sub>.
+    </center>
+</p>
+<p>
+    The subtraction is performed pixel by pixel for each rgb channel, and <code>resize()</code> is needed because the (<i>n</i>+1)-th layer has half the size of the <i>n</i>-th layer. In this milestone, write a function <code>build_pyramid(image,&nbsp;level)</code> that takes a <code>SimpleImage</code> and the pyramid <code>level</code>. Remember, the pyramid above has level <code>4</code> though it has 5 layers. The function should return a <code>list</code> of <code>SimpleImage</code> objects, which represent each layer of the Laplacian pyramid.
+</p>
+<p>
+    <i>Helpful Tip #1</i>: A <code>list</code> is a container in Python that can store a sequence of objects. The following snippets may be useful:
+</p>
+<pre class="console" style="width:470px">
+list = []            # Initialize an empty list
+list.append("Hello") # Append an object to the end
+str = list[0]        # Access the object at index 0
+size = len(list)     # Obtain the length of the list
+</pre>
+<p>
+    <i>Helpful Tip #2</i>: The <code>simpleimage</code> module has a handy method <code>make_as_big_as(ref_image)</code>, which resizes the <code>SimpleImage</code> to the dimensions of the given <code>ref_image</code>. The following snippets demonstrate how to use it:
+</p>
+<pre class="console" style="width:520px">
+img = SimpleImage('apple.jpg')  # Load an apple image
+ref = SimpleImage.blank(10, 20) # Create a blank image
+img.make_as_big_as(ref)         # Now img has size (10, 20)
+</pre>
+<h5>
+    <strong>Milestone&nbsp;3</strong>: Combine two pyramids
+</h5>
+<p>
+    If we want to stitch two images, say <code>img1</code> and <code>img2</code>, in the last milestone you've built two corresponding Laplacian pyramids, say <code>pyramid1</code> and <code>pyramid2</code>. In this milestone, your task is to create another Laplacian pyramid, where each layer is a direction combination of the corresponding layer in <code>pyramid1</code> and <code>pyramid2</code>. Your function <code>combine(img1,&nbsp;img2)</code> written in Milestone&nbsp;1 becomes useful now.
+</p>
+<h5>
+    <strong>Milestone&nbsp;4</strong>: Reconstruct image from pyramid
+</h5>
+<p>
+    The last step is to reconstruct the image given a Laplacian pyramid. In other words, given <i>L<sub>n</sub></i>, where <i>n</i>&nbsp;=&nbsp;0,&nbsp;1,&nbsp;..., you need to reverse engineer the formula above to get <i>G</i><sub>0</sub>. The seamlessly stitched image is reconstructed from the combined pyramid in Milestone&nbsp;3, and you may want to play around with different pyramid <code>level</code> to get the best result. The apple-orange example shown above uses a level-6 pyramid.
+</p>
+<p>
+    <i>Curious to know why the pyramid trick worked?</i> Check out this <a href="http://persci.mit.edu/pub_pdfs/RCA84.pdf">seminal work</a> by E.&nbsp;H.&nbsp;Adelson, C.&nbsp;H.&nbsp;Anderson, J.&nbsp;R.&nbsp;Bergen, P.&nbsp;J.&nbsp;Burt, and J.&nbsp;M.&nbsp;Ogden.
+</p>
