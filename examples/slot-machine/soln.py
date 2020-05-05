@@ -87,10 +87,10 @@ def spin():
     print(three, flush=True)
     time.sleep(SPIN_PAUSE_INTERVAL)
 
-    if one == two or two == three or one == three:
-        return WINNINGS_FOR_TWO
-    elif one == two and two == three:
+    if one == two and two == three:
         return WINNINGS_FOR_THREE
+    elif one == two or two == three or one == three:
+        return WINNINGS_FOR_TWO
     else:
         return -SPIN_COST
 
