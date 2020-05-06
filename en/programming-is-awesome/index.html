@@ -1,0 +1,140 @@
+
+<title>Programming is Awesome</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Programming is Awesome</h1>
+				<p class="subtleHeading">Writen by Chris Piech</p>
+				<hr/>
+				<p>
+    Graphics are really fantastic in python, especially using the TK library (which is the standard for Python). There are a lot of details, and as such a great way to learn is to look at worked examples.
+</p>
+<p>
+    <center><img style="max-width:600px" src="demo.png"></center>
+</p>
+
+
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:1080.0px">import tkinter
+from PIL import ImageTk
+from PIL import Image
+
+CANVAS_WIDTH = 800
+CANVAS_HEIGHT = 600
+
+def main():
+    canvas = make_canvas(CANVAS_WIDTH, CANVAS_HEIGHT, &#039;Awesome&#039;)
+    # a line for good measure!
+    canvas.create_line(0, 0, 600, 600)
+
+    # a blue square with width and height = 80
+    canvas.create_rectangle(70, 70, 150, 150, fill=&quot;blue&quot;)
+    # a yellow rectangle that is long and skinny
+    canvas.create_rectangle(620, 100, 640, 510, fill=&quot;yellow&quot;)
+
+    # a red oval and a rectangle at the exact same spot!
+    canvas.create_rectangle(250, 150, 500, 500)
+    canvas.create_oval     (250, 150, 500, 500, fill=&quot;red&quot;, outline=&quot;red&quot;)
+
+    # images require the pillow library
+    image = ImageTk.PhotoImage(Image.open(&quot;images/simba.png&quot;))
+    canvas.create_image(0,300,anchor=&quot;nw&quot;,image=image)
+
+    # some text is written on the screen.
+    canvas.create_text(20, 200, anchor=&#039;w&#039;, font=&#039;Courier 52&#039;, text=&#039;Programming is Awesome!&#039;)
+
+    # dude, where&#039;s my rect?
+    canvas.create_rectangle(0, 800, 10, 810)
+    canvas.mainloop()
+
+######## DO NOT MODIFY ANY CODE BELOW THIS LINE ###########
+
+# This function is provided to you and should not be modified.
+# It creates a window that contains a drawing canvas that you
+# will use to make your drawings.
+def make_canvas(width, height, title=None):
+    &quot;&quot;&quot;
+    DO NOT MODIFY
+    Creates and returns a drawing canvas
+    ready for drawing.
+    &quot;&quot;&quot;
+    objects = {}
+    top = tkinter.Tk()
+    top.minsize(width=width, height=height)
+    if title:
+        top.title(title)
+    canvas = tkinter.Canvas(top, width=width + 1, height=height + 1)
+    canvas.pack()
+    return canvas
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

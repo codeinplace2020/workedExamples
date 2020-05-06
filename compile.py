@@ -23,10 +23,10 @@ class Compiler(object):
     def run(self):
         example_paths = []
         for dir_name in os.listdir('examples'):
-            
-            name = self.complile_example(dir_name)
-            print(dir_name)
-            example_paths.append((dir_name, name))
+            if os.path.isdir('examples/' + dir_name):
+                name = self.complile_example(dir_name)
+                print(dir_name)
+                example_paths.append((dir_name, name))
         self.make_home_page(example_paths)
 
     #####################

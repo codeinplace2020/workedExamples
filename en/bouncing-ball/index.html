@@ -1,0 +1,162 @@
+
+<title>Bouncing Ball</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Bouncing Ball</h1>
+				<p class="subtleHeading">WRITTEN BY CHRIS PIECH. MANY A CODER HAS BOUNCED BALLS AROUND SCREENS BEFORE...</p>
+				<hr/>
+				<p>
+    What joy and beauty there can be found in the humble ball bouncing around the screen.
+</p>
+<p>
+    <center><img style="max-width:600px" src="demo.png"></center>
+</p>
+
+
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:1520.0px">import tkinter
+import time
+
+CANVAS_WIDTH = 600      # Width of drawing canvas in pixels
+CANVAS_HEIGHT = 600     # Height of drawing canvas in pixels
+CHANGE_X_START = 10
+CHANGE_Y_START = 7
+BALL_SIZE = 70
+
+def main():
+    canvas = make_canvas(CANVAS_WIDTH, CANVAS_HEIGHT, &#039;Bouncing Ball&#039;)
+    ball = canvas.create_oval(0, 0, BALL_SIZE, BALL_SIZE, fill=&#039;blue&#039;, outline=&#039;blue&#039;)
+    change_x = CHANGE_X_START
+    change_y = CHANGE_Y_START
+    while True:
+        # update world
+        canvas.move(ball, change_x, change_y)
+        if hit_left_wall(canvas, ball) or hit_right_wall(canvas, ball):
+            change_x *= -1
+        if hit_top_wall(canvas, ball) or hit_bottom_wall(canvas, ball):
+            change_y *= -1
+        # redraw canvas
+        canvas.update()
+        # pause
+        time.sleep(1/50.)
+
+def hit_left_wall(canvas, object):
+    return get_left_x(canvas, object) &lt;= 0
+
+def hit_top_wall(canvas, object):
+    return get_top_y(canvas, object) &lt;= 0
+
+def hit_right_wall(canvas, object):
+    return get_right_x(canvas, object) &gt;= CANVAS_WIDTH
+
+def hit_bottom_wall(canvas, object):
+    return get_bottom_y(canvas, object) &gt;= CANVAS_HEIGHT
+
+
+######## These helper methods use &quot;lists&quot; ###########
+### Which is a concept you will learn soon ###########
+
+def get_left_x(canvas, object):
+    return canvas.coords(object)[0]
+
+def get_top_y(canvas, object):
+    return canvas.coords(object)[1]
+
+def get_right_x(canvas, object):
+    return canvas.coords(object)[2]
+
+def get_bottom_y(canvas, object):
+    return canvas.coords(object)[3]
+
+
+######## DO NOT MODIFY ANY CODE BELOW THIS LINE ###########
+
+# This function is provided to you and should not be modified.
+# It creates a window that contains a drawing canvas that you
+# will use to make your drawings.
+def make_canvas(width, height, title):
+    &quot;&quot;&quot;
+    DO NOT MODIFY
+    Creates and returns a drawing canvas
+    of the given int size with a blue border,
+    reachange_y for drawing.
+    &quot;&quot;&quot;
+    top = tkinter.Tk()
+    top.minsize(width=width, height=height)
+    top.title(title)
+    canvas = tkinter.Canvas(top, width=width + 1, height=height + 1)
+    canvas.pack()
+    return canvas
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
