@@ -1,0 +1,42 @@
+<p>
+    Karel recently watched a <a href="https://youtu.be/5kUu97Vkwj4?t=81">GoPro video</a>, where the fisheye lens distorted the imagery and added more thrill to the scenes. Karel decided to apply this fisheye effect on a photo, and here is the Stanford Main Quad viewed in two different lenses (literally):
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Original image</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>After fisheye distortion</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="height:200px" src="./quad.jpg"></center></td>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <td><center><img style="height:240px" src="./quad_fisheye.jpg"></center></td>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<p>
+    Your task is to write a program that reads an image and then displays the version after applying a fisheye distortion. You will need to use the <code>simpleimage</code> module covered in Lecture&nbsp;9. The <code>simpleimage.py</code> file should be present in the same directory as your code, and the first line of your code should be 
+</p>
+<p>
+    <center><code>from simpleimage import SimpleImage</code></center>
+</p>
+<p>
+    The fisheye distortion can be achieved by rearranging pixels in the original image into new positions. More specifically, a pixel located at (<i>x<sub>d</sub></i>,&nbsp;<i>y<sub>d</sub></i>) in the <i>distorted</i> image (hence the subscript <i>d</i>) is the same as the pixel located at (<i>x<sub>u</sub></i>,&nbsp;<i>y<sub>u</sub></i>) in the <i>undistorted</i> image. These coordinates are related by these formulae (more details <a href="https://en.wikipedia.org/wiki/Distortion_(optics)">here</a>):
+</p>
+<p></p>
+    <center>
+        <img style="height:136px" src="./eqn.png">
+    </center>
+<p></p>
+<p>
+    In these equations, (<i>x<sub>c</sub></i>,&nbsp;<i>y<sub>c</sub></i>) are the coordinates of the distortion center, usually taken as the <i>center</i> of the undistorted image. <i>w</i> and <i>h</i> are the width and height of the undistorted image. <i>k</i><sub>1</sub> is the distortion factor: a larger &vert;<i>k</i><sub>1</sub>&vert; means more distortion. When <i>k</i><sub>1</sub> is negative, the image bulges away from (<i>x<sub>c</sub></i>,&nbsp;<i>y<sub>c</sub></i>); when <i>k</i><sub>1</sub> is positive, the image contracts towards (<i>x<sub>c</sub></i>,&nbsp;<i>y<sub>c</sub></i>). To achieve a fisheye effect, <i>k</i><sub>1</sub>&nbsp;&lt;&nbsp;0. The <code>max()</code> expression ensures the denominator is always positive. Here, <i>&epsilon;</i> is just a very small positive number (e.g. <code>1E-10</code>) that prevents a possible division by zero.
+</p>
+<p>
+    <i>Helpful Tip</i>: Given an original image, you can first create a blank image with identical dimension, and fill its pixels by looking for the corresponding pixels in the original image. If (<i>x<sub>u</sub></i>,&nbsp;<i>y<sub>u</sub></i>) computed by the above formula does not exist in the original image, you can simply set the pixel to white (<code>255</code> for all of red, green and blue channels).
+</p>
+
+
+

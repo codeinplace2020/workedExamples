@@ -1,0 +1,296 @@
+
+<title>Magic Eye</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Magic Eye</h1>
+				<p class="subtleHeading">Problem written by Alfred, inspired by H. W. Thimbleby, S. Inglis, and I. H. Witten</p>
+				<hr/>
+				<p>
+    Karel was recently presented with the following image. At first, Karel thought it was just some random noise. However, after staring at it for a long long time, Karel saw another Karel popping out of the image! <i>It may take you a while to see the hidden Karel icon in this image, so please be patient. Try to focus your eyes not on the image, but through the image into the distance. Here are <a href="https://www.magiceye.com/faq-items/help-how-do-i-see-in-3d/">more tips</a>.</i>
+</p>
+<p></p>
+    <center>
+        <img style="height:512px" src="./karel_stereo.png">
+    </center>
+<p></p>
+<p>
+    So what's going on? Well, even though the pixels look random, they are arranged in a fashion that can trick your brain to create a three-dimensional feel. We call images like this a <a href="https://en.wikipedia.org/wiki/Random_dot_stereogram">random dot stereogram</a>, which is very similar to the <a href="https://www.magiceye.com/samples/">Magic Eye</a> images popularized in the 1990's.
+</p>
+<p>
+    Your task is to <i>create your own magic eye images</i>. How cool is that!!! You will need to use the <code>simpleimage</code> module covered in Lecture&nbsp;9. The <code>simpleimage.py</code> file should be present in the same directory as your code, and the first line of your code should be 
+</p>
+<p>
+    <center><code>from simpleimage import SimpleImage</code></center>
+</p>
+<p>
+    In addition, you're provided with the function <code>get_stereogram(image)</code> that takes in a <code>SimpleImage</code> (e.g. an icon of Karel) and returns another <code>SimpleImage</code>, which is the encoded magic-eye stereogram (see this function and its documentation in the solution below).
+</p>
+<p>
+    Before we talk more about the usage of <code>get_stereogram(image)</code>, let's first discuss the parameter <code>image</code>. In a magic eye image, an object appears 3D. If we use <i>x</i> and <i>y</i> to denote the coordinates in the image plane, we can use <i>z</i> to denote the third dimension, or depth. For each pixel at (<i>x</i>,&nbsp;<i>y</i>), we can associate a <i>z</i> value. By convention, <i>z</i> falls inside the interval [0,&nbsp;1]; we further <i>define</i> that <i>z</i>&nbsp;=&nbsp;0 is farthest away from the viewer, while <i>z</i>&nbsp;=&nbsp;1 is the closest to the viewer.
+</p>
+<p>
+    How do we represent the depth <i>z</i> for each pixel? We can use the rgb channels. We really just need to use one channel (e.g. red) but by convention, we simply set all channels to the same value so that the image appears in grayscale. However, there is one problem. While <i>z</i> is between 0 and 1, we know that the RGB value is between 0 and 255. By convention, we associate black (rgb&nbsp;=&nbsp;0) to <i>z</i>&nbsp;=&nbsp;1 and white (rgb&nbsp;=&nbsp;255) to <i>z</i>&nbsp;=&nbsp;0. In summary,
+</p>
+<p>
+    <center><code>red = green = blue = round((1 - z) * 255)</code></center>
+</p>
+<p>
+    The parameter <code>image</code> is a grayscale image that encodes the depth <i>z</i> at each pixel. In particular, the blacker pixel will pop up in the stereo image while the whiter pixel will sink in. As a simple example, if <code>image</code> is loaded from the following black-white picture of letter "H", the corresponding magic eye picture will have "H" pop out of the plane. 
+</p>
+<center>
+    <table>
+        <tr>
+            <th><center>Black "H" against a white background</center></th>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <th><center>Corresponding magic eye image</center></th>
+        </tr>
+        <tr>
+            <td><center><img style="height:366px" src="./H.png"></center></td>
+            <th><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></th>
+            <td><center><img style="height:366px" src="./H_stereo.png"></center></td>
+        </tr>
+      
+    </table>
+</center>
+<p></p>
+<p>
+    Your job is to convert your favorite image into grayscale and use <code>get_stereogram(image)</code> to create your own magic eye image! It's best that your image only contains one or two prominent objects against a relatively featureless background, and letters work great (such as the "H" example above).
+</p>
+<p>
+    Besides playing with <code>get_stereogram(image)</code>, as a more specific task, you will create a 3D dome, as shown below (there is a hemispherical dome popping out of the plane):
+</p>
+<p></p>
+    <center>
+        <img style="height:512px" src="./sphere_stereo.png">
+    </center>
+<p></p>
+<p>
+    The first step is to construct a grayscale image that encodes the height of a hemisphere using the rgb channel. The second step is to pass this image to <code>get_stereogram(image)</code> for the corresponding magic eye image. Specifically, write a function
+</p>
+<p>
+    <center><code>draw_hemisphere(width, height, radius)</code></center>
+</p>
+<p>
+    that returns a <code>SimpleImage</code> with specified <code>width</code> and <code>height</code>, and with a hemisphere of specified <code>radius</code> centered in the image. The pixel values should encode the height of the hemisphere; set the pixel to white outside the hemisphere. As a reminder, black pixel will appear closest to the viewer, so the tallest point of the hemisphere should have a rgb value of <code>0</code>.
+</p>
+<p>
+    <i>Helpful Tip</i>: From Pythagoras Theorem, if we are at a distance <code>dist</code> away from the center of the hemisphere with radius <code>r</code>, then the <i>z</i>-dimension height of the hemisphere at our location is
+</p>
+<p>
+    <center><code>height = sqrt(r ** 2 - dist ** 2)</code></center>
+</p>
+<p>
+    <i>Extension</i>: Want to find out how the magic eye image is generated? Check out the codes inside the <code>get_stereogram(image)</code> function, which implements the algorithm in <a href="https://www.cs.waikato.ac.nz/~ihw/papers/94-HWT-SI-IHW-SIRDS-paper.pdf">this paper</a> by H.&nbsp;W.&nbsp;Thimbleby, S.&nbsp;Inglis, and I.&nbsp;H.&nbsp;Witten.
+</p>
+
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:2800.0px">from simpleimage import SimpleImage
+from random import randint
+
+RGB_MAX = 255 # Maximum RGB value; 255 for 24-big images
+
+
+def main():
+    # Load an image from file
+    img_H = SimpleImage(&#039;images/H.png&#039;)
+    img_H_stereo = get_stereogram(img_H)
+    img_H.show()
+    img_H_stereo.show() 
+
+    # Create a dome
+    dome = draw_hemisphere(512, 512, 200)
+    dome_stereo = get_stereogram(dome)
+    dome.show()
+    dome_stereo.show()
+
+
+def draw_hemisphere(width, height, radius):
+    &quot;&quot;&quot;
+    Returns a SimpleImage object with specified dimensions
+    (width, height), where a hemisphere with the provided
+    radius is drawn in the center of the image. The pixel
+    outside the hemisphere is white, while pixel values
+    within the hemisphere corresponds to the z-dimension
+    height (grayscale image, so rgb share the same value). 
+    The tallest point corresponds to black.
+    &quot;&quot;&quot;
+    img = SimpleImage.blank(width, height)
+    # Image center
+    xc = width // 2
+    yc = height // 2
+    for pixel in img:
+        x = pixel.x
+        y = pixel.y
+        # Distance to the image center
+        dist = ((x - xc)**2 + (y - yc)**2)**0.5
+        if dist &gt; radius:
+            pixel.red = RGB_MAX
+            pixel.green = RGB_MAX
+            pixel.blue = RGB_MAX
+        else:
+            depth = (radius**2 - dist**2)**0.5
+            val = (1 - depth/radius) * RGB_MAX
+            pixel.red = val
+            pixel.green = val
+            pixel.blue = val
+    return img
+
+############################################################
+#### The following function is provided. Do not modify. ####
+#### You are encouraged to check out the original paper ####
+#### if you want to understand the Magic Eye algorithm. ####
+############################################################
+
+def get_stereogram(img):
+    &quot;&quot;&quot;
+    Takes a SimpleImage object and returns a random dot stereogram
+    (also a SimpleImage object) with the same width and height.
+    It uses the algorithm by H. W. Thimbleby, S. Inglis, and I. H.
+    Witten in their paper &#039;Displaying 3D Images: Algorithms for 
+    Single Image Random Dot Stereograms.&#039; The code is a translation
+    from the C code published in the paper.
+    &quot;&quot;&quot;
+    DPI = 72 # Output device has 72 pixels per inch (typical resolution)
+    EYE_SEP = 2.5 * DPI # Assume eye separation is 2.5 inches
+    MU = 1 / 3.0 # Depth of field (fraction of viewing distance)
+
+    def separation(z):
+        &quot;&quot;&quot;
+        Stereo separation corresponding to position z.
+        The farthest point (from viewer) has z = 0;
+        The closest point has z = 1. See the publication
+        for the formula derivation.
+        &quot;&quot;&quot;
+        return round((1 - MU * z) * EYE_SEP / (2 - MU * z))
+
+    def depth(pixel):
+        &quot;&quot;&quot;
+        Returns the z value based on the RGB value of a Pixel
+        object in the simpleimage module. Uses the red channel
+        alone (rgb is the same for grayscale image). The return
+        value satisfies 0 &lt;= z &lt;= 1: black pixel corresponds to
+        z = 1 (closest to viewer) and white pixel corresponds to
+        z = 0 (farthest from viewer)
+        &quot;&quot;&quot;
+        return (RGB_MAX - pixel.red) / RGB_MAX
+
+    width = img.width
+    height = img.height
+    stereo = SimpleImage.blank(width,height)
+
+    for y in range(height):
+        # same stores the index of the corresponding pixel
+        # on the right. It&#039;s initialized to point to itself
+        same = list(range(width))
+        for x in range(width):
+            z = depth(img.get_pixel(x, y))
+            s = separation(z)
+            left = x - s // 2 # Index of left and right pixels...
+            right = left + s  # ...that should have the same value
+            if 0 &lt;= left and right &lt; width:
+                # Perform hidden surface removal (see publication)
+                visible = True
+                zt = 0.0
+                t = 1
+                while visible and zt &lt; 1:
+                    zt = z + 2 * (2 - MU * z) * t / (MU * EYE_SEP)
+                    visible = (depth(img.get_pixel(x - t, y)) &lt; zt and 
+                               depth(img.get_pixel(x + t, y)) &lt; zt)
+                    t += 1
+                # If the surface is not hidden, link up the
+                # corresponding pixels in the &#039;same&#039; list
+                if visible:
+                    l = same[left]
+                    while l != left and l != right:
+                        if l &lt; right:
+                            left = l
+                        else:
+                            same[left] = right
+                            left = right
+                            right = l
+                        l = same[left]
+                    same[left] = right
+        # Set pixel values in a row, from right to left
+        for x in range(width - 1, -1, -1):
+            px = stereo.get_pixel(x, y)
+            if same[x] == x:
+                px.red = randint(0, RGB_MAX)
+                px.green = randint(0, RGB_MAX)
+                px.blue = randint(0, RGB_MAX)
+            else:
+                stereo.set_pixel(x, y, stereo.get_pixel(same[x], y))
+    return stereo
+
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
