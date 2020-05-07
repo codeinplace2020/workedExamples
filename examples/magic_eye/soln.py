@@ -7,7 +7,7 @@ RGB_MAX = 255 # Maximum RGB value; 255 for 24-big images
 def main():
     # Load an image from file
     img_H = SimpleImage('images/H.png')
-    img_H_stereo = get_stereogram(imgH)
+    img_H_stereo = get_stereogram(img_H)
     img_H.show()
     img_H_stereo.show() 
 
