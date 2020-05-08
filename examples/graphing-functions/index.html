@@ -1,0 +1,165 @@
+<p>
+	In this exercice, you are going to write a program that creates the graphical representation of a function of your choice. Like the followings:
+</p>
+
+<p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				y = math.cos(x)
+				<img class="img-fluid" src="cos.png" /> 
+			</div>
+
+			<div class="col-md-4">
+				y = 1/x
+				<img class="img-fluid" src="inv.png" /> 
+			</div>
+
+			<div class="col-md-4">
+				y = x ** 3
+				<img class="img-fluid" src="cube.png" /> 
+			</div>
+
+		</div>
+	</div>
+</p>
+
+<p>
+	This is done by findng the pixels that correspond to (x, y) points of the plotted function, and setting the color of those pixels to green.
+	The axes are also drawn in a similar fashion.
+</p>
+
+
+
+<h3>Coordinate Systems</h3>
+<p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				In order to plot functions, you will need to write functions that convert <strong>x</strong> and <strong>y</strong> positions from 
+				the plot coordinate system to the pixel coordinate system (illustrated in the adjacent figure).
+				The starter code suggests the <code>x_to_pixel_x()</code> and <code>y_to_pixel_y()</code> functions for this purpose. The starter code also contains 
+				"doctests" to help you check your implementation. You may run the test cases as follow: <br /><br />
+				<pre>python -m doctests your_file.py</pre>		
+			</div>
+			<div class="col-md-6">
+				<img class="img-fluid" src="coordinate_systems.png" /> 
+			</div>
+		</div>
+	</div>
+</p>
+
+<h3>Starter Code</h3>
+<p>
+	A starter code is provided below. This contains useful constants and a suggested high level decomposition of the problem.
+</p>
+
+<pre style="width:500px">
+from simpleimage import SimpleImage
+import math
+
+# Domain of the plot
+X_MIN = -10
+X_MAX = 10
+
+# Range of the plot
+Y_MIN = -10
+Y_MAX = 10
+
+# Size of the plot in pixels
+PLOT_WIDTH = 400
+PLOT_HEIGHT = 400
+
+# Color of the axes
+AXIS_COLOR_R = 200
+AXIS_COLOR_G = 0
+AXIS_COLOR_B = 0
+
+# Color of the plot
+PLOT_COLOR_R = 0
+PLOT_COLOR_G = 200
+PLOT_COLOR_B = 0
+
+# x and y step sizes
+DELTA_X = 0.01
+DELTA_Y = 0.01
+
+
+def main():
+	"""
+	Make a blank plot, draw the x and y axis, plot the 
+	function defined by plotted_function and show the plot.
+	"""
+	plot = make_blank_plot()
+	plot = draw_axes(plot)
+	plot = plot_function(plot)
+	plot.show()
+
+
+def ploted_function(x):
+	"""
+	Compute the y value of the ploted function for the given :param:x value.
+	Implement a function of your choice
+	"""
+	return math.cos(x)
+
+
+def x_to_pixel_x(x):
+	"""
+	Compute the horizontal pixel position for horizontal 
+	position :param:x in the plotted coordinate system.
+
+	Test Cases: 
+
+	x = 0 should correspond to middle of the plot
+	>>> x_to_pixel_x(0)
+	200
+
+	x = -10 should correspond to far left of the plot
+	>>> x_to_pixel_x(-10)
+	0
+
+	x = 10 should correspond to far right of the plot
+	Note: x=10 is outside of the plotting area 
+	>>> x_to_pixel_x(10)
+	400
+	"""
+	
+	# TODO: Your code here
+	# calculate the pixel x position and store it in px
+
+	return int(px)
+
+
+def y_to_pixel_y(y):
+	"""
+	Compute the horizontal pixel position for vertical 
+	position :param:y in the plotted coordinate system
+
+	Test Cases:
+
+	y =  0 should correspond to the middle of the plot
+	>>> y_to_pixel_y(0)
+	200
+
+	y=10 should correspond to the top of the plot.
+	>>> y_to_pixel_y(10)
+	0
+
+	y=-10 should correspond to the bottom of the plot
+	Note y=-10 is actually outside of the plotting area
+	>>> y_to_pixel_y(-10)
+	400
+	"""
+	
+	# TODO: your code here
+	# Calculate the pixel y position and store it in py
+
+	return int(py)
+
+if __name__ == '__main__':
+	main()
+</pre>
+
+
+				
