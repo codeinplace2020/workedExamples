@@ -1,0 +1,9 @@
+week2
+Python
+functions
+decomposition
+constants
+input
+random
+user
+fun

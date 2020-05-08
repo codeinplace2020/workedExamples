@@ -1,0 +1,96 @@
+<p>With the onset of COVID-19, online ordering has become even more prevalent. As software engineers, a program that could take our order from the comfort of our own terminal/command prompt would be especially convenient. Well, if we're truly programmers, why don't we try programming this program ourselves!</p>
+<p>The <em>main</em> menu will consist of:</p>
+<ul>
+<li>Boolean Burger: $4.99</li>
+<li>Function Fries: $2.99</li>
+<li>String Soda: $1.99</li>
+</ul>
+<p>The <em>secret</em> menu will consist of:</p>
+<ul>
+<li>Piech Perfection: $3.14</li>
+<li>Sahami Special: a random price in the range $1.62-$2.72 (inclusive)</li>
+</ul>
+<p>Write a program prints out a short welcome message and the main menu. Then, it continually reads in menu items from the user, keeping track of how many items they've added so far. Misspelled items should result in an error message (this should not count as an additional item). During this ordering phase, the user can also ask to see the secret menu by typing in the key phrase "Secret Menu Please!" (this should not count as an additional item). Lastly, it will print out the total price of the user's order and a farewell. Here is an example execution of the program:</p>
+<pre class="console" style="width: 450px;">Welcome to Programmer's Paradise!
+----------
+Here's our menu:
+
+Boolean Burger: $4.99
+Function Fries: $2.99
+String Soda: $1.99
+
+What can I get for you?
+1. <span class="blue">Boolean Burger</span>
+2. <span class="blue">Function Fries</span>
+3. <span class="blue">fries</span>
+Please enter a valid item.
+3. <span class="blue">Function Fries</span>
+4. <span class="blue">String Soda</span>
+5. 
+
+Your total is...
+$12.96
+
+Thank you for choosing Programmer's Paradise.
+We hope you loop by again!
+
+</pre>
+<p>Here is another example execution of the program with secret menu items:</p>
+<pre class="console" style="width: 450px;">Welcome to Programmer's Paradise!
+----------
+Here's our menu:
+
+Boolean Burger: $4.99
+Function Fries: $2.99
+String Soda: $1.99
+
+What can I get for you?
+1. <span class="blue">String Soda</span>
+2. <span class="blue">String Soda</span>
+3. <span class="blue">Secret Menu Please!</span>
+----------
+Here's our secret menu:
+
+Piech Perfection: $3.14
+Sahami Special: $1.62-$2.72
+
+3. Piech Perfection
+4. Sahami Special
+5. 
+
+Your total is...
+$8.92
+
+Thank you for choosing Programmer's Paradise.
+We hope you loop by again!
+&nbsp;</pre>
+<p>Here are some tips for common issues:</p>
+<ol>
+<li>General
+<ul>
+<li>Your solution should take advantage of decomposition and constants</li>
+</ul>
+</li>
+<li>Formatting
+<ul>
+<li><code>print()</code> can be used to print out a blank line</li>
+<li>The escape character <code>\'</code> can be used to display an apostrophe</li>
+<li>Check out this <a href="https://stackoverflow.com/questions/19986662/rounding-a-number-in-python-but-keeping-ending-zeros">StackOverflow thread</a> if you're having trouble with trailing 0's</li>
+</ul>
+</li>
+<li>Sahami Special
+<ul>
+<li>You will need to use the <code>random</code> library</li>
+<li>Remember that all prices are floats (take a look at <code>random.uniform</code> and the Python built-in function <code>round</code>)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Optional Extensions</strong></p>
+<ol>
+<li>Make ordering more realistic! Use the <code>time</code> library to delay printed outputs of your program so it feels like your terminal/command prompt is talking to you</li>
+<li>Allow users to order multiple items at a time (<code>1. 5 Boolean Burger</code>)</li>
+<li>Allow users to remove items from their order</li>
+<li>Allow users to cancel their order entirely</li>
+<li>Add your own items to the menu/secret menu!</li>
+</ol>
+<p>&nbsp;</p>
