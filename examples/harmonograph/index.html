@@ -1,0 +1,55 @@
+<p>
+    A <a href="https://en.wikipedia.org/wiki/Harmonograph">harmonograph</a> is a mechanical apparatus that draws beautiful geometric shapes by suspending a pen from pendulums. A harmonograph in-making is shown below (<i>your browser needs to support <code>.gif</code> to see the animation</i>).
+</p>
+<p></p>
+    <center>
+        <img style="height:256px" src="./harmonograph.gif">
+    </center>
+<p></p>
+<p></p>
+    <center>
+        <img style="height:340px" src="./harmonograph.png">
+    </center>
+<p></p>
+<p>
+    Despite the complex appearance, points on a harmonograph follow a simple equation. If we use <code>(x,&nbsp;y)</code> to denote a point on a harmonograph at time <code>t</code>, then <code>(x,&nbsp;y)</code> satisfies
+</p>
+<p></p>
+    <center>
+        <img style="height:50px" src="./eqn.png">
+    </center>
+<p></p>
+
+<p>
+    Here, <code>A</code> denotes the amplitude of the pendulum swing, <code>f</code> is the frequency of the periodic motion. <code>&phi;</code> is the starting phase of the oscillation, and it should be in the range of <code>[-&pi;,&nbsp;&pi;)</code>. Lastly, <code>d</code> is a <i>positive</i> number that represents the damping. Because of dissipation, the pendulum cannot swing forever, so a large <code>d</code> will make the pendulum stop earlier. All of these parameters can be different for the <code>x</code> and <code>y</code> directions, and some example harmonographs are shown above with these parameters labeled.
+</p>
+<p>
+    Your task is to <i>simulate the drawing of a harmonograph</i>, and your final product will look something like the animation above. You will need to use the <code>tkinter</code> module covered in Lecture&nbsp;10 and 11, and you can assume that a <code>canvas</code> object has been created and is ready to use.
+</p>
+<p>
+    The strategy to create the animation is to draw one line segment at a time, using the following function we learned in lecture:
+</p>
+<p>
+    <center><code>canvas.create_line(x0, y0, x1, y1)</code></center>
+</p>
+<p>
+    which creates a line between <code>(x0,&nbsp;y0)</code> and <code>(x1,&nbsp;y1)</code>. Therefore, in your program, you need to keep track of the current position of the pen <i>as well as</i> its previous position. To code up the harmonograph formula above, you may want to <code>import&nbsp;math</code> and use the <code>math.sin</code> and <code>math.exp</code> functions. 
+</p>
+<p>
+    <i><b>Helpful Tip</b></i>: During code development, you're encouraged to use the harmonograph parameters (amplitude, frequency, phase, damping) provided in the examples above. After the animation is working, try to play with these parameters to obtain your own enchanting harmonographs! 
+</p>
+<p>
+    <i><b>Extension</b></i>: You can let the pen color evolve over time! To change the line color, you can add one more argument to the <code>create_line</code> function:
+</p>
+<p>
+    <center><code>canvas.create_line(x0, y0, x1, y1, fill=color)</code></center>
+</p>
+<p>
+    where <code>color</code> is a <code>string</code> that specifies the color. By default, it is <code>"black"</code> and you can choose your favorite color, such as <code>"red"</code>, <code>"blue"</code>, etc. To evolve the color smoothly, you're provided with a function (see solution)
+</p>
+<p>
+    <center><code>get_color(index, colormap)</code></center>
+</p>
+<p>
+    which returns a <code>string</code> that can be passed into the <code>create_line</code> function. Note that <code>get_color</code> takes in a nonnegative integer <code>index</code> that denotes how many line segments have been drawn, as well as a string <code>colormap</code> that represents the color palette we want to use. In the solution, the <code>colormap</code> variable can be either <code>"twilight"</code> or <code>"hsv"</code>, but feel free to add your favorite color palette as well. 
+</p>
