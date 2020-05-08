@@ -1,0 +1,40 @@
+<p>
+	The first step in almost any card magic trick is to pick a card. It is assumed that the card will be random since, in a typical routine, a standard 52-card deck of French playing cards is thoroughly shuffled. A card can have one of the four suits (Clubs ♣, Diamonds ♦, Hearts ♥, Spades ♠) and one of the thirteen ranks (Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King)
+</p>
+<p> Write a program that simulates picking a card randomly from a deck. Here is an example execution of the program:</p>
+<p></p>
+<pre class="console" style="width:400px">
+Welcome to Pick a Card program! To quit the program, simply press enter
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">y</span>
+The randomly picked card was: King of ♥
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">Y</span>
+The randomly picked card was: 5 of ♦
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">n</span>
+The randomly picked card was: 6 of Hearts
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">N</span>
+The randomly picked card was: 5 of Diamonds
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">N</span>
+The randomly picked card was: 2 of Diamonds
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">n</span>
+The randomly picked card was: Ace of Spades
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">Y</span>
+The randomly picked card was: 5 of ♠
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">y</span>
+The randomly picked card was: 10 of ♣
+
+For suits would you like symbols instead of text? (enter y/Y for yes, n/N for no): <span class="blue">*enter pressed*</span>
+</pre>
+<p></p>
+<p>If you enter "y" or "Y" (without the double quotes) into the prompt, you will get a visual symbol for the suit of the card. Similarly, if you enter "n" or "N" (without the double quotes) into the prompt, you will get a text for the suit of the card.</p>
+
+<p>For any card, both the suit and the rank of the card should be random. So, it makes sense to have separate functions for each, one to pick a random suit and another to pick a random rank. Both of these functions will use the random.choice() built-in function, which will require importing the random library/module.</p>
+
+<p>Note that the function for picking random suits will need to know if printing symbols instead of printing texts is desired. So depending on the answer, either True or False boolean values will be passed as a parameter to that function. And instead of providing an response, if enter is pressed, the program stops.</p>
