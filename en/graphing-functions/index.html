@@ -1,0 +1,421 @@
+
+<title>Graphing Functions</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Graphing Functions</h1>
+				<p class="subtleHeading">Problem written by Moussa Doumbouya</p>
+				<hr/>
+				<p>
+	In this exercice, you are going to write a program that creates the graphical representation of a function of your choice. Like the followings:
+</p>
+
+<p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				y = math.cos(x)
+				<img class="img-fluid" src="cos.png" /> 
+			</div>
+
+			<div class="col-md-4">
+				y = 1/x
+				<img class="img-fluid" src="inv.png" /> 
+			</div>
+
+			<div class="col-md-4">
+				y = x ** 3
+				<img class="img-fluid" src="cube.png" /> 
+			</div>
+
+		</div>
+	</div>
+</p>
+
+<p>
+	This is done by findng the pixels that correspond to (x, y) points of the plotted function, and setting the color of those pixels to green.
+	The axes are also drawn in a similar fashion.
+</p>
+
+
+
+<h3>Coordinate Systems</h3>
+<p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				In order to plot functions, you will need to write functions that convert <strong>x</strong> and <strong>y</strong> positions from 
+				the plot coordinate system to the pixel coordinate system (illustrated in the adjacent figure).
+				The starter code suggests the <code>x_to_pixel_x()</code> and <code>y_to_pixel_y()</code> functions for this purpose. The starter code also contains 
+				"doctests" to help you check your implementation. You may run the test cases as follow: <br /><br />
+				<pre>python -m doctests your_file.py</pre>		
+			</div>
+			<div class="col-md-6">
+				<img class="img-fluid" src="coordinate_systems.png" /> 
+			</div>
+		</div>
+	</div>
+</p>
+
+<h3>Starter Code</h3>
+<p>
+	A starter code is provided below. This contains useful constants and a suggested high level decomposition of the problem.
+</p>
+
+<pre style="width:500px">
+from simpleimage import SimpleImage
+import math
+
+# Domain of the plot
+X_MIN = -10
+X_MAX = 10
+
+# Range of the plot
+Y_MIN = -10
+Y_MAX = 10
+
+# Size of the plot in pixels
+PLOT_WIDTH = 400
+PLOT_HEIGHT = 400
+
+# Color of the axes
+AXIS_COLOR_R = 200
+AXIS_COLOR_G = 0
+AXIS_COLOR_B = 0
+
+# Color of the plot
+PLOT_COLOR_R = 0
+PLOT_COLOR_G = 200
+PLOT_COLOR_B = 0
+
+# x and y step sizes
+DELTA_X = 0.01
+DELTA_Y = 0.01
+
+
+def main():
+	"""
+	Make a blank plot, draw the x and y axis, plot the 
+	function defined by plotted_function and show the plot.
+	"""
+	plot = make_blank_plot()
+	plot = draw_axes(plot)
+	plot = plot_function(plot)
+	plot.show()
+
+
+def ploted_function(x):
+	"""
+	Compute the y value of the ploted function for the given :param:x value.
+	Implement a function of your choice
+	"""
+	return math.cos(x)
+
+
+def x_to_pixel_x(x):
+	"""
+	Compute the horizontal pixel position for horizontal 
+	position :param:x in the plotted coordinate system.
+
+	Test Cases: 
+
+	x = 0 should correspond to middle of the plot
+	>>> x_to_pixel_x(0)
+	200
+
+	x = -10 should correspond to far left of the plot
+	>>> x_to_pixel_x(-10)
+	0
+
+	x = 10 should correspond to far right of the plot
+	Note: x=10 is outside of the plotting area 
+	>>> x_to_pixel_x(10)
+	400
+	"""
+	
+	# TODO: Your code here
+	# calculate the pixel x position and store it in px
+
+	return int(px)
+
+
+def y_to_pixel_y(y):
+	"""
+	Compute the horizontal pixel position for vertical 
+	position :param:y in the plotted coordinate system
+
+	Test Cases:
+
+	y =  0 should correspond to the middle of the plot
+	>>> y_to_pixel_y(0)
+	200
+
+	y=10 should correspond to the top of the plot.
+	>>> y_to_pixel_y(10)
+	0
+
+	y=-10 should correspond to the bottom of the plot
+	Note y=-10 is actually outside of the plotting area
+	>>> y_to_pixel_y(-10)
+	400
+	"""
+	
+	# TODO: your code here
+	# Calculate the pixel y position and store it in py
+
+	return int(py)
+
+if __name__ == '__main__':
+	main()
+</pre>
+
+
+				
+
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:3560.0px">from simpleimage import SimpleImage
+import math
+
+# Domain of the plot
+X_MIN = -10
+X_MAX = 10
+
+# Range of the plot
+Y_MIN = -10
+Y_MAX = 10
+
+# Size of the plot in pixels
+PLOT_WIDTH = 400
+PLOT_HEIGHT = 400
+
+# Color of the axes
+AXIS_COLOR_R = 200
+AXIS_COLOR_G = 0
+AXIS_COLOR_B = 0
+
+# Color of the plot
+PLOT_COLOR_R = 0
+PLOT_COLOR_G = 200
+PLOT_COLOR_B = 0
+
+# x and y step sizes
+DELTA_X = 0.01
+DELTA_Y = 0.01
+
+
+def main():
+	&quot;&quot;&quot;
+	Make a blank plot, draw the x and y axis, plot the 
+	function defined by plotted_function and show the plot.
+	&quot;&quot;&quot;
+	plot = make_blank_plot()
+	plot = draw_axes(plot)
+	plot = plot_function(plot)
+	plot.show()
+
+
+def ploted_function(x):
+	&quot;&quot;&quot;
+	Compute the ploted function at point :param:x
+	&quot;&quot;&quot;
+	# return math.cos(x)
+	# return math.tanh(x)
+	# return x**3
+	return x ** 2
+
+
+def make_blank_plot():
+	&quot;&quot;&quot;
+	Create an image with all pixel colors set to black
+	&quot;&quot;&quot;
+	plot = SimpleImage.blank(PLOT_WIDTH, PLOT_HEIGHT)
+	for px in plot:
+		px.red = 0
+		px.green = 0
+		px.blue = 0
+	return plot
+
+
+def x_to_pixel_x(x):
+	&quot;&quot;&quot;
+	Compute the horizontal pixel position for horizontal 
+	position :param:x in the plotted coordinate system.
+
+	Test Cases: 
+
+	x = 0 should correspond to middle of the plot
+	&gt;&gt;&gt; x_to_pixel_x(0)
+	200
+
+	x = -10 should correspond to far left of the plot
+	&gt;&gt;&gt; x_to_pixel_x(-10)
+	0
+
+	x = 10 should correspond to far right of the plot
+	Note: x=10 is outside of the plotting area 
+	&gt;&gt;&gt; x_to_pixel_x(10)
+	400
+	&quot;&quot;&quot;
+	h_pixel_per_point = PLOT_WIDTH / (X_MAX - X_MIN)
+	px = x * h_pixel_per_point + PLOT_WIDTH/2
+	return int(px)
+
+
+def y_to_pixel_y(y):
+	&quot;&quot;&quot;
+	Compute the horizontal pixel position for vertical 
+	position :param:y in the plotted coordinate system
+
+	Test Cases:
+
+	y =  0 should correspond to the middle of the plot
+	&gt;&gt;&gt; y_to_pixel_y(0)
+	200
+
+	y=10 should correspond to the top of the plot.
+	&gt;&gt;&gt; y_to_pixel_y(10)
+	0
+
+	y=-10 should correspond to the bottom of the plot
+	Note y=-10 is actually outside of the plotting area
+	&gt;&gt;&gt; y_to_pixel_y(-10)
+	400
+	&quot;&quot;&quot;
+	v_pixel_per_point = PLOT_HEIGHT / (Y_MAX - Y_MIN)
+	py = PLOT_HEIGHT/2 - y * v_pixel_per_point
+	return int(py)
+
+
+def draw_axes(plot):
+	&quot;&quot;&quot;
+	Draw the horizontal and vertical axes
+	&quot;&quot;&quot;
+	draw_x_axis(plot)
+	draw_y_axis(plot)
+	return plot
+
+
+def draw_x_axis(plot):
+	&quot;&quot;&quot;
+	Draw the horizontal axis
+	Set of points for which (x, 0) where x in [X_MIN, XMAX[ (x-max not included)
+	&quot;&quot;&quot;
+	x = X_MIN
+	while x&lt;X_MAX:
+		px = x_to_pixel_x(x)
+		py = y_to_pixel_y(0)
+		pixel = plot.get_pixel(px, py)
+		pixel.red = AXIS_COLOR_R
+		pixel.green = AXIS_COLOR_G
+		pixel.blue = AXIS_COLOR_B
+		x+=DELTA_X
+	return plot
+
+
+def draw_y_axis(plot):
+	&quot;&quot;&quot;
+	Draw the vertical axis
+	Set of points for which (0, y) where x in ]Y_MIN, Y_MAX] (Y_MIN not included)
+	&quot;&quot;&quot;
+	y = Y_MIN + DELTA_Y
+	while y&lt;Y_MAX:
+		px = x_to_pixel_x(0)
+		py = y_to_pixel_y(y)
+		pixel = plot.get_pixel(px, py)
+		pixel.red = AXIS_COLOR_R
+		pixel.green = AXIS_COLOR_G
+		pixel.blue = AXIS_COLOR_B
+		y += DELTA_Y
+	return plot
+
+
+def plot_function(plot):
+	&quot;&quot;&quot;
+	Draw the points of the function defined by plotted_function()
+	that are in range
+	&quot;&quot;&quot;
+	x = X_MIN
+	while x &lt; X_MAX:
+		y = ploted_function(x)
+		if y &gt; Y_MIN and y &lt;= Y_MAX:
+			px = x_to_pixel_x(x)
+			py = y_to_pixel_y(y)
+			pixel = plot.get_pixel(px, py)
+			pixel.red = PLOT_COLOR_R
+			pixel.green = PLOT_COLOR_G
+			pixel.blue = PLOT_COLOR_B
+
+		x += DELTA_X
+	return plot
+
+
+if __name__ == &#039;__main__&#039;:
+	main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
