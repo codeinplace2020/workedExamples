@@ -1,0 +1,484 @@
+
+<title>Topological Defects</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Topological Defects</h1>
+				<p class="subtleHeading">Problem written by Alfred, inspired by B. Skinner (Gravity and Levity blog)</p>
+				<hr/>
+				<p>
+    Believe it or not, in the eyes of physicists, the world comes into its existence because of numerous topological defects. (<i>This sentence carries different meanings in different fields of physics; check out <a href="https://gravityandlevity.wordpress.com/2015/09/24/samuel-becketts-guide-to-particles-and-antiparticles/">this article</a> to find out more!</i>) Put it simply, a defect is some imperfection in an otherwise impeccable arrangement. A defect is <strong>topological</strong> if it cannot be smoothly removed.
+</p>
+<p>
+    This description of topological defects is rather abstract, so let's look at an example shown in the animation below (<i>your browser needs to support <code>.gif</code></i>). In a rectangular lattice of arrows, the fixed white dot is a <strong>defect</strong>, while an <strong>antidefect</strong> follows the cursor position. The arrows rotate in response to different positions of the antidefect, and the color corresponds to different rotation angles.
+</p>
+<center>
+    <table>
+        <tr>
+            <td><center><img style="height:294px" src="./topological_defects.gif"></center></td>
+        </tr>
+        <tr>
+            <td><center><i>A pair of defect (fixed white dot) and antidefect (following the cursor)</i></center></td>
+        </tr> 
+    </table>
+</center>
+<p></p>
+<p>
+    Let's dissect the animation a bit more. When a defect and an antidefect are overlapped (see figure below on the left), we have a perfect array of arrows, all pointing up. When they are separated (figure on the right), arrows start to change directions. Why do we call one of them <span style="color:blue">defect</span> while the other <span style="color:red">antidefect</span>? The answer lies in the arrow direction. If we draw a circle in a <i>clockwise</i> manner around the defect, we see that the arrows also rotate in a <i>clockwise</i> manner by 360&deg;. This is different for an antidefect: tracing a <i>clockwise</i> circle will result in an <i>anticlockwise</i> rotation of the arrow, again by 360&deg;. What if we draw a circle that encloses both? In this case, there is no net rotation of arrows! 
+</p>
+<center>
+    <table>
+        <tr>
+            <td><center><img style="width:500px" src="./defect_antidefect_together.png"></center></td>
+            <td><center><img style="width:500px" src="./defect_antidefect_separated.png"></center></td>
+        </tr>
+        <tr>
+            <td><center><i>Defect and antidefect are overlapped</i></center></td>
+            <td><center><i><span style="color:blue">Defect</span> (<span style="color:blue">blue</span>) and <span style="color:red">antidefect</span> (<span style="color:red">red</span>) are separated</i></center></td>
+        </tr>
+    </table>
+</center>
+<p></p>
+<p>
+    In a perfect array of arrows, you can see defects and antidefects are always born or annihilated in <i>pairs</i>, and this phenomenon has utmost importance in physics. For example, it underlies the birth and annihilation of particles and antiparticles in vacuum. As another example, the binding and unbinding of defect pairs drive many phase transitions in low-dimensional materials (e.g. <a href="https://en.wikipedia.org/wiki/Kosterlitz%E2%80%93Thouless_transition">BKT transition</a>).
+</p>
+<p>
+    Your task is to <i>make an interactive animation of defect movement</i>, similar to the example shown above. Specifically, the defect will be fixed in place, while the antidefect will follow the cursor position. You will need to draw an array of arrows, and update their rotations according to the cursor position. You will need to use the <code>tkinter</code> module covered in Lecture&nbsp;10 and 11, and you can assume that a <code>canvas</code> object has been created and is ready to use.
+</p>
+<h5>
+    <strong>Milestone&nbsp;1</strong>: Draw an array of arrows
+</h5>
+<p>
+    The first step is to draw an array of arrows. You can create a single arrow by invoking the following method on a <code>canvas</code> object:
+</p>
+<p>
+    <center><code>arrow = canvas.create_line(x0, y0, x1, y1, arrow=tkinter.LAST, arrowshape=ARROW_SHAPE)</code></center>
+</p>
+<p>
+    Here, <code>(x0,&nbsp;y0)</code> and <code>(x1,&nbsp;y1)</code> are the starting and ending coordinates of the line segment, <code>tkinter.LAST</code> specifies that the arrowhead is at the end of the segment, and <code>ARROW_SHAPE</code> is a provided constant that specifies the appearance of the arrowhead (see <a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/tkinter.pdf">documentation</a>). How to draw an array of arrows? You'll probably need to have a few constants that specify the number of arrows per row and per column, as well as the spacing between neighbors. It will also be handy to store these arrows in a nested <code>list</code>, so later on you can access them and modify their rotation angles.
+</p>
+<h5>
+    <strong>Milestone&nbsp;2</strong>: Update antidefect location
+</h5>
+<p>
+    While the defect position is fixed (good place to use constants!), the antidefect tracks the cursor. You can get the <code>x</code> and <code>y</code> coordinates of the cursor by using the following line:
+</p>
+<p>
+    <center><code>mouse_x = canvas.winfo_pointerx()</code></center>
+    <center><code>mouse_y = canvas.winfo_pointery()</code></center>
+</p>
+<p>
+    As an optional task, you can draw two small circles to mark the positions of the defect and antidefect, which are denoted by <code>(xd,&nbsp;yd)</code> and <code>(xa,&nbsp;ya)</code> respectively.
+</p>
+<h5>
+    <strong>Milestone&nbsp;3</strong>: Update the arrow rotation
+</h5>
+<p>
+    If an arrow is rotated by an angle <code>&phi;</code>, we can compute its starting <code>(x0,&nbsp;y0)</code> and ending <code>(x1,&nbsp;y1)</code> coordinates based on (i)&nbsp;the center location of the arrow <code>(xc,&nbsp;yc)</code> and (ii)&nbsp;the arrow <code>length</code>:
+</p>
+<p>
+    <center><code>x0 = xc - dx, y0 = yc - dy, dx = cos(&phi;) * length / 2</code></center>
+    <center><code>x1 = xc + dx, y1 = yc + dy, dy = sin(&phi;) * length / 2</code></center>
+</p>
+<p>
+    Note that all angles are in radians. You may want to <code>import&nbsp;math</code> and use the <code>math.sin</code> and <code>math.cos</code> functions. By convention, <code>&phi;&nbsp;=&nbsp;0</code> when the arrow points in the positive <i>x</i> direction and <code>&phi;&nbsp;=&nbsp;&pi;/2</code> (90&deg;) when the arrow points in the positive <i>y</i> direction (note that it's a <i>left-handed</i> coordinate system).
+</p>
+<p>
+    To obtain or update the coordinates of an existing <code>arrow</code> on the <code>canvas</code>, the following methods from <code>tkinter</code> will be useful:
+</p>
+<p>
+    <center><code>x0, y0, x1, y1 = canvas.coords(arrow) # Obtain current coordinates</code></center>
+    <center><code>canvas.coords(arrow, x0, y0, x1, y1) # Set new coordinates</code></center>
+</p>
+<h5>
+    <strong>Milestone&nbsp;4</strong>: Compute angle based on defect and antidefect locations
+</h5>
+<p>
+    Given an arrow located at <code>(x,&nbsp;y)</code>, what is its rotation angle <code>&phi;</code>? For this part, we now need to use the locations of the defect <code>(xd,&nbsp;yd)</code> and the antidefect <code>(xa,&nbsp;ya)</code>. If we look at the figures above, these defect pairs resemble the picture of a vortex and antivortex. Hence, a bit of trigonometry gives us the following formula:
+</p>
+<p>
+    <center><code>&phi; = math.atan2(y - yd, x - xd) + math.atan2(ya - y, x - xa) + ARROW_ANGLE_DEFAULT</code></center>
+</p>
+<p>
+    where <code>ARROW_ANGLE_DEFAULT</code> is the angle when the defect pair overlaps. In the figure above, this default angle is <code>-&pi;/2</code> (-90&deg;) so that all arrows point up. Here, <code>math.atan2</code> is a library function that calculates the <i>arctangent</i> function in a quadrant-specific manner.  
+</p>
+<h5>
+    <strong>Milestone&nbsp;5 (Optional)</strong>: Color arrows based on angle
+</h5>
+<p>
+    For more aesthetic visualization, it would be cool to color the arrows based on their angle. To change the color of an existing <code>arrow</code>, you can use the following function:
+</p>
+<p>
+    <center><code>canvas.itemconfig(arrow, fill=color)</code></center>
+</p>
+<p>
+    where <code>color</code> is a <code>string</code> that specifies the color. By default, it is <code>'black'</code> and you can choose your favorite color, such as <code>'white'</code>, <code>'blue'</code>, etc. To select the color based on an angle, you're provided with a function (see solution)
+</p>
+<p>
+    <center><code>get_color(angle, colormap)</code></center>
+</p>
+<p>
+    which returns a color <code>string</code>. Note that the angle is quoted in radian. This function also takes a string <code>colormap</code> that represents the color palette we want to use. In the solution, the <code>colormap</code> variable can only be either <code>'hsv'</code> or <code>'twilight'</code>, but feel free to add your favorite color palette as well. 
+</p>
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:5860.0px">import tkinter
+from time import sleep
+from math import sin, cos, atan2, pi
+
+
+# Parameters for canvas appearance
+CANVAS_WIDTH = 600 
+CANVAS_HEIGHT = 300
+CANVAS_BACKGROUND_COLOR = &#039;black&#039;
+CANVAS_TITLE = &#039;Topological Defects&#039;
+
+# Pause time in seconds between canvas update 
+PAUSE = 1/100.0       
+
+# Parameters for arrow appearance
+ARROW_LENGTH = 10
+ARROW_WIDTH = 1
+ARROW_ANGLE_DEFAULT = -pi / 2
+ARROW_SHAPE = (3, 4, 2)
+ARROW_COLOR_DEFAULT = &#039;white&#039;
+ARROW_COLOR_USE_COLORMAP = True
+ARROW_COLORMAP = &#039;hsv&#039; # or &#039;twilight&#039;
+
+# Parameters for arrow array
+ARROW_SPACING = 12
+BORDER_OFFSET = ARROW_LENGTH
+NUM_ARROW_X = (CANVAS_WIDTH - BORDER_OFFSET * 2) // ARROW_SPACING + 1
+NUM_ARROW_Y = (CANVAS_HEIGHT - BORDER_OFFSET * 2) // ARROW_SPACING + 1
+
+# Parameters for defect marker appearance
+DEFECT_X = CANVAS_WIDTH // 4 
+DEFECT_Y = CANVAS_HEIGHT // 2
+DEFECT_RADIUS = 3
+DEFECT_COLOR = &#039;white&#039;
+
+
+def main():
+    &quot;&quot;&quot;
+    Draw an array of arrows whose angles follow a pair of
+    defect (fixed) and antidefect (following cursor position)
+    &quot;&quot;&quot;  
+    canvas = make_canvas(CANVAS_WIDTH, CANVAS_HEIGHT, CANVAS_TITLE)
+    arrows = initialize_arrows(canvas)
+    defect = initialize_defect(canvas)
+    
+    while True:
+        antidefect = canvas.winfo_pointerxy()
+        rotate_arrows(canvas, arrows, defect, antidefect)
+        canvas.update()
+        sleep(PAUSE)
+
+
+def rotate_arrows(canvas, arrows, defect, antidefect):
+    &quot;&quot;&quot;
+    Update the rotation angle of each arrow in the array based on the
+    defect and antidefect locations. The arrow color is also updated.
+    
+    :param canvas: the tkinter canvas object
+    :param arrows: a nested array with arrow objects, [column1, column2, ...]
+    :param defect: a length-2 tuple with (x, y) coordinates of defect
+    :param antidefect: a length-2 tuple with (x, y) coordinates of antidefect 
+    &quot;&quot;&quot;
+    for column in arrows:
+        for arrow in column:
+            # Get existing coordinates
+            xstart, ystart, xend, yend = canvas.coords(arrow)
+            xcenter = (xstart + xend) / 2
+            ycenter = (ystart + yend) / 2
+            # Compute rotation angle and set new coordinates
+            angle = compute_angle(xcenter, ycenter, defect, antidefect)
+            xstart, ystart, xend, yend = compute_arrow_coords(xcenter, 
+                                             ycenter, ARROW_LENGTH, angle)
+            canvas.coords(arrow, xstart, ystart, xend, yend)
+            # Update color
+            color = get_arrow_color(angle)
+            canvas.itemconfig(arrow, fill=color)
+
+
+def compute_angle(x, y, defect, antidefect):
+    &quot;&quot;&quot;
+    Returns the angle of rotation for an arrow at coordinates (x, y)
+    in the presence of a defect and antidefect, whose coordinates
+    are specified by the length-2 tuples: defect and antidefect.
+    Note that the canvas coordinate system is left-handed.
+    &quot;&quot;&quot;
+    angle_defect = atan2(y - defect[1], x - defect[0])
+    angle_antidefect = atan2(antidefect[1] - y, x - antidefect[0])
+    return angle_defect + angle_antidefect + ARROW_ANGLE_DEFAULT
+
+
+def initialize_arrows(canvas):
+    &quot;&quot;&quot;
+    Draws an array of arrows and returns a nested list of arrows
+    where the inner list iterates through rows (y-direction) and
+    the outer list iterates through columns (x-direction). 
+    &quot;&quot;&quot;
+    arrows = []
+    for i in range(NUM_ARROW_X):
+        column = []
+        for j in range(NUM_ARROW_Y):
+            # Compute coordinates
+            xcenter = BORDER_OFFSET + i * ARROW_SPACING
+            ycenter = BORDER_OFFSET + j * ARROW_SPACING
+            xstart, ystart, xend, yend = compute_arrow_coords(
+                xcenter, ycenter, ARROW_LENGTH, ARROW_ANGLE_DEFAULT)
+            # Draw on canvas
+            arrow = canvas.create_line(xstart, ystart, xend, yend, 
+                width=ARROW_WIDTH, arrow=tkinter.LAST, arrowshape=ARROW_SHAPE)
+            column.append(arrow)
+        arrows.append(column)
+    return arrows
+
+
+def compute_arrow_coords(xcenter, ycenter, length, angle):
+    &quot;&quot;&quot;
+    Returns the starting and ending coordinates of a line
+    segment based on its center location (xcenter, ycenter),
+    length, and the rotation angle (in radian)
+    &quot;&quot;&quot;
+    delta_x = length / 2 * cos(angle)
+    delta_y = length / 2 * sin(angle)
+    xstart = round(xcenter - delta_x)
+    ystart = round(ycenter - delta_y)
+    xend = round(xcenter + delta_x)
+    yend = round(ycenter + delta_y)
+    return (xstart, ystart, xend, yend)
+
+
+def initialize_defect(canvas):
+    &quot;&quot;&quot;
+    Draws an oval to mark the defect location.
+    Returns a length-2 tuple of its (x, y) coordinates.
+    &quot;&quot;&quot;
+    defect = (DEFECT_X, DEFECT_Y)
+    canvas.create_oval(defect[0] - DEFECT_RADIUS, defect[1] - DEFECT_RADIUS,
+                       defect[0] + DEFECT_RADIUS, defect[1] + DEFECT_RADIUS,
+                       fill=DEFECT_COLOR, outline=DEFECT_COLOR)
+    return defect
+
+
+def get_arrow_color(angle):
+    &quot;&quot;&quot;
+    Returns a string that represents the color for the arrow.
+    Depending on the configuration, it either uses a fixed
+    default color or selects from a palette based the arrow
+    rotation angle (in radian)
+    &quot;&quot;&quot;
+    if ARROW_COLOR_USE_COLORMAP:
+        return get_color(angle, ARROW_COLORMAP)
+    return ARROW_COLOR_DEFAULT
+
+
+########################################
+##### The following functions are  #####
+##### provided. Do not modify them #####
+########################################
+
+def make_canvas(width, height, title):
+    &quot;&quot;&quot;
+    Creates and returns a drawing canvas
+    of the given int size with a blue border,
+    ready for drawing.
+    &quot;&quot;&quot;
+    top = tkinter.Tk()
+    top.minsize(width=width, height=height)
+    top.title(title)
+    canvas = tkinter.Canvas(top, bg=CANVAS_BACKGROUND_COLOR, 
+                            width=width + 1, height=height + 1)
+    canvas.pack()
+    return canvas
+
+
+def get_color(angle, colormap):
+    &quot;&quot;&quot;
+    Returns a string in the hex format #rrggbb (8 bits per color)
+    that corresponds to the color of a given angle (radian). colormap 
+    is a string that contains the name of the colormap to be used.
+    Currently only supports &#039;hsv&#039; and &#039;twilight&#039;.
+    &quot;&quot;&quot;
+    index = int(angle % (2 * pi) / (2 * pi) * 255)
+    colormap = colormap.lower()
+    if colormap == &#039;twilight&#039;:
+        return TWILIGHT[index]
+    elif colormap == &#039;hsv&#039;:
+        return HSV[index]
+    raise ValueError(&quot;Invalid colormap! Only supports &#039;hsv&#039; and &#039;twilight&#039;.&quot;)
+
+
+&quot;&quot;&quot;
+Color map for twilight and hsv, exported from the colormap in matplotlib
+using the following snippet. You can create your own by selecting other
+palettes available in matplotlib, or using the matplotlib module directly.
+
+.. code-block:: python
+    
+    from pylab import *
+
+    cmap = cm.get_cmap(&#039;hsv&#039;, 256)
+    for i in range(cmap.N):
+        rgb = cmap(i)[:3]
+        print(matplotlib.colors.rgb2hex(rgb))
+&quot;&quot;&quot;
+TWILIGHT = [&quot;#e2d9e2&quot;, &quot;#e1d9e2&quot;, &quot;#e0d9e2&quot;, &quot;#ded9e1&quot;, &quot;#ddd9e0&quot;, &quot;#dcd9df&quot;, 
+            &quot;#dad8df&quot;, &quot;#d8d8de&quot;, &quot;#d6d7dd&quot;, &quot;#d4d6dc&quot;, &quot;#d2d5db&quot;, &quot;#d0d4d9&quot;, 
+            &quot;#cdd3d8&quot;, &quot;#cbd2d7&quot;, &quot;#c8d0d6&quot;, &quot;#c5cfd5&quot;, &quot;#c2ced4&quot;, &quot;#bfccd3&quot;, 
+            &quot;#bccbd1&quot;, &quot;#b9c9d0&quot;, &quot;#b6c8cf&quot;, &quot;#b3c6ce&quot;, &quot;#b0c5cd&quot;, &quot;#adc3cd&quot;, 
+            &quot;#aac2cc&quot;, &quot;#a7c0cb&quot;, &quot;#a4beca&quot;, &quot;#a1bdc9&quot;, &quot;#9ebbc9&quot;, &quot;#9cb9c8&quot;, 
+            &quot;#99b8c8&quot;, &quot;#96b6c7&quot;, &quot;#93b4c6&quot;, &quot;#92b3c6&quot;, &quot;#8eb1c5&quot;, &quot;#8cafc5&quot;, 
+            &quot;#89adc5&quot;, &quot;#88acc4&quot;, &quot;#85a9c4&quot;, &quot;#82a7c3&quot;, &quot;#80a5c3&quot;, &quot;#7fa5c3&quot;, 
+            &quot;#7ca2c2&quot;, &quot;#7aa0c2&quot;, &quot;#789ec2&quot;, &quot;#779dc2&quot;, &quot;#759ac1&quot;, &quot;#7398c1&quot;, 
+            &quot;#7196c1&quot;, &quot;#7195c0&quot;, &quot;#6e92c0&quot;, &quot;#6d90c0&quot;, &quot;#6c8ebf&quot;, &quot;#6b8dbf&quot;, 
+            &quot;#698abf&quot;, &quot;#6888be&quot;, &quot;#6786be&quot;, &quot;#6785be&quot;, &quot;#6682bd&quot;, &quot;#657fbd&quot;, 
+            &quot;#647dbc&quot;, &quot;#647cbc&quot;, &quot;#6379bb&quot;, &quot;#6277bb&quot;, &quot;#6275ba&quot;, &quot;#6172ba&quot;, 
+            &quot;#6171b9&quot;, &quot;#606eb8&quot;, &quot;#606cb8&quot;, &quot;#6069b7&quot;, &quot;#6067b6&quot;, &quot;#5f65b5&quot;, 
+            &quot;#5f62b4&quot;, &quot;#5f60b4&quot;, &quot;#5f5fb3&quot;, &quot;#5f5bb2&quot;, &quot;#5f59b1&quot;, &quot;#5f57b0&quot;, 
+            &quot;#5e54ae&quot;, &quot;#5e52ad&quot;, &quot;#5e4fac&quot;, &quot;#5e4dab&quot;, &quot;#5e4caa&quot;, &quot;#5e48a8&quot;, 
+            &quot;#5e46a6&quot;, &quot;#5e43a5&quot;, &quot;#5d41a3&quot;, &quot;#5d3ea1&quot;, &quot;#5d3ca0&quot;, &quot;#5d3a9e&quot;, 
+            &quot;#5c389d&quot;, &quot;#5c359a&quot;, &quot;#5b3298&quot;, &quot;#5b3095&quot;, &quot;#5a2e93&quot;, &quot;#5a2b90&quot;, 
+            &quot;#59298e&quot;, &quot;#58278b&quot;, &quot;#58268a&quot;, &quot;#572385&quot;, &quot;#562182&quot;, &quot;#551f7f&quot;, 
+            &quot;#531e7c&quot;, &quot;#521c79&quot;, &quot;#511a75&quot;, &quot;#4f1972&quot;, &quot;#4f1970&quot;, &quot;#4c176b&quot;, 
+            &quot;#4b1668&quot;, &quot;#491564&quot;, &quot;#471461&quot;, &quot;#46145e&quot;, &quot;#44135a&quot;, &quot;#421257&quot;, 
+            &quot;#411256&quot;, &quot;#3f1251&quot;, &quot;#3d114e&quot;, &quot;#3c114b&quot;, &quot;#3a1149&quot;, &quot;#391146&quot;, 
+            &quot;#371144&quot;, &quot;#361142&quot;, &quot;#361141&quot;, &quot;#34113e&quot;, &quot;#33113c&quot;, &quot;#32123a&quot;, 
+            &quot;#311339&quot;, &quot;#301437&quot;, &quot;#301437&quot;, &quot;#311337&quot;, &quot;#331237&quot;, &quot;#341238&quot;, 
+            &quot;#341238&quot;, &quot;#361139&quot;, &quot;#381139&quot;, &quot;#3a113a&quot;, &quot;#3b113b&quot;, &quot;#3d113c&quot;, 
+            &quot;#3f123d&quot;, &quot;#41123d&quot;, &quot;#43123e&quot;, &quot;#461240&quot;, &quot;#481341&quot;, &quot;#4a1342&quot;, 
+            &quot;#4d1443&quot;, &quot;#4f1444&quot;, &quot;#521545&quot;, &quot;#541546&quot;, &quot;#561546&quot;, &quot;#591648&quot;, 
+            &quot;#5c1749&quot;, &quot;#5f174a&quot;, &quot;#61184b&quot;, &quot;#64194b&quot;, &quot;#67194c&quot;, &quot;#691a4d&quot;, 
+            &quot;#6c1b4e&quot;, &quot;#6f1c4e&quot;, &quot;#711d4f&quot;, &quot;#741e4f&quot;, &quot;#761f4f&quot;, &quot;#792050&quot;, 
+            &quot;#7b2150&quot;, &quot;#7e2250&quot;, &quot;#7f2350&quot;, &quot;#832550&quot;, &quot;#852650&quot;, &quot;#872750&quot;, 
+            &quot;#8a2950&quot;, &quot;#8c2a50&quot;, &quot;#8e2c50&quot;, &quot;#902e50&quot;, &quot;#922f50&quot;, &quot;#943150&quot;, 
+            &quot;#963350&quot;, &quot;#983550&quot;, &quot;#9a3750&quot;, &quot;#9c3950&quot;, &quot;#9e3b50&quot;, &quot;#a03d50&quot;, 
+            &quot;#a03e50&quot;, &quot;#a34150&quot;, &quot;#a54350&quot;, &quot;#a64550&quot;, &quot;#a84750&quot;, &quot;#a94950&quot;, 
+            &quot;#ab4b50&quot;, &quot;#ac4d51&quot;, &quot;#ae5051&quot;, &quot;#af5251&quot;, &quot;#b15452&quot;, &quot;#b25652&quot;, 
+            &quot;#b35953&quot;, &quot;#b55b53&quot;, &quot;#b65d54&quot;, &quot;#b75f55&quot;, &quot;#b86155&quot;, &quot;#b96456&quot;, 
+            &quot;#ba6657&quot;, &quot;#bb6958&quot;, &quot;#bc6b59&quot;, &quot;#bd6e5a&quot;, &quot;#be705b&quot;, &quot;#bf725d&quot;, 
+            &quot;#c0755e&quot;, &quot;#c1775f&quot;, &quot;#c27a61&quot;, &quot;#c27c63&quot;, &quot;#c37f64&quot;, &quot;#c48166&quot;, 
+            &quot;#c58468&quot;, &quot;#c5866a&quot;, &quot;#c6876b&quot;, &quot;#c68b6e&quot;, &quot;#c78e71&quot;, &quot;#c89073&quot;, 
+            &quot;#c89275&quot;, &quot;#c99578&quot;, &quot;#c9977b&quot;, &quot;#ca9a7d&quot;, &quot;#ca9c80&quot;, &quot;#cb9f83&quot;, 
+            &quot;#cca186&quot;, &quot;#cca389&quot;, &quot;#cda68c&quot;, &quot;#cda88f&quot;, &quot;#ceab92&quot;, &quot;#cfad96&quot;, 
+            &quot;#cfae97&quot;, &quot;#d0b29c&quot;, &quot;#d1b4a0&quot;, &quot;#d1b6a3&quot;, &quot;#d2b8a7&quot;, &quot;#d3baaa&quot;, 
+            &quot;#d4bdad&quot;, &quot;#d5bfb1&quot;, &quot;#d6c1b4&quot;, &quot;#d7c3b8&quot;, &quot;#d8c5bb&quot;, &quot;#d8c7be&quot;, 
+            &quot;#d9c9c2&quot;, &quot;#dacbc5&quot;, &quot;#dbccc8&quot;, &quot;#dccecb&quot;, &quot;#dccfcd&quot;, &quot;#ddd1d1&quot;, 
+            &quot;#ded3d3&quot;, &quot;#dfd4d6&quot;, &quot;#dfd5d8&quot;, &quot;#e0d6da&quot;, &quot;#e0d7db&quot;, &quot;#e1d8dd&quot;, 
+            &quot;#e1d8df&quot;, &quot;#e2d9e0&quot;, &quot;#e2d9e1&quot;, &quot;#e2d9e2&quot;]
+
+HSV =      [&quot;#ff0000&quot;, &quot;#ff0600&quot;, &quot;#ff0c00&quot;, &quot;#ff1200&quot;, &quot;#ff1800&quot;, &quot;#ff1e00&quot;, 
+            &quot;#ff2300&quot;, &quot;#ff2900&quot;, &quot;#ff2f00&quot;, &quot;#ff3500&quot;, &quot;#ff3b00&quot;, &quot;#ff4100&quot;, 
+            &quot;#ff4700&quot;, &quot;#ff4d00&quot;, &quot;#ff5300&quot;, &quot;#ff5900&quot;, &quot;#ff5f00&quot;, &quot;#ff6400&quot;, 
+            &quot;#ff6a00&quot;, &quot;#ff7000&quot;, &quot;#ff7600&quot;, &quot;#ff7c00&quot;, &quot;#ff8200&quot;, &quot;#ff8800&quot;, 
+            &quot;#ff8e00&quot;, &quot;#ff9400&quot;, &quot;#ff9a00&quot;, &quot;#ff9f00&quot;, &quot;#ffa500&quot;, &quot;#ffab00&quot;, 
+            &quot;#ffb100&quot;, &quot;#ffb700&quot;, &quot;#ffbd00&quot;, &quot;#ffc300&quot;, &quot;#ffc900&quot;, &quot;#ffcf00&quot;, 
+            &quot;#ffd500&quot;, &quot;#ffdb00&quot;, &quot;#ffe000&quot;, &quot;#ffe600&quot;, &quot;#ffec00&quot;, &quot;#fef100&quot;, 
+            &quot;#fcf500&quot;, &quot;#faf900&quot;, &quot;#f8fd00&quot;, &quot;#f4ff00&quot;, &quot;#eeff00&quot;, &quot;#e8ff00&quot;, 
+            &quot;#e2ff00&quot;, &quot;#ddff00&quot;, &quot;#d7ff00&quot;, &quot;#d1ff00&quot;, &quot;#cbff00&quot;, &quot;#c5ff00&quot;, 
+            &quot;#bfff00&quot;, &quot;#b9ff00&quot;, &quot;#b3ff00&quot;, &quot;#adff00&quot;, &quot;#a7ff00&quot;, &quot;#a2ff00&quot;, 
+            &quot;#9cff00&quot;, &quot;#96ff00&quot;, &quot;#90ff00&quot;, &quot;#8aff00&quot;, &quot;#84ff00&quot;, &quot;#7eff00&quot;, 
+            &quot;#78ff00&quot;, &quot;#72ff00&quot;, &quot;#6cff00&quot;, &quot;#66ff00&quot;, &quot;#61ff00&quot;, &quot;#5bff00&quot;, 
+            &quot;#55ff00&quot;, &quot;#4fff00&quot;, &quot;#49ff00&quot;, &quot;#43ff00&quot;, &quot;#3dff00&quot;, &quot;#37ff00&quot;, 
+            &quot;#31ff00&quot;, &quot;#2bff00&quot;, &quot;#25ff00&quot;, &quot;#20ff00&quot;, &quot;#1aff00&quot;, &quot;#14ff00&quot;, 
+            &quot;#0eff00&quot;, &quot;#08ff00&quot;, &quot;#06ff04&quot;, &quot;#04ff08&quot;, &quot;#02ff0c&quot;, &quot;#00ff10&quot;, 
+            &quot;#00ff16&quot;, &quot;#00ff1b&quot;, &quot;#00ff21&quot;, &quot;#00ff27&quot;, &quot;#00ff2d&quot;, &quot;#00ff33&quot;, 
+            &quot;#00ff39&quot;, &quot;#00ff3f&quot;, &quot;#00ff45&quot;, &quot;#00ff4b&quot;, &quot;#00ff51&quot;, &quot;#00ff57&quot;, 
+            &quot;#00ff5c&quot;, &quot;#00ff62&quot;, &quot;#00ff68&quot;, &quot;#00ff6e&quot;, &quot;#00ff74&quot;, &quot;#00ff7a&quot;, 
+            &quot;#00ff80&quot;, &quot;#00ff86&quot;, &quot;#00ff8c&quot;, &quot;#00ff92&quot;, &quot;#00ff97&quot;, &quot;#00ff9d&quot;, 
+            &quot;#00ffa3&quot;, &quot;#00ffa9&quot;, &quot;#00ffaf&quot;, &quot;#00ffb5&quot;, &quot;#00ffbb&quot;, &quot;#00ffc1&quot;, 
+            &quot;#00ffc7&quot;, &quot;#00ffcd&quot;, &quot;#00ffd3&quot;, &quot;#00ffd8&quot;, &quot;#00ffde&quot;, &quot;#00ffe4&quot;, 
+            &quot;#00ffea&quot;, &quot;#00fff0&quot;, &quot;#00fff6&quot;, &quot;#00fffc&quot;, &quot;#00fcff&quot;, &quot;#00f6ff&quot;, 
+            &quot;#00f0ff&quot;, &quot;#00eaff&quot;, &quot;#00e5ff&quot;, &quot;#00dfff&quot;, &quot;#00d9ff&quot;, &quot;#00d3ff&quot;, 
+            &quot;#00cdff&quot;, &quot;#00c7ff&quot;, &quot;#00c1ff&quot;, &quot;#00bbff&quot;, &quot;#00b5ff&quot;, &quot;#00afff&quot;, 
+            &quot;#00aaff&quot;, &quot;#00a4ff&quot;, &quot;#009eff&quot;, &quot;#0098ff&quot;, &quot;#0092ff&quot;, &quot;#008cff&quot;, 
+            &quot;#0086ff&quot;, &quot;#0080ff&quot;, &quot;#007aff&quot;, &quot;#0074ff&quot;, &quot;#006eff&quot;, &quot;#0069ff&quot;, 
+            &quot;#0063ff&quot;, &quot;#005dff&quot;, &quot;#0057ff&quot;, &quot;#0051ff&quot;, &quot;#004bff&quot;, &quot;#0045ff&quot;, 
+            &quot;#003fff&quot;, &quot;#0039ff&quot;, &quot;#0033ff&quot;, &quot;#002dff&quot;, &quot;#0028ff&quot;, &quot;#0022ff&quot;, 
+            &quot;#001cff&quot;, &quot;#0016ff&quot;, &quot;#0010ff&quot;, &quot;#020cff&quot;, &quot;#0408ff&quot;, &quot;#0604ff&quot;, 
+            &quot;#0800ff&quot;, &quot;#0e00ff&quot;, &quot;#1300ff&quot;, &quot;#1900ff&quot;, &quot;#1f00ff&quot;, &quot;#2500ff&quot;, 
+            &quot;#2b00ff&quot;, &quot;#3100ff&quot;, &quot;#3700ff&quot;, &quot;#3d00ff&quot;, &quot;#4300ff&quot;, &quot;#4900ff&quot;, 
+            &quot;#4f00ff&quot;, &quot;#5400ff&quot;, &quot;#5a00ff&quot;, &quot;#6000ff&quot;, &quot;#6600ff&quot;, &quot;#6c00ff&quot;, 
+            &quot;#7200ff&quot;, &quot;#7800ff&quot;, &quot;#7e00ff&quot;, &quot;#8400ff&quot;, &quot;#8a00ff&quot;, &quot;#9000ff&quot;, 
+            &quot;#9500ff&quot;, &quot;#9b00ff&quot;, &quot;#a100ff&quot;, &quot;#a700ff&quot;, &quot;#ad00ff&quot;, &quot;#b300ff&quot;, 
+            &quot;#b900ff&quot;, &quot;#bf00ff&quot;, &quot;#c500ff&quot;, &quot;#cb00ff&quot;, &quot;#d000ff&quot;, &quot;#d600ff&quot;, 
+            &quot;#dc00ff&quot;, &quot;#e200ff&quot;, &quot;#e800ff&quot;, &quot;#ee00ff&quot;, &quot;#f400ff&quot;, &quot;#f800fd&quot;, 
+            &quot;#fa00f9&quot;, &quot;#fc00f5&quot;, &quot;#fe00f1&quot;, &quot;#ff00ed&quot;, &quot;#ff00e7&quot;, &quot;#ff00e1&quot;, 
+            &quot;#ff00db&quot;, &quot;#ff00d5&quot;, &quot;#ff00cf&quot;, &quot;#ff00c9&quot;, &quot;#ff00c3&quot;, &quot;#ff00bd&quot;, 
+            &quot;#ff00b7&quot;, &quot;#ff00b1&quot;, &quot;#ff00ac&quot;, &quot;#ff00a6&quot;, &quot;#ff00a0&quot;, &quot;#ff009a&quot;, 
+            &quot;#ff0094&quot;, &quot;#ff008e&quot;, &quot;#ff0088&quot;, &quot;#ff0082&quot;, &quot;#ff007c&quot;, &quot;#ff0076&quot;, 
+            &quot;#ff0071&quot;, &quot;#ff006b&quot;, &quot;#ff0065&quot;, &quot;#ff005f&quot;, &quot;#ff0059&quot;, &quot;#ff0053&quot;, 
+            &quot;#ff004d&quot;, &quot;#ff0047&quot;, &quot;#ff0041&quot;, &quot;#ff003b&quot;, &quot;#ff0035&quot;, &quot;#ff0030&quot;, 
+            &quot;#ff002a&quot;, &quot;#ff0024&quot;, &quot;#ff001e&quot;, &quot;#ff0018&quot;]
+
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>

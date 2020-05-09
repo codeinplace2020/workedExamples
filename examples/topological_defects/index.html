@@ -1,0 +1,114 @@
+<p>
+    Believe it or not, in the eyes of physicists, the world comes into its existence because of numerous topological defects. (<i>This sentence carries different meanings in different fields of physics; check out <a href="https://gravityandlevity.wordpress.com/2015/09/24/samuel-becketts-guide-to-particles-and-antiparticles/">this article</a> to find out more!</i>) Put it simply, a defect is some imperfection in an otherwise impeccable arrangement. A defect is <strong>topological</strong> if it cannot be smoothly removed.
+</p>
+<p>
+    This description of topological defects is rather abstract, so let's look at an example shown in the animation below (<i>your browser needs to support <code>.gif</code></i>). In a rectangular lattice of arrows, the fixed white dot is a <strong>defect</strong>, while an <strong>antidefect</strong> follows the cursor position. The arrows rotate in response to different positions of the antidefect, and the color corresponds to different rotation angles.
+</p>
+<center>
+    <table>
+        <tr>
+            <td><center><img style="height:294px" src="./topological_defects.gif"></center></td>
+        </tr>
+        <tr>
+            <td><center><i>A pair of defect (fixed white dot) and antidefect (following the cursor)</i></center></td>
+        </tr> 
+    </table>
+</center>
+<p></p>
+<p>
+    Let's dissect the animation a bit more. When a defect and an antidefect are overlapped (see figure below on the left), we have a perfect array of arrows, all pointing up. When they are separated (figure on the right), arrows start to change directions. Why do we call one of them <span style="color:blue">defect</span> while the other <span style="color:red">antidefect</span>? The answer lies in the arrow direction. If we draw a circle in a <i>clockwise</i> manner around the defect, we see that the arrows also rotate in a <i>clockwise</i> manner by 360&deg;. This is different for an antidefect: tracing a <i>clockwise</i> circle will result in an <i>anticlockwise</i> rotation of the arrow, again by 360&deg;. What if we draw a circle that encloses both? In this case, there is no net rotation of arrows! 
+</p>
+<center>
+    <table>
+        <tr>
+            <td><center><img style="width:500px" src="./defect_antidefect_together.png"></center></td>
+            <td><center><img style="width:500px" src="./defect_antidefect_separated.png"></center></td>
+        </tr>
+        <tr>
+            <td><center><i>Defect and antidefect are overlapped</i></center></td>
+            <td><center><i><span style="color:blue">Defect</span> (<span style="color:blue">blue</span>) and <span style="color:red">antidefect</span> (<span style="color:red">red</span>) are separated</i></center></td>
+        </tr>
+    </table>
+</center>
+<p></p>
+<p>
+    In a perfect array of arrows, you can see defects and antidefects are always born or annihilated in <i>pairs</i>, and this phenomenon has utmost importance in physics. For example, it underlies the birth and annihilation of particles and antiparticles in vacuum. As another example, the binding and unbinding of defect pairs drive many phase transitions in low-dimensional materials (e.g. <a href="https://en.wikipedia.org/wiki/Kosterlitz%E2%80%93Thouless_transition">BKT transition</a>).
+</p>
+<p>
+    Your task is to <i>make an interactive animation of defect movement</i>, similar to the example shown above. Specifically, the defect will be fixed in place, while the antidefect will follow the cursor position. You will need to draw an array of arrows, and update their rotations according to the cursor position. You will need to use the <code>tkinter</code> module covered in Lecture&nbsp;10 and 11, and you can assume that a <code>canvas</code> object has been created and is ready to use.
+</p>
+<h5>
+    <strong>Milestone&nbsp;1</strong>: Draw an array of arrows
+</h5>
+<p>
+    The first step is to draw an array of arrows. You can create a single arrow by invoking the following method on a <code>canvas</code> object:
+</p>
+<p>
+    <center><code>arrow = canvas.create_line(x0, y0, x1, y1, arrow=tkinter.LAST, arrowshape=ARROW_SHAPE)</code></center>
+</p>
+<p>
+    Here, <code>(x0,&nbsp;y0)</code> and <code>(x1,&nbsp;y1)</code> are the starting and ending coordinates of the line segment, <code>tkinter.LAST</code> specifies that the arrowhead is at the end of the segment, and <code>ARROW_SHAPE</code> is a provided constant that specifies the appearance of the arrowhead (see <a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/tkinter.pdf">documentation</a>). How to draw an array of arrows? You'll probably need to have a few constants that specify the number of arrows per row and per column, as well as the spacing between neighbors. It will also be handy to store these arrows in a nested <code>list</code>, so later on you can access them and modify their rotation angles.
+</p>
+<h5>
+    <strong>Milestone&nbsp;2</strong>: Update antidefect location
+</h5>
+<p>
+    While the defect position is fixed (good place to use constants!), the antidefect tracks the cursor. You can get the <code>x</code> and <code>y</code> coordinates of the cursor by using the following line:
+</p>
+<p>
+    <center><code>mouse_x = canvas.winfo_pointerx()</code></center>
+    <center><code>mouse_y = canvas.winfo_pointery()</code></center>
+</p>
+<p>
+    As an optional task, you can draw two small circles to mark the positions of the defect and antidefect, which are denoted by <code>(xd,&nbsp;yd)</code> and <code>(xa,&nbsp;ya)</code> respectively.
+</p>
+<h5>
+    <strong>Milestone&nbsp;3</strong>: Update the arrow rotation
+</h5>
+<p>
+    If an arrow is rotated by an angle <code>&phi;</code>, we can compute its starting <code>(x0,&nbsp;y0)</code> and ending <code>(x1,&nbsp;y1)</code> coordinates based on (i)&nbsp;the center location of the arrow <code>(xc,&nbsp;yc)</code> and (ii)&nbsp;the arrow <code>length</code>:
+</p>
+<p>
+    <center><code>x0 = xc - dx, y0 = yc - dy, dx = cos(&phi;) * length / 2</code></center>
+    <center><code>x1 = xc + dx, y1 = yc + dy, dy = sin(&phi;) * length / 2</code></center>
+</p>
+<p>
+    Note that all angles are in radians. You may want to <code>import&nbsp;math</code> and use the <code>math.sin</code> and <code>math.cos</code> functions. By convention, <code>&phi;&nbsp;=&nbsp;0</code> when the arrow points in the positive <i>x</i> direction and <code>&phi;&nbsp;=&nbsp;&pi;/2</code> (90&deg;) when the arrow points in the positive <i>y</i> direction (note that it's a <i>left-handed</i> coordinate system).
+</p>
+<p>
+    To obtain or update the coordinates of an existing <code>arrow</code> on the <code>canvas</code>, the following methods from <code>tkinter</code> will be useful:
+</p>
+<p>
+    <center><code>x0, y0, x1, y1 = canvas.coords(arrow) # Obtain current coordinates</code></center>
+    <center><code>canvas.coords(arrow, x0, y0, x1, y1) # Set new coordinates</code></center>
+</p>
+<h5>
+    <strong>Milestone&nbsp;4</strong>: Compute angle based on defect and antidefect locations
+</h5>
+<p>
+    Given an arrow located at <code>(x,&nbsp;y)</code>, what is its rotation angle <code>&phi;</code>? For this part, we now need to use the locations of the defect <code>(xd,&nbsp;yd)</code> and the antidefect <code>(xa,&nbsp;ya)</code>. If we look at the figures above, these defect pairs resemble the picture of a vortex and antivortex. Hence, a bit of trigonometry gives us the following formula:
+</p>
+<p>
+    <center><code>&phi; = math.atan2(y - yd, x - xd) + math.atan2(ya - y, x - xa) + ARROW_ANGLE_DEFAULT</code></center>
+</p>
+<p>
+    where <code>ARROW_ANGLE_DEFAULT</code> is the angle when the defect pair overlaps. In the figure above, this default angle is <code>-&pi;/2</code> (-90&deg;) so that all arrows point up. Here, <code>math.atan2</code> is a library function that calculates the <i>arctangent</i> function in a quadrant-specific manner.  
+</p>
+<h5>
+    <strong>Milestone&nbsp;5 (Optional)</strong>: Color arrows based on angle
+</h5>
+<p>
+    For more aesthetic visualization, it would be cool to color the arrows based on their angle. To change the color of an existing <code>arrow</code>, you can use the following function:
+</p>
+<p>
+    <center><code>canvas.itemconfig(arrow, fill=color)</code></center>
+</p>
+<p>
+    where <code>color</code> is a <code>string</code> that specifies the color. By default, it is <code>'black'</code> and you can choose your favorite color, such as <code>'white'</code>, <code>'blue'</code>, etc. To select the color based on an angle, you're provided with a function (see solution)
+</p>
+<p>
+    <center><code>get_color(angle, colormap)</code></center>
+</p>
+<p>
+    which returns a color <code>string</code>. Note that the angle is quoted in radian. This function also takes a string <code>colormap</code> that represents the color palette we want to use. In the solution, the <code>colormap</code> variable can only be either <code>'hsv'</code> or <code>'twilight'</code>, but feel free to add your favorite color palette as well. 
+</p>
