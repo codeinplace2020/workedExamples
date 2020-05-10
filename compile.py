@@ -10,7 +10,7 @@ IGNORE_DIRS = []
 
 TEMPLATE_TEXT = open('template.html').read()
 
-# supported image types: jpg, png
+# supported image types: jpg, png, svg, gif
 
 
 class Compiler(object):
@@ -85,6 +85,7 @@ class Compiler(object):
         if file_type == 'png': return True
         if file_type == 'jpg': return True
         if file_type == 'svg': return True
+        if file_type == 'gif': return True
         return False
 
     def load_part(self, dir_name, file_name):

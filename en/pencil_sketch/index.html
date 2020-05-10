@@ -193,7 +193,7 @@
 					</a>
 				</p>
 				<div class="collapse" id="soln-collapse">
-					<pre class="console" id="editor" style="height:3140.0px">from simpleimage import SimpleImage
+					<pre class="console" id="editor" style="height:3100.0px">from simpleimage import SimpleImage
 
 RGB_MAX = 255    # Max RGB value. 255 for 24-bit RGB image
 BLUR_SIZE = 11   # Size of the box filter. Should be positive odd integer
@@ -302,9 +302,7 @@ def in_bound(x, y, width, height):
     Returns False otherwise.
     All parameters are integers
     &quot;&quot;&quot;
-    if 0 &lt;= x &lt; width and 0 &lt;= y &lt; height:
-        return True
-    return False
+    return 0 &lt;= x &lt; width and 0 &lt;= y &lt; height
 
 
 def invert_color(img):

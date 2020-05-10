@@ -107,9 +107,7 @@ def in_bound(x, y, width, height):
     Returns False otherwise.
     All parameters are integers
     """
-    if 0 <= x < width and 0 <= y < height:
-        return True
-    return False
+    return 0 <= x < width and 0 <= y < height
 
 
 def invert_color(img):
