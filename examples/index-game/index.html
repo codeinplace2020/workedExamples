@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Index Game </title>
+<style>
+    table, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+    td {
+    padding: 1px;
+    }
+</style>
+</head>
+<body>
+    We are going to take the first step into data science. You will learn about lists and files! <br>
+    <h3> 1. The Index Game </h3>
+As a warmup, read this code and play the game a few times. Use this mental model of the list: <br>
+<table style="width: 40%">
+        <tr>
+            <th colspan = '5'> Value </th>
+            <td> 'Julie' </td>
+            <td> 'Mehran' </td>
+            <td> 'Simba' </td>
+            <td> 'Ayesha' </td>
+            <td> 'Karel' </td>
+        </tr> <br>
+        <tr>
+            <th colspan = '5'> Index </th>
+            <td> 0 </td>
+            <td> 1 </td>
+            <td> 2 </td>
+            <td> 3 </td>
+            <td> 4 </td>
+        </tr> <br>
+    </table> <br>
+
+    <font color="blue"><p style  = "margin-left: 40px">   def main(): </font><br>
+    <p style  = "margin-left: 60px"><font color="red">  # 1. Understand how to create a list and add values </font><br>
+    <font color="red"> # A list is an ordered collection of values </font><br>
+    names = [<font color="blue">'Julie', 'Mehran', 'Simba', 'Ayesha']  </font><br>
+    names.append(<font color="blue"> 'Karel'  </font>) <br>
+    <font color="red"> # 2. Understand how to loop over a list </font><br>
+    <font color="red"> # this prints the list to the screen one value at a time </font><br>
+    <font color="blue">for </font> value <font color="blue">in </font> names: <br>
+        print(value) <br>
+    <font color="red"> # 3. Understand how to look up the length of a list </font><br>
+    <font color="red"> # use randint to select a valid "index" </font><br>
+    max_index = len(names) - 1 <br>
+    index = random.randint(0, max_index) <br>
+    <font color="red"> # 4. Understand how to get a value by its index </font><br>
+    <font color="red"> # get the item at the chosen index </font><br>
+    correct_answer = names[index] <br>
+    <font color="red"> # This is just like in Khansole Academy... </font><br>
+    <font color="red"> # prompt the user for an answer, check if it is correct </font><br>
+    prompt = <font color="blue">'who is in index...' </font> + str(index)+ <font color="blue"> '? ' </font><br>
+    answer = input(prompt) <br>
+    <font color="blue"> if </font> answer == correct_answer:<br>
+    print(<font color="blue">'Good job'</font>)<br>
+    else:<br>
+        print(<font color="blue">'Correct answer was' </font>, correct_answer) </p><br>
+
+</body>
+</html>
