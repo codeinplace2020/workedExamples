@@ -10,7 +10,7 @@
 <li>Piech Perfection: $3.14</li>
 <li>Sahami Special: a random price in the range $1.62-$2.72 (inclusive)</li>
 </ul>
-<p>Write a program that prints out a short welcome message and the main menu. Then, it should continually read in menu items from the user, keeping track of how many items they've added so far. Misspelled items should result in an error message (this should not count as an additional item). During this ordering phase, the user can also ask to see the secret menu by typing in the key phrase "Secret Menu Please!" (this should not count as an additional item). Lastly, it will print out the total price of the user's order and a farewell. Here is an example execution of the program:</p>
+<p>Write a program that prints out a short welcome message and the main menu. Then, it should continually read in menu items from the user, keeping track of how many items they've added so far. Misspelled items should result in an error message (this should not count as an additional item). During this ordering phase, the user can also ask to see the secret menu by typing in the key phrase "Secret Menu Please!" (this should not count as an additional item). If the user types nothing and just hits enter, the order phase should end. Lastly, it will print out the total price of the user's order and a farewell. Here is an example execution of the program:</p>
 <pre class="console" style="width: 425px;">Welcome to Programmer's Paradise!
 ----------
 Here's our menu:
@@ -54,8 +54,8 @@ Here's our secret menu:
 Piech Perfection: $3.14
 Sahami Special: $1.62-$2.72
 
-3. Piech Perfection
-4. Sahami Special
+3. <span class="blue">Piech Perfection</span>
+4. <span class="blue">Sahami Special</span>
 5. 
 
 Your total is...
