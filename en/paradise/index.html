@@ -1,0 +1,257 @@
+
+<title>Programmer&#039;s Paradise</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+
+	<div class="container container-course">
+		<div class="row">
+			<div class="col">
+				<h1>Programmer&#039;s Paradise</h1>
+				<p class="subtleHeading">Written by Laryn Qi</p>
+				<hr/>
+				<p>With the onset of COVID-19, online ordering has become even more prevalent. As software engineers, a program that could take our order from the comfort of our own terminal/command prompt would be especially convenient. Well, if we're truly programmers, why don't we try programming this program ourselves!</p>
+<p>The <em>main</em> menu will consist of:</p>
+<ul>
+<li>Boolean Burger: $4.99</li>
+<li>Function Fries: $2.99</li>
+<li>String Soda: $1.99</li>
+</ul>
+<p>The <em>secret</em> menu will consist of:</p>
+<ul>
+<li>Piech Perfection: $3.14</li>
+<li>Sahami Special: a random price in the range $1.62-$2.72 (inclusive)</li>
+</ul>
+<p>Write a program that prints out a short welcome message and the main menu. Then, it should continually read in menu items from the user, keeping track of how many items they've added so far. Misspelled items should result in an error message (this should not count as an additional item). During this ordering phase, the user can also ask to see the secret menu by typing in the key phrase "Secret Menu Please!" (this should not count as an additional item). If the user types nothing and just hits enter, the order phase should end. Lastly, it will print out the total price of the user's order and a farewell. Here is an example execution of the program:</p>
+<pre class="console" style="width: 425px;">Welcome to Programmer's Paradise!
+----------
+Here's our menu:
+
+Boolean Burger: $4.99
+Function Fries: $2.99
+String Soda: $1.99
+
+What can I get for you?
+1. <span class="blue">Boolean Burger</span>
+2. <span class="blue">Function Fries</span>
+3. <span class="blue">fries</span>
+Please enter a valid item.
+3. <span class="blue">Function Fries</span>
+4. <span class="blue">String Soda</span>
+5. 
+
+Your total is...
+$12.96
+
+Thank you for choosing Programmer's Paradise.
+We hope you loop by again!
+
+</pre>
+<p>Here is another example execution of the program with secret menu items:</p>
+<pre class="console" style="width: 425px;">Welcome to Programmer's Paradise!
+----------
+Here's our menu:
+
+Boolean Burger: $4.99
+Function Fries: $2.99
+String Soda: $1.99
+
+What can I get for you?
+1. <span class="blue">String Soda</span>
+2. <span class="blue">String Soda</span>
+3. <span class="blue">Secret Menu Please!</span>
+----------
+Here's our secret menu:
+
+Piech Perfection: $3.14
+Sahami Special: $1.62-$2.72
+
+3. <span class="blue">Piech Perfection</span>
+4. <span class="blue">Sahami Special</span>
+5. 
+
+Your total is...
+$8.92
+
+Thank you for choosing Programmer's Paradise.
+We hope you loop by again!
+&nbsp;</pre>
+<p>Here are some tips for common issues:</p>
+<ol>
+<li>General
+<ul>
+<li>Your solution should take advantage of decomposition and constants</li>
+</ul>
+</li>
+<li>Formatting
+<ul>
+<li><code>print()</code> can be used to print out a blank line</li>
+<li>The escape character <code>\'</code> can be used to display an apostrophe</li>
+<li>Check out this <a href="https://stackoverflow.com/questions/19986662/rounding-a-number-in-python-but-keeping-ending-zeros">StackOverflow thread</a> if you're having trouble with trailing 0's</li>
+</ul>
+</li>
+<li>Sahami Special
+<ul>
+<li>You will need to use the <code>random</code> library</li>
+<li>Remember that all prices are floats (take a look at <code>random.uniform</code> and the Python built-in function <code>round</code>)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Optional Extensions</strong></p>
+<ol>
+<li>Make ordering more realistic! Use the <code>time</code> library to delay printed outputs of your program so it feels like your terminal/command prompt is talking to you</li>
+<li>Allow users to order multiple items at a time (<code>1. 5 Boolean Burger</code>)</li>
+<li>Allow users to remove items from their order</li>
+<li>Allow users to cancel their order entirely</li>
+<li>Add your own items to the menu/secret menu!</li>
+</ol>
+<p>&nbsp;</p>
+				<h2>Solution</h2>
+				<p>
+					<a class="btn btn-primary" id="soln-btn" onclick="toggleButtonText()"
+						data-toggle="collapse" href="#soln-collapse" aria-expanded="false" 
+						aria-controls="Collapse">
+						Show Solution
+					</a>
+				</p>
+				<div class="collapse" id="soln-collapse">
+					<pre class="console" id="editor" style="height:1680.0px">import random
+import time
+
+P_BURGER = 4.99 
+P_FRIES = 2.99
+P_SODA = 1.99
+P_PIECH = 3.14
+MIN_SAHAMI = 1.62
+MAX_SAHAMI = 2.72
+
+def main():
+    welcome()
+    menu()
+    order()
+
+def welcome():
+    print(&#039;Welcome to Programmer\&#039;s Paradise!&#039;)
+    print(&#039;----------&#039;)
+    time.sleep(1)
+
+def menu():
+    print(&#039;Here\&#039;s our menu:&#039;)
+    print()
+    time.sleep(1)
+    print(&#039;Boolean Burger: $&#039; + str(P_BURGER))
+    time.sleep(1)
+    print(&#039;Function Fries: $&#039; + str(P_FRIES))
+    time.sleep(1)
+    print(&#039;String Soda: $&#039; + str(P_SODA))
+    time.sleep(1)
+    print()
+    
+
+def secret_menu():
+    print(&#039;----------&#039;)
+    print(&#039;Here\&#039;s our secret menu:&#039;)
+    time.sleep(1)
+    print()
+    print(&#039;Piech Perfection: $&#039; + str(P_PIECH))
+    time.sleep(1)
+    print(&#039;Sahami Special: $&#039; + str(MIN_SAHAMI) + &#039;-$&#039; + str(MAX_SAHAMI))
+    time.sleep(1)
+    print()
+
+def order():
+    print(&#039;What can I get for you?&#039;)
+    count = 1
+    total = 0
+    item = input(&#039;1. &#039;)
+    while item != &#039;&#039;:
+        if item == &#039;Boolean Burger&#039;:
+            total += P_BURGER
+        elif item == &#039;Function Fries&#039;:
+            total += P_FRIES
+        elif item == &#039;String Soda&#039;:
+            total += P_SODA
+        elif item == &#039;Secret Menu Please!&#039;:
+            secret_menu()
+            count -= 1
+        elif item == &#039;Piech Perfection&#039;:
+            total += P_PIECH
+        elif item == &#039;Sahami Special&#039;:
+            total += random.uniform(MIN_SAHAMI, MAX_SAHAMI)
+        else:
+            print(&#039;Please enter a valid item.&#039;)
+            count -= 1
+        count += 1
+        item = input(str(count) + &#039;. &#039;)
+    
+    print()
+    print(&#039;Your total is...&#039;)
+    time.sleep(1)
+    print(&#039;$&#039; + &quot;%.2f&quot; % round(total, 2))
+    time.sleep(1)
+    print()
+    print(&#039;Thank you for choosing Programmer\&#039;s Paradise.&#039;)
+    time.sleep(1)
+    print(&#039;We hope you loop by again!&#039;)
+    time.sleep(1)
+    print()
+    exit()
+
+if __name__ == &#039;__main__&#039;:
+    main()</pre>
+				</div>
+    
+				<script src="../../plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script>
+				    var editor = ace.edit("editor");
+				   editor.setTheme('ace/theme/eclipse');
+				   editor.getSession().setMode("ace/mode/python");
+				   editor.setReadOnly(true);
+				   editor.renderer.setShowGutter(false); 
+				   editor.setFontSize("14px");
+				    /*editor.setTheme("ace/theme/eclipse");
+				    editor.getSession().setMode("ace/mode/java");*/
+				</script>
+				<script>
+					function toggleButtonText() {
+						var elem = document.getElementById("soln-btn");
+						if (elem.innerHTML.trim() === "Show Solution") {
+							elem.innerHTML = "Hide Solution";
+						} else {
+							elem.innerHTML = "Show Solution";
+						}
+					}
+				</script>
+				<hr/>
+			</div>
+		</div>
+	</div>
+
+</body>
